@@ -1,6 +1,10 @@
-(make image using Raspberry Pi Imager: https://www.raspberrypi.org/software/)
+
+References:
+ RGB: https://github.com/adafruit/Adafruit_CircuitPython_NeoPixel
+      https://thepihut.com/blogs/raspberry-pi-tutorials/using-neopixels-with-the-raspberry-pi
 
 A: After making the image on the SD card:
+(make image using Raspberry Pi Imager: https://www.raspberrypi.org/software/)
 
 Working on the boot directory of the SD Card
 1) [copy] or create empty file "ssh" from raspberry-pi_setup directory to boot directory
@@ -26,81 +30,58 @@ network={
 
 
 B: Plug Pi into Laptop USB then once pi has booted up:
-    Login with:
+    Login with (putty):
       PuTTY Host/IP: raspberrypi.local
       Port: 22
       Username: pi
       Password: raspberry
 
+    OR (command line):
+      > ssh pi@raspberrypi.local
+
+    NOTE: you may have to remove the ~/.ssh/known_hosts file if you find yourself logging in to the wrong pi.
+
 1) update
 > sudo apt-get update
 > sudo apt-get upgrade
 
-
-[Skip]
-2) enable interfaces (i2c and spi)
-# https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/installing-circuitpython-on-raspberry-pi
-#skip > sudo pip3 install --upgrade setuptools
-#skip > sudo apt-get install -y python-smbus
-#skip > sudo apt-get install -y i2c-tools
-[/Skip]
-
-
-# activate interfaces (may skip if copied "config.txt" file)
-> sudo raspi-config
----- Interfacing Options
------- I2C
--------- Yes
----------- Yes
----- Interfacing Options
------- SPI
--------- Yes
----------- Yes
-
 # REBOOT pi
 > sudo reboot
 
-# install necessary packages
-> sudo apt-get install gcc make build-essential python-dev git scons swig
+# Install neopixel and rpi_ws281x
 
-# Deactivate audio output file.
-
-a) Add line to the file "/etc/modprobe.d/snd-blacklist.conf",
-To edit:
-> sudo nano /etc/modprobe.d/snd-blacklist.conf
-
-  #and add the line:
-
-blacklist snd_bcm2835
-
-  Modify the "/boot/config.txt": comment out line:
-
-dtparam=audio=on
-
-by adding a # to beginning of line
-
-#dtparam=audio=on
+> sudo pip3 install adafruit-circuitpython-neopixel
+> sudo pip3 install rpi_ws281x
 
 
+# test program (test.py)
+import board
+import neopixel
 
-# Install rpi_ws281x
-> git clone https://github.com/jgarff/rpi_ws281x
-> cd rpi_ws281x/
-> sudo scons
-> cd python
-> sudo python3 setup.py build
-> sudo python3 setup.py install
-> sudo pip3 install adafruit-circuitpython-neopixel>
+npix = 20
+pixels = neopixel.NeoPixel(board.D18, 20)
+pixels[-1] = (0,10,0)
+#/end test.py
 
-# test with
-> sudo python3 examples/strandtest.py
 
-# edit the "examples/strandtest.py" file to customize it for your LED strand.
+# to run the test program
+> sudo python3 test.py
+
+
+# to set the program to run on startup
+# ref: https://learn.sparkfun.com/tutorials/how-to-run-a-raspberry-pi-program-on-startup/all
+> sudo nano /etc/rc.local
+
+# and add the following line (change your filename and path) before the 'exit 0' line to run the 'clear.py' program in your home directory:
+sudo python3 /home/pi/clear.py &
+
 
 
 
 
 [[Done LED Part]]
+
+
 
 
 
