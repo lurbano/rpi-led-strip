@@ -63,12 +63,12 @@
 
  ## test program (test.py)
 
-     import board
-     import neopixel
+    import board
+    import neopixel
 
-     npix = 20
-     pixels = neopixel.NeoPixel(board.D18, 20)
-     pixels[-1] = (0,10,0)
+    npix = 20
+    pixels = neopixel.NeoPixel(board.D18, 20)
+    pixels[-1] = (0,10,0)
 
 
  ## to run the test program
