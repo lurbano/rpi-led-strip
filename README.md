@@ -1,5 +1,5 @@
 # RPi-sensor-setup
- Instructions for setting up raspberry pi to use as a sensor.
+ Instructions for setting up a headless raspberry pi to control a LED strip.
 
 
  # References:
