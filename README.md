@@ -33,7 +33,7 @@
 
 
  # Connect to pi
- 
+
  B: Plug Pi into Laptop USB then once pi has booted up:
      Login with (putty):
        PuTTY Host/IP: raspberrypi.local
@@ -46,22 +46,22 @@
 
      NOTE: you may have to remove the ~/.ssh/known_hosts file if you find yourself logging in to the wrong pi.
 
- # update pi
+ ## update pi
  > sudo apt-get update
 
  > sudo apt-get upgrade
 
- # REBOOT pi
+ ## REBOOT pi
  > sudo reboot
 
- # Install neopixel and rpi_ws281x
+ ## Install neopixel and rpi_ws281x
 
  > sudo pip3 install adafruit-circuitpython-neopixel
 
  > sudo pip3 install rpi_ws281x
 
 
- # test program (test.py)
+ ## test program (test.py)
 
      import board
      import neopixel
@@ -71,11 +71,11 @@
      pixels[-1] = (0,10,0)
 
 
- # to run the test program
+ ## to run the test program
  > sudo python3 test.py
 
 
- # to set the program to run on startup.
+ ## to set the program to run on startup.
  Ref: https://learn.sparkfun.com/tutorials/how-to-run-a-raspberry-pi-program-on-startup/all
  > sudo nano /etc/rc.local
 
