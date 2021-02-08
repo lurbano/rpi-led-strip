@@ -45,6 +45,7 @@
 
  1) update
  > sudo apt-get update
+
  > sudo apt-get upgrade
 
  # REBOOT pi
@@ -53,16 +54,18 @@
  # Install neopixel and rpi_ws281x
 
  > sudo pip3 install adafruit-circuitpython-neopixel
+
  > sudo pip3 install rpi_ws281x
 
 
  # test program (test.py)
-   import board
-   import neopixel
 
-   npix = 20
-   pixels = neopixel.NeoPixel(board.D18, 20)
-   pixels[-1] = (0,10,0)
+     import board
+     import neopixel
+
+     npix = 20
+     pixels = neopixel.NeoPixel(board.D18, 20)
+     pixels[-1] = (0,10,0)
 
 
  # to run the test program
@@ -74,7 +77,3 @@
 
 and add the following line (change your filename and path) before the 'exit 0' line to run the 'clear.py' program in your home directory:
 > sudo python3 /home/pi/clear.py &
-
-
-
- 
