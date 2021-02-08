@@ -1,5 +1,5 @@
 # RPi-sensor-setup
- Instructions for setting up a headless raspberry pi to control a LED strip.
+ Instructions for setting up a headless raspberry pi to control a NeoPixel (WS281x) LED strip.
 
 
  # References:
