@@ -17,18 +17,17 @@
      File name: wpa_supplicant.conf
      Change: networkName and yourPassword
 
- ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
- update_config=1
+   ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+   update_config=1
 
- network={
-   ssid="networkName"
-   psk="yourPassword"
- }
+   network={
+     ssid="networkName"
+     psk="yourPassword"
+   }
 
- 3) [copy] over or update files on the SD Card for usb connection
- * https://learn.adafruit.com/turning-your-raspberry-pi-zero-into-a-usb-gadget/ethernet-gadget
- ** "config.txt": Add 'dtoverlay=dwc2' as the last line.
- ** "cmdline.txt": Add ' modules-load=dwc2,g_ether' after 'rootwait' (e.g. 'rootwait modules-load=dwc2,g_ether').
+ 3) [copy] over or update files on the SD Card for usb connection (https://learn.adafruit.com/turning-your-raspberry-pi-zero-into-a-usb-gadget/ethernet-gadget)
+ a) "config.txt": Add 'dtoverlay=dwc2' as the last line.
+ b) "cmdline.txt": Add ' modules-load=dwc2,g_ether' after 'rootwait' (e.g. 'rootwait modules-load=dwc2,g_ether').
 
 
 
@@ -58,26 +57,24 @@
 
 
  # test program (test.py)
- import board
- import neopixel
+   import board
+   import neopixel
 
- npix = 20
- pixels = neopixel.NeoPixel(board.D18, 20)
- pixels[-1] = (0,10,0)
- #/end test.py
+   npix = 20
+   pixels = neopixel.NeoPixel(board.D18, 20)
+   pixels[-1] = (0,10,0)
 
 
  # to run the test program
  > sudo python3 test.py
 
 
- # to set the program to run on startup
- # ref: https://learn.sparkfun.com/tutorials/how-to-run-a-raspberry-pi-program-on-startup/all
+ # to set the program to run on startup. Ref: https://learn.sparkfun.com/tutorials/how-to-run-a-raspberry-pi-program-on-startup/all
  > sudo nano /etc/rc.local
 
- # and add the following line (change your filename and path) before the 'exit 0' line to run the 'clear.py' program in your home directory:
- sudo python3 /home/pi/clear.py &
+and add the following line (change your filename and path) before the 'exit 0' line to run the 'clear.py' program in your home directory:
+> sudo python3 /home/pi/clear.py &
 
 
 
- [[Done LED Part]]
+ 
