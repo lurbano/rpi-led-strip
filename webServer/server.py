@@ -25,7 +25,7 @@ ledPin = board.D18
 
 #Initialize neopixels
 pixels = neopixel.NeoPixel(board.D18, nPix, auto_write=False)
-pixels[-3] = (100,0,0)
+#pixels[-3] = (100,0,0)
 
 #oled = oledU(128,32)
 
@@ -65,6 +65,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 				print("Clearing LEDs ")
 				for i in range(npix):
 					pixels[i] = (0,0,0)
+				pixels.show()
 				# pyFile = f"{pyPath}/clear.py"
 				# cmd = ["sudo", "python3", pyFile]
                 # subprocess.run(cmd)
@@ -189,6 +190,7 @@ if __name__ == "__main__":
 		print ("Tornado Server started")
 		pixels[-1] = (0, 100, 0)
 		pixels[-2] = (0, 0, 100)
+		pixels.show()
 
 		# get ip address
 		cmd = "hostname -I | cut -d\' \' -f1"
@@ -209,5 +211,6 @@ if __name__ == "__main__":
 		print ("Exception triggered - Tornado Server stopped.")
 		for i in range(nPix):
 			pixels[i] = (0,0,0)
+		pixels.show()
 
 #End of Program
