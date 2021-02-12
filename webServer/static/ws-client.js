@@ -51,6 +51,11 @@ $(document).ready(function(){
             var msg = '{"what": "rainbowButton"}';
             ws.send(msg);
         });
+        $("#blueButton").click(function(){
+            //var opt = $(this).val() == "OFF" ? "on" : "off";
+            var msg = '{"what": "blueButton"}';
+            ws.send(msg);
+        });
 
 
       });

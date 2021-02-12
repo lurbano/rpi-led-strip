@@ -73,6 +73,9 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 				print("rainbow LEDs ")
 				ledPix.rainbow()
 
+			if msg["what"] == "blueButton":
+				print("blue LEDs ")
+				ledPix.blue()
 
 
             # if msg["what"] == "dist":

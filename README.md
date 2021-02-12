@@ -118,6 +118,30 @@ ADD THE LINES (before 'exit 0' ):
 
 
 
+# Adding things to be controlled by the webpage
+Say you want to add a button that makes the LED's blue
+
+## Add button to webpage: webServer/templates/index.html around line 24
+> <input type="button" id="blueButton" value="Blue">
+
+## Add javascript to act when someone clicks the blueButton: webserver/static/ws-client.js near bottom of file
+> $("#blueButton").click(function(){
+>    var msg = '{"what": "blueButton"}';
+>    ws.send(msg);
+> });
+
+Here we're sending the dict {"what": "blueButton"} to the server.
+
+## Have the server figure out what to do when it gets the message: msg = {"what": "blueButton"} in webserver/server.py around line 76.
+> if msg["what"] == "blueButton":
+>   print("blue LEDs ")
+>   ledPix.blue()
+
+## If needed, add code to the ledPixels class (in webserver/ledPixels.py file) to do what you want it to do (ledPix is an instance of this class).
+> def blue(self):
+>       for i in range(self.nPix):
+>           self.pixels[i] = (0,0,200)
+
 
 
 
