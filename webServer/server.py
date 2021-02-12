@@ -17,15 +17,17 @@ import sys
 #from numpy import arange, mean
 import numpy as np
 
-from ledController import *
+#from ledController import *
+from ledPixels import *
 #from oledU import *
 
 nPix = 20
 ledPin = board.D18
 
+
 #Initialize neopixels
-pixels = neopixel.NeoPixel(board.D18, nPix, auto_write=False)
-#pixels[-3] = (100,0,0)
+ledPix = ledPixels(nPix, ledPin)
+#pixels = neopixel.NeoPixel(board.D18, nPix, auto_write=False)
 
 #oled = oledU(128,32)
 
@@ -63,12 +65,19 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 
 			if msg["what"] == "clearButton":
 				print("Clearing LEDs ")
-				for i in range(npix):
+				ledPix.clear()
+				# for i in range(nPix):
+				# 	pixels[i] = (0,0,0)
+				# pixels.show()
+				self.write_message{"info":"cleared"}
+
+			if msg["what"] == "rainbow":
+				print("Clearing LEDs ")
+				for i in range(nPix):
 					pixels[i] = (0,0,0)
 				pixels.show()
-				# pyFile = f"{pyPath}/clear.py"
-				# cmd = ["sudo", "python3", pyFile]
-                # subprocess.run(cmd)
+				self.write_message{"info":"cleared"}
+
 
             # if msg["what"] == "dist":
             #   dSensor = uSonicDistance()
@@ -188,9 +197,9 @@ if __name__ == "__main__":
 		main_loop = tornado.ioloop.IOLoop.instance()
 
 		print ("Tornado Server started")
-		pixels[-1] = (0, 100, 0)
-		pixels[-2] = (0, 0, 100)
-		pixels.show()
+		ledPix.pixels[-1] = (0, 100, 0)
+		ledPix.pixels[-2] = (0, 0, 100)
+		ledPix.pixels.show()
 
 		# get ip address
 		cmd = "hostname -I | cut -d\' \' -f1"
@@ -209,8 +218,6 @@ if __name__ == "__main__":
 
 	except:
 		print ("Exception triggered - Tornado Server stopped.")
-		for i in range(nPix):
-			pixels[i] = (0,0,0)
-		pixels.show()
+		ledPixels.clear()
 
 #End of Program

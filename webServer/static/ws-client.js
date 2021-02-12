@@ -16,6 +16,8 @@ $(document).ready(function(){
             // $("#ws-status").css("background-color", "#afa");
             // $("#server_light").val("ON");
             $("#signal").html("READY");
+            $("#ws-status").html("Connected");
+            $("#ws-status").css("background-color", "#afa");
         };
 
         ws.onmessage = function(evt) {

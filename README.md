@@ -88,6 +88,10 @@ and add the following line (change your filename and path) before the 'exit 0' l
 Setting up the tornado server used for Websockets
 > sudo pip3 install tornado
 
+## Starting server
+Go to the folder rpi-led-strip/webServer/ and run the command
+> sudo python3 server.py
+
 ## Starting up on boot
 ** IMPORTANT **: the directory with the files needs to be in the pi home directory (e.g. /home/pi/rpi-led-strip) with this setup. You can change this but be sure to put the full path to the commands
 ### set up to start server automatically on startup
@@ -98,7 +102,7 @@ Edit /etc/rc.local (the easy way)
 
 ADD THE LINES (before 'exit 0' ):
 
-> /usr/bin/python3 /home/pi/rpi-led-strip/webServer/server.py 2> /home/pi/error.log &
+> sudo /usr/bin/python3 /home/pi/rpi-led-strip/webServer/server.py 2> /home/pi/error.log &
 
 
 ## If you need to kill the server (and it's the only thing running with python3)
