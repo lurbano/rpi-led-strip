@@ -14,12 +14,9 @@ class ledPixels:
             self.pixels[i] = (0,0,0)
         self.pixels.show()
 
-    def rainbow(self, n=1):
+    def rainbow(self, n=1, speed=0.01):
         for i in range(n):
-            if self.interrupt:
-                break
-            else:
-                self.rainbow_cycle(0.01)
+            self.rainbow_cycle(speed)
 
     def blue(self):
         for i in range(self.nPix):

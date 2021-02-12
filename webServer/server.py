@@ -72,8 +72,9 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 			if msg["what"] == "rainbowButton":
 				print("rainbow LEDs ")
 				try:
-					n = int(msg["opts"])
-					ledPix.rainbow(n)
+					n = int(msg["ct"])
+					s = float(msg["speed"])
+					ledPix.rainbow(n, s)
 				except:
 					ledPix.rainbow()
 
