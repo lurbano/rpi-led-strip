@@ -9,7 +9,6 @@ import tornado.web
 import tornado.gen
 import RPi.GPIO as GPIO
 import board
-import neopixel
 import time
 import subprocess
 import json
@@ -76,7 +75,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 				for i in range(nPix):
 					pixels[i] = (0,0,0)
 				pixels.show()
-				
+
 
 
             # if msg["what"] == "dist":

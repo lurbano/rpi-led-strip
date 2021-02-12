@@ -1,3 +1,5 @@
+import neopixel
+
 class ledPixels:
     def __init__(self, nPix, ledPin):
         self.nPix = nPix
