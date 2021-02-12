@@ -79,6 +79,9 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 
 			if msg["what"] == "restart":
 				ledPix.clear()
+				# set up restart
+				subprocess.run(['sudo', 'systemctl', 'enable', '--now', 'atd.service'])
+				subprocess.run(['sudo', 'at', '+', '5', 'sec'], text=True, input='sudo python3 '+os.path.join(os.path.dirname(__file__), "server.py"))
 				main_loop.stop()
 
 			if msg["what"] == "blueButton":

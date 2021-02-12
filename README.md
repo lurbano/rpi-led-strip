@@ -88,6 +88,9 @@ and add the following line (change your filename and path) before the 'exit 0' l
 Setting up the tornado server used for Websockets
 > sudo pip3 install tornado
 
+at is used to schedule commands by our software, but needs to be installed
+> sudo apt-get install at
+
 ## Starting server
 Go to the folder rpi-led-strip/webServer/ and run the command
 > sudo python3 server.py
@@ -107,8 +110,8 @@ ADD THE LINES (before 'exit 0' ):
 
 ## If you need to kill the server (and it's the only thing running with python3)
 * https://unix.stackexchange.com/questions/104821/how-to-terminate-a-background-process
-> pgrep python3
-* this will give you the process id, a three digit number 'nnn'. To kill use:
+> pgrep -a python3
+* this will give you the process id, a number 'nnn'. Use the one that has 'python3 server.py'. To kill use:
 > sudo kill nnn
 
 
