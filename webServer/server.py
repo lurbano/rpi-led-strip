@@ -8,7 +8,6 @@ import tornado.ioloop
 import tornado.web
 import tornado.gen
 import RPi.GPIO as GPIO
-import board
 import time
 import subprocess
 import json

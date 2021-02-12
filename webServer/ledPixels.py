@@ -1,4 +1,5 @@
 import neopixel
+import board
 
 class ledPixels:
     def __init__(self, nPix, ledPin):
