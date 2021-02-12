@@ -25,7 +25,6 @@ ledPin = board.D18
 
 #Initialize neopixels
 ledPix = ledPixels(nPix, ledPin)
-#pixels = neopixel.NeoPixel(board.D18, nPix, auto_write=False)
 
 #oled = oledU(128,32)
 
@@ -78,100 +77,15 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 				except:
 					ledPix.rainbow()
 
+			if msg["what"] == "restart":
+				ledPix.clear()
+				main_loop.stop()
+
 			if msg["what"] == "blueButton":
 				print("blue LEDs ")
 				ledPix.blue()
 
 
-            # if msg["what"] == "dist":
-            #   dSensor = uSonicDistance()
-            #   if msg['opts'] == "check":
-            #       # get measurement
-            #       #d = dSensor.measure(returnType='json')
-            #       data = dSensor.measure()
-            #       #print(d)
-            #       d = {
-            #               "sensor" : 'HC-SRO4',
-            #               "info" : msg['opts'],
-            #               'measurement': 'distance',
-            #               'units': "cm",
-            #               "data": data,
-            #               }
-			#
-            #       # send message back to client
-            #       self.write_message(d)
-			#
-            #       # write measurement to the OLED
-            #       oled.write(str(data) + " " + d["units"])
-			#
-            #   elif msg['opts'] == "check_multipulse":
-            #       # get measurement
-            #       #d = dSensor.measure(returnType='json')
-            #       print("multipulsing")
-            #       data = dSensor.multipulse()
-			#
-            #       d = {
-            #               "sensor" : 'HC-SRO4',
-            #               "info" : msg['opts'],
-            #               'measurement': 'distance',
-            #               'units': "cm",
-            #               "data": data,
-            #               }
-			#
-            #       # send message back to client
-            #       self.write_message(d)
-			#
-            #       # write measurement to the OLED
-            #       oled.write(str(data) + " " + d["units"])
-			#
-            #   elif msg['opts'] == 'log' or msg['opts'] == 'log_feed':
-            #       print ('Logging')
-            #       GPIO.output(measureLedPin, True)
-			#
-            #       #print ('[WS] Incoming message:', message)
-            #       dt = float(msg['info']['dt'])
-            #       tt = float(msg['info']['tt'])
-            #       print (f"dt={dt}, t={tt}")
-			#
-            #       data = []
-            #       t0 = time.time()
-            #       for i in np.arange(0.0, tt+dt, dt):
-            #           nxt = tornado.gen.sleep(dt)
-            #           (t, d) = await dSensor.async_measure(returnType='tdt')
-            #           t = t - t0
-            #           #print(f"t={t},d={d}")
-            #           #txt = "{:.3} sec | {:.3f}".format(i, d)
-            #           #print(txt)
-            #           #oled.write(txt)
-            #           data.append([t,d])
-            #           if (msg['opts'] == 'log_feed'):
-            #               d_feed = {"sensor" : 'HC-SRO4',
-            #                         "info": msg['opts'],
-            #                         "t": t,
-            #                         "d": d}
-            #               #print(d_feed)
-            #               self.write_message(d_feed)
-            #           await nxt
-			#
-            #       GPIO.output(measureLedPin, False)
-			#
-            #       if (msg['opts'] == 'log'):
-            #           d = {
-            #                   "sensor" : 'HC-SRO4',
-            #                   "info" : msg['opts'],
-            #                   'measurement': 'distance',
-            #                   'units': "cm",
-            #                   "data": data,
-            #                   }
-			#
-            #           # send message back to client
-            #           self.write_message(d)
-			#
-            #       print('Done logging')
-			#
-            #   else:
-            #       print("Error with data recieved by server (in dist)")
-            #       print("Error data: " + message)
 		except Exception as e:
 			print(e)
 			print("Exception: Error with data recieved by server")

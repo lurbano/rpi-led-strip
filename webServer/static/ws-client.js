@@ -52,11 +52,15 @@ $(document).ready(function(){
             var msg = '{"what": "rainbowButton", "ct": '+ parseInt(ct) +', "speed":'+ s +'}';
             ws.send(msg);
         });
+        $("#restart").click(function(){
+            var msg = '{"what": "restart"}';
+            ws.send(msg);
+        });
         $("#blueButton").click(function(){
-            //var opt = $(this).val() == "OFF" ? "on" : "off";
             var msg = '{"what": "blueButton"}';
             ws.send(msg);
         });
+
 
 
       });
