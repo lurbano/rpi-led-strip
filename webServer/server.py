@@ -40,28 +40,28 @@ settings = dict(
 PORT = 8040
 
 class MainHandler(tornado.web.RequestHandler):
-    def get(self):
-        print ("[HTTP](MainHandler) User Connected.")
-        self.render("index.html")
+	def get(self):
+		print ("[HTTP](MainHandler) User Connected.")
+		self.render("index.html")
 
 
 class WSHandler(tornado.websocket.WebSocketHandler):
-    def open(self):
-        print ('[WS] Connection was opened.')
-        self.write_message('{"who": "server", "info": "on"}')
-        #self.oled = oledU(128,32)
+	def open(self):
+		print ('[WS] Connection was opened.')
+		self.write_message('{"who": "server", "info": "on"}')
+		#self.oled = oledU(128,32)
 
 
-    async def on_message(self, message):
-        print ('[WS] Incoming on_message:', message)
-        try:
-            msg = json.loads(message)
-            if msg["what"] == "server":
-                if msg["opts"] == "off":
-                    sys.exit("Stopping server")
+	async def on_message(self, message):
+		print ('[WS] Incoming on_message:', message)
+		try:
+			msg = json.loads(message)
+			if msg["what"] == "server":
+				if msg["opts"] == "off":
+					sys.exit("Stopping server")
 
-            if msg["what"] == "clearButton":
-                print("Clearing LEDs ")
+			if msg["what"] == "clearButton":
+				print("Clearing LEDs ")
 				for i in range(npix):
 					pixels[i] = (0,0,0)
 				# pyFile = f"{pyPath}/clear.py"
@@ -157,18 +157,18 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             #   else:
             #       print("Error with data recieved by server (in dist)")
             #       print("Error data: " + message)
-        except Exception as e:
-            print(e)
-            print("Exception: Error with data recieved by server")
-            print(message)
+		except Exception as e:
+			print(e)
+			print("Exception: Error with data recieved by server")
+			print(message)
 
 
-    def on_close(self):
-        print ('[WS] Connection was closed.')
+	def on_close(self):
+		print ('[WS] Connection was closed.')
 
 
 async def measure():
-    print("measuring")
+	print("measuring")
 
 
 
@@ -180,33 +180,33 @@ application = tornado.web.Application([
 
 if __name__ == "__main__":
     try:
-        http_server = tornado.httpserver.HTTPServer(application)
-        http_server.listen(PORT)
-        print("hello")
-        main_loop = tornado.ioloop.IOLoop.instance()
+		http_server = tornado.httpserver.HTTPServer(application)
+		http_server.listen(PORT)
+		print("hello")
+		main_loop = tornado.ioloop.IOLoop.instance()
 
-        print ("Tornado Server started")
-        pixels[-1] = (0, 100, 0)
+		print ("Tornado Server started")
+		pixels[-1] = (0, 100, 0)
 		pixels[-2] = (0, 0, 100)
 
-        # get ip address
-        cmd = "hostname -I | cut -d\' \' -f1"
-        IP = subprocess.check_output(cmd, shell=True).decode("utf-8")
+		# get ip address
+		cmd = "hostname -I | cut -d\' \' -f1"
+		IP = subprocess.check_output(cmd, shell=True).decode("utf-8")
 		print('IP: '+ IP)
-        #oled.write('IP: '+ IP, 3)
-        cmd = 'iwgetid | sed \'s/.*://\' | sed \'s/"//g\''
-        wifi = subprocess.check_output(cmd, shell=True).decode("utf-8")
-        #oled.write(wifi, 2)
+		#oled.write('IP: '+ IP, 3)
+		cmd = 'iwgetid | sed \'s/.*://\' | sed \'s/"//g\''
+		wifi = subprocess.check_output(cmd, shell=True).decode("utf-8")
+		#oled.write(wifi, 2)
 		print(wifi)
 
-        main_loop.start()
+		main_loop.start()
 
 
 
 
-    except:
-        print ("Exception triggered - Tornado Server stopped.")
-        for i in range(npix):
+	except:
+		print ("Exception triggered - Tornado Server stopped.")
+		for i in range(npix):
 			pixels[i] = (0,0,0)
 
 #End of Program

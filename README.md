@@ -82,6 +82,43 @@
 and add the following line (change your filename and path) before the 'exit 0' line to run the 'clear.py' program in your home directory:
 > sudo python3 /home/pi/clear.py &
 
+
+# Running with Tornado Webserver
+
+Setting up the tornado server used for Websockets
+> sudo pip3 install tornado
+
+## Starting up on boot
+** IMPORTANT **: the directory with the files needs to be in the pi home directory (e.g. /home/pi/rpi-led-strip) with this setup. You can change this but be sure to put the full path to the commands
+### set up to start server automatically on startup
+from: https://learn.sparkfun.com/tutorials/how-to-run-a-raspberry-pi-program-on-startup
+
+Edit /etc/rc.local (the easy way)
+> sudo nano /etc/rc.local
+
+ADD THE LINES (before 'exit 0' ):
+
+> /usr/bin/python3 /home/pi/rpi-led-strip/webServer/server.py 2> /home/pi/error.log &
+
+
+## If you need to kill the server (and it's the only thing running with python3)
+* https://unix.stackexchange.com/questions/104821/how-to-terminate-a-background-process
+> pgrep python3
+* this will give you the process id, a three digit number 'nnn'. To kill use:
+> sudo kill nnn
+
+
+## Refs:
+* OLED: http://codelectron.com/setup-oled-display-raspberry-pi-python/
+* https://learn.adafruit.com/adafruit-pioled-128x32-mini-oled-for-raspberry-pi/usage
+
+
+
+
+
+
+#[IN TESTING]
+
 # Webserver
 install apache webserver and php
 > sudo apt install apache2 -y
