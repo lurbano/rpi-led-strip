@@ -24,7 +24,8 @@ nPix = 20
 ledPin = board.D18
 
 #Initialize neopixels
-pixels = neopixel.NeoPixel(board.D18, npix, auto_write=False)
+pixels = neopixel.NeoPixel(board.D18, nPix, auto_write=False)
+pixels[-3] = (100,0,0)
 
 #oled = oledU(128,32)
 
@@ -206,7 +207,7 @@ if __name__ == "__main__":
 
 	except:
 		print ("Exception triggered - Tornado Server stopped.")
-		for i in range(npix):
+		for i in range(nPix):
 			pixels[i] = (0,0,0)
 
 #End of Program
