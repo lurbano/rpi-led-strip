@@ -141,6 +141,7 @@ Here we're sending the dict {"what": "blueButton"} to the server.
 > def blue(self):
 >       for i in range(self.nPix):
 >           self.pixels[i] = (0,0,200)
+>           self.pixels.show()
 
 
 

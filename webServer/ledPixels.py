@@ -20,6 +20,7 @@ class ledPixels:
     def blue(self):
         for i in range(self.nPix):
             self.pixels[i] = (0,0,200)
+            self.pixels.show()
 
     def rainbow_cycle(self, wait):
         for j in range(255):
