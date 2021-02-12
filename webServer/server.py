@@ -76,7 +76,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 				for i in range(nPix):
 					pixels[i] = (0,0,0)
 				pixels.show()
-				self.write_message{"info":"cleared"}
+				
 
 
             # if msg["what"] == "dist":
