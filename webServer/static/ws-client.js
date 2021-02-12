@@ -46,6 +46,11 @@ $(document).ready(function(){
             var msg = '{"what": "clearButton"}';
             ws.send(msg);
         });
+        $("#rainbowButton").click(function(){
+            //var opt = $(this).val() == "OFF" ? "on" : "off";
+            var msg = '{"what": "rainbowButton"}';
+            ws.send(msg);
+        });
 
 
       });
