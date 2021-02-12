@@ -1,4 +1,4 @@
-# RPi-sensor-setup
+# RPi-led-strip
  Instructions for setting up a headless raspberry pi to control a NeoPixel (WS281x) LED strip.
 
 
@@ -7,7 +7,7 @@
        https://thepihut.com/blogs/raspberry-pi-tutorials/using-neopixels-with-the-raspberry-pi
 
  # Install OS
- A: After making the image on the SD card:
+ A: Make the image on the SD card:
  (make image using Raspberry Pi Imager: https://www.raspberrypi.org/software/)
 
  ## Setup ssh, wifi, and usb connection
@@ -81,3 +81,20 @@
 
 and add the following line (change your filename and path) before the 'exit 0' line to run the 'clear.py' program in your home directory:
 > sudo python3 /home/pi/clear.py &
+
+# Webserver
+install apache webserver and php
+> sudo apt install apache2 -y
+> sudo apt install php libapache2-mod-php -y
+
+put web files in the folder
+> /var/www/html/
+
+Use browser to go to ip address eg:
+> http://192.168.1.115/test.html
+
+
+## Running python files using php. You'll need to add to your /etc/sudoers file the line:
+> www-data ALL=(ALL) NOPASSWD: ALL
+
+ Note: this is somewhat insecure, but I'm using this because we're only set up to use on our local network.
