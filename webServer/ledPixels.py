@@ -7,6 +7,7 @@ class ledPixels:
         self.nPix = nPix
         self.ledPin = ledPin
         self.pixels = neopixel.NeoPixel(board.D18, nPix, auto_write=False)
+        self.interrupt = False
 
     def clear(self):
         for i in range(self.nPix):
@@ -15,7 +16,10 @@ class ledPixels:
 
     def rainbow(self, n=1):
         for i in range(n):
-            self.rainbow_cycle(0.01)
+            if self.interrupt:
+                break
+            else:
+                self.rainbow_cycle(0.01)
 
     def blue(self):
         for i in range(self.nPix):

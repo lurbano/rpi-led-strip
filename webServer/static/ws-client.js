@@ -47,8 +47,8 @@ $(document).ready(function(){
             ws.send(msg);
         });
         $("#rainbowButton").click(function(){
-            //var opt = $(this).val() == "OFF" ? "on" : "off";
-            var msg = '{"what": "rainbowButton"}';
+            var ct = $("#rainbowCount").val();
+            var msg = '{"what": "rainbowButton", "opts": '+ parseInt(ct) +'}';
             ws.send(msg);
         });
         $("#blueButton").click(function(){
