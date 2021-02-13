@@ -30,6 +30,9 @@ class ledPixels:
             for i in range(self.nPix):
                 self.oldColors[i] = col
 
+    def setInterrupt(self):
+        self.interrupt = True
+
     def clear(self):
         for i in range(self.nPix):
             self.pixels[i] = (0,0,0)
@@ -38,6 +41,8 @@ class ledPixels:
 
     def rainbow(self, n=1, speed=0.01):
         for i in range(n):
+            if (self.interrupt):
+                break
             self.rainbow_cycle(speed)
         self.setOldColors()
 

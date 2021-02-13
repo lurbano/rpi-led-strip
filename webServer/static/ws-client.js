@@ -66,6 +66,10 @@ $(document).ready(function(){
             var msg = '{"what": "setBrightness", "brightness": "'+ bright +'"}';
             ws.send(msg);
         });
+        $("#interruptButton").click(function(){
+            var msg = '{"what": "interruptButton"}';
+            ws.send(msg);
+        });
         $("#blueButton").click(function(){
             var msg = '{"what": "blueButton"}';
             ws.send(msg);

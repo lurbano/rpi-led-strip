@@ -82,6 +82,9 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 				bright = msg["brightness"]
 				ledPix.setBrightness(bright)
 
+			if msg["what"] == "interruptButton":
+				ledPix.setInterrupt()
+
 			if msg["what"] == "restart":
 				ledPix.clear()
 				subprocess.Popen('sleep 5 ; sudo python3 '+os.path.join(os.path.dirname(__file__), "server.py"), shell=True)
