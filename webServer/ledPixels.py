@@ -17,6 +17,7 @@ class ledPixels:
         self.ledPin = ledPin
         self.pixels = neopixel.NeoPixel(board.D18, nPix, auto_write=False)
         self.interrupt = False
+        self.brightness = 1.0 # from 0 to 1
 
     def clear(self):
         for i in range(self.nPix):
@@ -35,6 +36,13 @@ class ledPixels:
             self.pixels[i] = col
         self.pixels.show()
 
+    def setBrightness(self, brightness):
+        self.brightness = float(brightness) / 100.0
+        for i in range(self.nPix):
+            c = self.pixels[i]
+            col = (c[0]*self.brightness, c[1]*self.brightness, c[2]*self.brightness)
+            self.pixels[i] = col
+        self.pixels.show()
 
 
     def blue(self):

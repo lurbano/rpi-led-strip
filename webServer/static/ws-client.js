@@ -61,6 +61,11 @@ $(document).ready(function(){
             var msg = '{"what": "setColor", "color": "'+ col +'"}';
             ws.send(msg);
         });
+        $("#setBrightness").change(function(){
+            var bright = this.value;
+            var msg = '{"what": "setBrightness", "brightness": "'+ bright +'"}';
+            ws.send(msg);
+        });
         $("#blueButton").click(function(){
             var msg = '{"what": "blueButton"}';
             ws.send(msg);
