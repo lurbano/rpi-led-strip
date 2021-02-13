@@ -24,10 +24,10 @@ class ledPixels:
 
     def setOldColors(self, col=None):
         if col == None:
-            for i in range(nPix):
+            for i in range(self.nPix):
                 self.oldColors[i] = self.pixels[i]
         else:
-            for i in range(nPix):
+            for i in range(self.nPix):
                 self.oldColors[i] = col
 
     def clear(self):
