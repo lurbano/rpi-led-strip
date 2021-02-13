@@ -28,14 +28,13 @@ class ledPixels:
             self.rainbow_cycle(speed)
 
     def setColor(self, col):
-        print("setting color:" + col)
-        if col[0] == "#":
-            col = hex_to_rgb(col)
+        print("setting color: " + col)
+        col = hex_to_rgb(col)
         print("setting color:" + col)
         for i in range(self.nPix):
             self.pixels[i] = col
 
-            
+
 
     def blue(self):
         for i in range(self.nPix):
