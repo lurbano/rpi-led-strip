@@ -18,39 +18,55 @@ class ledPixels:
         self.pixels = neopixel.NeoPixel(board.D18, nPix, auto_write=False)
         self.interrupt = False
         self.brightness = 1.0 # from 0 to 1
+        self.oldColors = []
+        for i in range(nPix):
+            self.oldColors.append((0,0,0))
+
+    def setOldColors(self, col=None):
+        if col == None:
+            for i in range(nPix):
+                self.oldColors[i] = self.pixels[i]
+        else:
+            for i in range(nPix):
+                self.oldColors[i] = col
 
     def clear(self):
         for i in range(self.nPix):
             self.pixels[i] = (0,0,0)
         self.pixels.show()
+        self.setOldColors()
 
     def rainbow(self, n=1, speed=0.01):
         for i in range(n):
             self.rainbow_cycle(speed)
+        self.setOldColors()
 
     def setColor(self, col):
         if col[0] == "#":
             col = hex_to_rgb(col)
         print("setting color to:", col)
+        self.brightness = 1.0
         for i in range(self.nPix):
             self.pixels[i] = col
         self.pixels.show()
+        self.setOldColors()
 
     def setBrightness(self, brightness):
         self.brightness = float(brightness) / 100.0
         b = self.brightness
         for i in range(self.nPix):
-            c = self.pixels[i]
+            c = self.oldColors[i]
             col = (c[0]*b, c[1]*b, c[2]*b)
             self.pixels[i] = col
         self.pixels.show()
 
-
     def blue(self):
         for i in range(self.nPix):
-            self.pixels[i] = (0,0,200)
+            self.pixels[i] = (0,0,int(255*self.brightness))
             self.pixels.show()
+        self.setOldColors((0,0,255))
 
+    #UTILITY METHODS
     def rainbow_cycle(self, wait):
         for j in range(255):
             for i in range(self.nPix):
@@ -62,6 +78,7 @@ class ledPixels:
     def wheel(self, pos, mag=0.5):
         # Input a value 0 to 255 to get a color value.
         # The colours are a transition r - g - b - back to r.
+        mag = self.brightness
         if pos < 0 or pos > 255:
             r = g = b = 0
         elif pos < 85:
