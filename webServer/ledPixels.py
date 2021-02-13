@@ -55,6 +55,7 @@ class ledPixels:
         self.brightness = float(brightness) / 100.0
         b = self.brightness
         print(f'brightness: {self.brightness}')
+        print(self.oldColors[-1], self.pixels[-1])
         for i in range(self.nPix):
             c = self.oldColors[i]
             col = (int(c[0]*b), int(c[1]*b), int(c[2]*b))
