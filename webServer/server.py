@@ -124,7 +124,7 @@ if __name__ == "__main__":
 		# get ip address
 		cmd = "hostname -I | cut -d\' \' -f1"
 		IP = subprocess.check_output(cmd, shell=True).decode("utf-8")
-		print('IP: '+ IP +":" + PORT)
+		print('IP: '+ IP +":" + str(PORT))
 		#oled.write('IP: '+ IP, 3)
 		cmd = 'iwgetid | sed \'s/.*://\' | sed \'s/"//g\''
 		wifi = subprocess.check_output(cmd, shell=True).decode("utf-8")
