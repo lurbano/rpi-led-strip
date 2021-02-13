@@ -88,9 +88,6 @@ and add the following line (change your filename and path) before the 'exit 0' l
 Setting up the tornado server used for Websockets
 > sudo pip3 install tornado
 
-at is used to schedule commands by our software, but needs to be installed
-> sudo apt-get install at
-
 ## Starting server
 Go to the folder rpi-led-strip/webServer/ and run the command
 > sudo python3 server.py
