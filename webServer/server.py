@@ -19,7 +19,7 @@ import numpy as np
 from ledPixels import *
 #from oledU import *
 
-nPix = 20
+nPix = 43
 ledPin = board.D18
 
 
