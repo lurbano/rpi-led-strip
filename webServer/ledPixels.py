@@ -17,7 +17,7 @@ class ledPixels:
         self.ledPin = ledPin
         self.pixels = neopixel.NeoPixel(board.D18, nPix, auto_write=False)
         self.interrupt = False
-        self.brightness = 1.0 # from 0 to 1
+        #self.brightness = 1.0 # from 0 to 1
 
     def clear(self):
         for i in range(self.nPix):
