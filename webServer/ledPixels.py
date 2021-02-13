@@ -29,10 +29,11 @@ class ledPixels:
 
     def setColor(self, col):
         print("setting color: " + col)
-        col = hex_to_rgb(col)
-        print("setting color:" + col)
+        print(type(col))
+        c = hex_to_rgb(col)
+        print("setting color:" + c)
         for i in range(self.nPix):
-            self.pixels[i] = col
+            self.pixels[i] = c
 
 
 
