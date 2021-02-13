@@ -56,9 +56,9 @@ $(document).ready(function(){
             var msg = '{"what": "restart"}';
             ws.send(msg);
         });
-        $("#setColor").click(function(){
+        $("#setColor").change(function(){
             var col = this.value;
-            var msg = '{"what": "setColor", "color": '+ col +'}';
+            var msg = '{"what": "setColor", "color": "'+ col +'"}';
             ws.send(msg);
         });
         $("#blueButton").click(function(){
