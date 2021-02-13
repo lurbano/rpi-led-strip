@@ -33,7 +33,7 @@ class ledPixels:
         print("setting color to:", col)
         for i in range(self.nPix):
             self.pixels[i] = col
-        pixels.show()
+        self.pixels.show()
 
 
 
