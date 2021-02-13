@@ -83,6 +83,14 @@ and add the following line (change your filename and path) before the 'exit 0' l
 > sudo python3 /home/pi/clear.py &
 
 
+# Installing this software: rpi-led-strip
+From your home directory clone the github repository.
+> git clone https://github.com/lurbano/rpi-led-strip.git
+
+## Set then number of LED's (nPix)
+on about line 22 of rpi-led-strip/webServer/server.py change the number of led lights (the default is 20):
+> nPix = 20
+
 # Running with Tornado Webserver
 
 Setting up the tornado server used for Websockets
@@ -91,6 +99,10 @@ Setting up the tornado server used for Websockets
 ## Starting server
 Go to the folder rpi-led-strip/webServer/ and run the command
 > sudo python3 server.py
+
+## The webpage
+The webpage will be at the pi's ip address (which should be printed to the screen when you start the server) and on port 8040 so if your ip address is 192.168.1.234 use:
+> http://192.168.1.234:8040
 
 ## Starting up on boot
 ** IMPORTANT **: the directory with the files needs to be in the pi home directory (e.g. /home/pi/rpi-led-strip) with this setup. You can change this but be sure to put the full path to the commands

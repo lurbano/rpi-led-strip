@@ -2,6 +2,15 @@ import neopixel
 import board
 import time
 
+def hex_to_rgb(value):
+    value = value.lstrip('#')
+    lv = len(value)
+    return tuple(int(value[i:i + lv // 3], 16) for i in range(0, lv, lv // 3))
+
+def rgb_to_hex(rgb):
+    return '#%02x%02x%02x' % rgb
+
+
 class ledPixels:
     def __init__(self, nPix, ledPin):
         self.nPix = nPix
@@ -17,6 +26,16 @@ class ledPixels:
     def rainbow(self, n=1, speed=0.01):
         for i in range(n):
             self.rainbow_cycle(speed)
+
+    def setColor(self, col):
+        print("setting color:" + col)
+        if col[0] == "#":
+            col = hex_to_rgb(col)
+        print("setting color:" + col)
+        for i in range(self.nPix):
+            self.pixels[i] = col
+
+            
 
     def blue(self):
         for i in range(self.nPix):

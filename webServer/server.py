@@ -63,9 +63,6 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 			if msg["what"] == "clearButton":
 				print("Clearing LEDs ")
 				ledPix.clear()
-				# for i in range(nPix):
-				# 	pixels[i] = (0,0,0)
-				# pixels.show()
 				self.write_message({"info":"cleared"})
 
 			if msg["what"] == "rainbowButton":
@@ -76,6 +73,10 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 					ledPix.rainbow(n, s)
 				except:
 					ledPix.rainbow()
+
+			if msg["what"] == "setColor":
+				col = msg["color"]
+				ledPix.setColor(col)
 
 			if msg["what"] == "restart":
 				ledPix.clear()
@@ -123,7 +124,7 @@ if __name__ == "__main__":
 		# get ip address
 		cmd = "hostname -I | cut -d\' \' -f1"
 		IP = subprocess.check_output(cmd, shell=True).decode("utf-8")
-		print('IP: '+ IP)
+		print('IP: '+ IP +":" + PORT)
 		#oled.write('IP: '+ IP, 3)
 		cmd = 'iwgetid | sed \'s/.*://\' | sed \'s/"//g\''
 		wifi = subprocess.check_output(cmd, shell=True).decode("utf-8")
