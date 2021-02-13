@@ -61,7 +61,8 @@
  > sudo pip3 install rpi_ws281x
 
 
- ## test program (test.py)
+ ## test program (test.py) [OPTIONAL]
+ If you'd like to test the setup you can create this python file and run it, however, there the test programs are in this repository which you can download individually, or use when you install this repository as described in a following section.
 
     import board
     import neopixel
@@ -71,11 +72,11 @@
     pixels[-1] = (0,10,0)
 
 
- ## to run the test program
+ ### to run the test program
  > sudo python3 test.py
 
 
- ## to set the program to run on startup.
+ ## [SKIP] to set the program to run on startup.
  Ref: https://learn.sparkfun.com/tutorials/how-to-run-a-raspberry-pi-program-on-startup/all
  > sudo nano /etc/rc.local
 
@@ -112,9 +113,13 @@ from: https://learn.sparkfun.com/tutorials/how-to-run-a-raspberry-pi-program-on-
 Edit /etc/rc.local (the easy way)
 > sudo nano /etc/rc.local
 
-ADD THE LINES (before 'exit 0' ):
+ADD THE LINES (before 'exit 0' ). The second line allows you to use the physical switch (if it is installed) to clear the led strip:
 
 > sudo /usr/bin/python3 /home/pi/rpi-led-strip/webServer/server.py 2> /home/pi/error.log &
+> sudo python3 /home/pi/rpi-led-strip/pyLED/clearSwitch.py
+
+Then restart the Pi:
+> sudo reboot
 
 
 ## If you need to kill the server (and it's the only thing running with python3)
@@ -154,25 +159,3 @@ Here we're sending the dict {"what": "blueButton"} to the server.
 >       for i in range(self.nPix):
 >           self.pixels[i] = (0,0,200)
 >           self.pixels.show()
-
-
-
-
-#[IN TESTING]
-
-# Webserver
-install apache webserver and php
-> sudo apt install apache2 -y
-> sudo apt install php libapache2-mod-php -y
-
-put web files in the folder
-> /var/www/html/
-
-Use browser to go to ip address eg:
-> http://192.168.1.115/test.html
-
-
-## Running python files using php. You'll need to add to your /etc/sudoers file the line:
-> www-data ALL=(ALL) NOPASSWD: ALL
-
- Note: this is somewhat insecure, but I'm using this because we're only set up to use on our local network.

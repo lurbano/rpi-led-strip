@@ -12,6 +12,7 @@ import time
 import subprocess
 import json
 import sys
+import argparse
 #from numpy import arange, mean
 import numpy as np
 
@@ -21,6 +22,17 @@ from ledPixels import *
 
 nPix = 20
 ledPin = board.D18
+
+# get number of pixels from the command line
+parser = argparse.ArgumentParser()
+parser.add_argument("-n", "--nPix", help = "Number of pixels")
+args = parser.parse_args()
+
+if args.nPix:
+	try:
+		nPix = int(args.nPix)
+	except:
+		print("using default (20) pixels: -nPix 20")
 
 
 #Initialize neopixels
