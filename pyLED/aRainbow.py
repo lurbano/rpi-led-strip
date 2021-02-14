@@ -14,7 +14,7 @@ def rainbow_cycle(wait):
             pixel_index = (i * 256 // npix) + j
             pixels[i] = wheel(pixel_index & 255, 0.5)
         pixels.show()
-        time.sleep(wait)
+        asyncio.sleep(wait)
 
 def wheel(pos, mag):
     # Input a value 0 to 255 to get a color value.
