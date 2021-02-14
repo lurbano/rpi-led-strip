@@ -8,7 +8,7 @@ mag = 0.5  # brightness
 
 pixels = neopixel.NeoPixel(board.D18, npix, auto_write=False)
 
-def rainbow_cycle(wait):
+async def rainbow_cycle(wait):
     for j in range(255):
         for i in range(npix):
             pixel_index = (i * 256 // npix) + j
@@ -40,7 +40,7 @@ def wheel(pos, mag):
 
 async def infiniteRainbow():
     while 1:
-        rainbow_cycle(.001)
+        await rainbow_cycle(.001)
 
 async def mainRainbow():
     task = asyncio.create_task(infiniteRainbow())
