@@ -57,8 +57,11 @@ $(document).ready(function(){
             ws.send(msg);
         });
         $("#reboot").click(function(){
-            var msg = '{"what": "reboot"}';
-            ws.send(msg);
+            let check = confirm("Reboot Pi?");
+            if (check){
+              var msg = '{"what": "reboot"}';
+              ws.send(msg);
+            }
         });
         $("#setColor").change(function(){
             var col = this.value;
