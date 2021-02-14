@@ -56,6 +56,10 @@ class ledPixels:
         print('done aRainbow')
         self.setOldColors()
 
+    async def aRainbowForever(self, speed=0.01):
+        while 1:
+            await self.aRainbow_cycle(speed)
+
     def setColor(self, col):
         if col[0] == "#":
             col = hex_to_rgb(col)
@@ -101,6 +105,7 @@ class ledPixels:
                 self.pixels[i] = self.wheel(pixel_index & 255, 0.5)
             self.pixels.show()
             await asyncio.sleep(wait)
+
 
     def cancelTask(self):
         if self.task:

@@ -95,6 +95,14 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 				task = asyncio.create_task(ledPix.aRainbow(n, s))
 				ledPix.task = task
 
+			if msg["what"] == "rainbowForever":
+				print("rainbow LEDs (forever) infinite loop")
+				s = float(msg["speed"])
+				task = asyncio.create_task(ledPix.aRainbowForever(s))
+				ledPix.task = task
+
+
+
 
 			if msg["what"] == "setColor":
 				col = msg["color"]
