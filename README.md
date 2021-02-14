@@ -122,8 +122,8 @@ ADD THE LINE (before 'exit 0' ). TO SET THE NUMBER OF PIXELS CHANGE THE -n 20 OP
 (optional) This second line allows you to use the physical switch (if it is installed) to clear the led strip:
 > sudo python3 /home/pi/rpi-led-strip/pyLED/clearSwitch.py &
 
-(optional) I like to have the first pixel light up on booting the Pi as an indicator that the Pi is booted so I usually also include:
-> sudo python3 /home/pi/rpi-led-strip/pyLED/clear.py &
+(optional) I like to have the first pixel light up on booting the Pi as an indicator that the Pi is booted so I usually also include (these also use the -n option for the number of pixels):
+> sudo python3 /home/pi/rpi-led-strip/pyLED/clear.py -n 20 &
 > sudo python3 /home/pi/rpi-led-strip/pyLED/startup.py &
 
 
