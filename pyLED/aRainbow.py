@@ -1,8 +1,9 @@
 import board
 import neopixel
 import time
+import asyncio
 
-npix = 20
+npix = 43
 mag = 0.5  # brightness
 
 pixels = neopixel.NeoPixel(board.D18, npix, auto_write=False)
@@ -37,5 +38,15 @@ def wheel(pos, mag):
     (r, g, b) = (int(r*mag), int(g*mag), int(b*mag))
     return (r, g, b)
 
-while 1:
-    rainbow_cycle(.001)
+async def infiniteRainbow():
+    while 1:
+        rainbow_cycle(.001)
+
+async def mainRainbow():
+    task = asyncio.create_task(infiniteRainbow())
+
+    val = input("Press 'x' to stop:" )
+    if (val == 'x'):
+        task.cancel()
+
+async.run(mainRainbow())
