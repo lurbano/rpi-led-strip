@@ -20,6 +20,7 @@ class ledPixels:
         self.interrupt = False
         self.brightness = 1.0 # from 0 to 1
         self.oldColors = []
+        self.task = None
         for i in range(nPix):
             self.oldColors.append((0,0,0))
 
@@ -99,6 +100,10 @@ class ledPixels:
                 self.pixels[i] = self.wheel(pixel_index & 255, 0.5)
             self.pixels.show()
             await asyncio.sleep(wait)
+
+    def cancelTask(self):
+        if self.task:
+            self.task.cancel()
 
     def wheel(self, pos, mag=0.5):
         # Input a value 0 to 255 to get a color value.
