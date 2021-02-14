@@ -111,6 +111,11 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 				subprocess.Popen('sleep 5 ; sudo python3 '+os.path.join(os.path.dirname(__file__), "server.py" + f' -n {nPix}'), shell=True)
 				main_loop.stop()
 
+			if msg["what"] == "reboot":
+				ledPix.clear()
+				subprocess.Popen('sleep 5 ; sudo reboot'), shell=True)
+				main_loop.stop()
+
 			if msg["what"] == "blueButton":
 				print("blue LEDs ")
 				ledPix.blue()

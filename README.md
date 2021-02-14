@@ -113,10 +113,12 @@ from: https://learn.sparkfun.com/tutorials/how-to-run-a-raspberry-pi-program-on-
 Edit /etc/rc.local (the easy way)
 > sudo nano /etc/rc.local
 
-ADD THE LINES (before 'exit 0' ). The second line allows you to use the physical switch (if it is installed) to clear the led strip:
+ADD THE LINES (before 'exit 0' ). TO SET THE NUMBER OF PIXELS CHANGE THE -n 20 OPTION TO YOUR NUMBER.
 
-> sudo /usr/bin/python3 /home/pi/rpi-led-strip/webServer/server.py 2> /home/pi/error.log &
-> sudo python3 /home/pi/rpi-led-strip/pyLED/clearSwitch.py
+> sudo /usr/bin/python3 /home/pi/rpi-led-strip/webServer/server.py -n 20 2> /home/pi/error.log &
+
+(optional) This second line allows you to use the physical switch (if it is installed) to clear the led strip:
+> sudo python3 /home/pi/rpi-led-strip/pyLED/clearSwitch.py &
 
 Then restart the Pi:
 > sudo reboot

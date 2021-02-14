@@ -56,6 +56,10 @@ $(document).ready(function(){
             var msg = '{"what": "restart"}';
             ws.send(msg);
         });
+        $("#reboot").click(function(){
+            var msg = '{"what": "reboot"}';
+            ws.send(msg);
+        });
         $("#setColor").change(function(){
             var col = this.value;
             var msg = '{"what": "setColor", "color": "'+ col +'"}';
