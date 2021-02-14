@@ -77,14 +77,21 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 				ledPix.clear()
 				self.write_message({"info":"cleared"})
 
+			# if msg["what"] == "rainbowButton":
+			# 	print("rainbow LEDs ")
+			# 	try:
+			# 		n = int(msg["ct"])
+			# 		s = float(msg["speed"])
+			# 		ledPix.rainbow(n, s)
+			# 	except:
+			# 		ledPix.rainbow()
+
 			if msg["what"] == "rainbowButton":
 				print("rainbow LEDs ")
-				try:
-					n = int(msg["ct"])
-					s = float(msg["speed"])
-					ledPix.rainbow(n, s)
-				except:
-					ledPix.rainbow()
+				n = int(msg["ct"])
+				s = float(msg["speed"])
+				ledPix.rainbow(n, s)
+
 
 			if msg["what"] == "setColor":
 				col = msg["color"]
