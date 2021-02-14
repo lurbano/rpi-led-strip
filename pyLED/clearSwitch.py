@@ -11,5 +11,5 @@ while True:
    inputValue = GPIO.input(switchPin)
    if (inputValue == False):
        print("Button press ")
-       subprocess.run(['sudo', 'python3', '/home/pi/clear.py'])
+       subprocess.run(['sudo', 'python3', '/home/pi/rpi-led-strip/pyLED/clear.py'])
    time.sleep(0.3)

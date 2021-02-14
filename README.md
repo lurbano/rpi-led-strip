@@ -110,20 +110,24 @@ The webpage will be at the pi's ip address (which should be printed to the scree
 
 ## Starting up on boot
 ** IMPORTANT **: the directory with the files needs to be in the pi home directory (e.g. /home/pi/rpi-led-strip) with this setup. You can change this but be sure to put the full path to the commands
-### set up to start server automatically on startup
 from: https://learn.sparkfun.com/tutorials/how-to-run-a-raspberry-pi-program-on-startup
 
 Edit /etc/rc.local (the easy way)
 > sudo nano /etc/rc.local
 
-ADD THE LINES (before 'exit 0' ). TO SET THE NUMBER OF PIXELS CHANGE THE -n 20 OPTION TO YOUR NUMBER.
+ADD THE LINE (before 'exit 0' ). TO SET THE NUMBER OF PIXELS CHANGE THE -n 20 OPTION TO YOUR NUMBER.
 
 > sudo /usr/bin/python3 /home/pi/rpi-led-strip/webServer/server.py -n 20 2> /home/pi/error.log &
 
 (optional) This second line allows you to use the physical switch (if it is installed) to clear the led strip:
 > sudo python3 /home/pi/rpi-led-strip/pyLED/clearSwitch.py &
 
-Then restart the Pi:
+(optional) I like to have the first pixel light up on booting the Pi as an indicator that the Pi is booted so I usually also include:
+> sudo python3 /home/pi/rpi-led-strip/pyLED/clear.py &
+> sudo python3 /home/pi/rpi-led-strip/pyLED/startup.py &
+
+
+Save and then restart the Pi from the command line:
 > sudo reboot
 
 

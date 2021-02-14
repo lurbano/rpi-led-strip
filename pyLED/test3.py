@@ -2,14 +2,14 @@ import board
 import neopixel
 import time
 
-npix = 20
+nPix = 20
 
-pixels = neopixel.NeoPixel(board.D18, npix, auto_write=False)
+pixels = neopixel.NeoPixel(board.D18, nPix, auto_write=False)
 
 def rainbow_cycle(wait):
     for j in range(255):
-        for i in range(npix):
-            pixel_index = (i * 256 // npix) + j
+        for i in range(nPix):
+            pixel_index = (i * 256 // nPix) + j
             pixels[i] = wheel(pixel_index & 255)
         pixels.show()
         time.sleep(wait)

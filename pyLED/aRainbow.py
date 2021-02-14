@@ -3,15 +3,15 @@ import neopixel
 import time
 import asyncio
 
-npix = 43
+nPix = 43
 mag = 0.5  # brightness
 
-pixels = neopixel.NeoPixel(board.D18, npix, auto_write=False)
+pixels = neopixel.NeoPixel(board.D18, nPix, auto_write=False)
 
 async def rainbow_cycle(wait):
     for j in range(255):
-        for i in range(npix):
-            pixel_index = (i * 256 // npix) + j
+        for i in range(nPix):
+            pixel_index = (i * 256 // nPix) + j
             pixels[i] = wheel(pixel_index & 255, 0.5)
         pixels.show()
         await asyncio.sleep(wait)
