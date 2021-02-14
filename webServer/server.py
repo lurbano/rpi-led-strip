@@ -13,6 +13,7 @@ import subprocess
 import json
 import sys
 import argparse
+import asyncio
 #from numpy import arange, mean
 import numpy as np
 
@@ -90,7 +91,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 				print("rainbow LEDs ")
 				n = int(msg["ct"])
 				s = float(msg["speed"])
-				ledPix.rainbow(n, s)
+				await ledPix.rainbow(n, s)
 
 
 			if msg["what"] == "setColor":

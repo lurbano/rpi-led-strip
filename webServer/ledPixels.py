@@ -1,6 +1,7 @@
 import neopixel
 import board
 import time
+import asyncio
 
 def hex_to_rgb(value):
     value = value.lstrip('#')
@@ -46,6 +47,11 @@ class ledPixels:
             self.rainbow_cycle(speed)
         self.setOldColors()
 
+    async def aRainbow(self, n=1, speed=0.01):
+        for i in range(n):
+            await self.aRainbow_cycle(speed)
+        self.setOldColors()
+
     def setColor(self, col):
         if col[0] == "#":
             col = hex_to_rgb(col)
@@ -82,6 +88,14 @@ class ledPixels:
                 self.pixels[i] = self.wheel(pixel_index & 255, 0.5)
             self.pixels.show()
             time.sleep(wait)
+
+    async def aRainbow_cycle(self, wait):
+        for j in range(255):
+            for i in range(self.nPix):
+                pixel_index = (i * 256 // self.nPix) + j
+                self.pixels[i] = self.wheel(pixel_index & 255, 0.5)
+            self.pixels.show()
+            await asyncio.sleep(wait)
 
     def wheel(self, pos, mag=0.5):
         # Input a value 0 to 255 to get a color value.
