@@ -42,12 +42,16 @@ async def infiniteRainbow():
     while 1:
         await rainbow_cycle(.001)
 
-async def mainRainbow():
-    task = asyncio.create_task(infiniteRainbow())
-    await asyncio.sleep(1)
-
+async def stopper(task):
     val = input("Press 'x' to stop:" )
     if (val == 'x'):
         task.cancel()
+
+async def mainRainbow():
+    task = asyncio.create_task(infiniteRainbow())
+    #await asyncio.sleep(1)
+
+    await stopper(task)
+
 
 asyncio.run(mainRainbow())
