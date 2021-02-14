@@ -50,6 +50,7 @@ class ledPixels:
     async def aRainbow(self, n=1, speed=0.01):
         for i in range(n):
             await self.aRainbow_cycle(speed)
+        print('done aRainbow')
         self.setOldColors()
 
     def setColor(self, col):
