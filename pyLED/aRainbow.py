@@ -49,4 +49,4 @@ async def mainRainbow():
     if (val == 'x'):
         task.cancel()
 
-async.run(mainRainbow())
+asyncio.run(mainRainbow())
