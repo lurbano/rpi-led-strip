@@ -53,8 +53,11 @@ $(document).ready(function(){
             ws.send(msg);
         });
         $("#restart").click(function(){
+          let check = confirm("Restart Server?");
+          if (check){
             var msg = '{"what": "restart"}';
             ws.send(msg);
+          }
         });
         $("#reboot").click(function(){
             let check = confirm("Reboot Pi?");
