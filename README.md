@@ -88,9 +88,6 @@ and add the following line (change your filename and path) before the 'exit 0' l
 From your home directory clone the github repository.
 > git clone https://github.com/lurbano/rpi-led-strip.git
 
-## Set then number of LED's (nPix)
-on about line 22 of rpi-led-strip/webServer/server.py change the number of led lights (the default is 20):
-> nPix = 20
 
 # Running with Tornado Webserver
 
@@ -98,8 +95,14 @@ Setting up the tornado server used for Websockets
 > sudo pip3 install tornado
 
 ## Starting server
-Go to the folder rpi-led-strip/webServer/ and run the command
+Go to the folder ~/rpi-led-strip/webServer/ and run the command
 > sudo python3 server.py
+
+This assumes 20 pixels. To set a different number of pixels add the -n option (43 pixels in this example):
+> sudo python3 server.py -n 43
+
+(optional) You can override the default number of pixels by changing on about line 24 of rpi-led-strip/webServer/server.py the number on the line below (the default is 20):
+> nPix = 20
 
 ## The webpage
 The webpage will be at the pi's ip address (which should be printed to the screen when you start the server) and on port 8040 so if your ip address is 192.168.1.234 use:

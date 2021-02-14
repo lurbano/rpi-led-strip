@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#! /usr/bin/python3
 # From: https://www.hackster.io/dataplicity/control-raspberry-pi-gpios-with-websockets-af3d0c
 
 import os.path
@@ -113,7 +113,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 
 			if msg["what"] == "reboot":
 				ledPix.clear()
-				subprocess.Popen('sleep 5 ; sudo reboot'), shell=True)
+				subprocess.Popen('sleep 5 ; sudo reboot', shell=True)
 				main_loop.stop()
 
 			if msg["what"] == "blueButton":
