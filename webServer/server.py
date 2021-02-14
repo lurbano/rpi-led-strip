@@ -91,7 +91,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 				print("rainbow LEDs ")
 				n = int(msg["ct"])
 				s = float(msg["speed"])
-				await ledPix.rainbow(n, s)
+				await ledPix.aRainbow(n, s)
 
 
 			if msg["what"] == "setColor":
