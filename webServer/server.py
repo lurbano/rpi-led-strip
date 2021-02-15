@@ -80,15 +80,6 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 				ledPix.clear()
 				self.write_message({"info":"cleared"})
 
-			# if msg["what"] == "rainbowButton":
-			# 	print("rainbow LEDs ")
-			# 	try:
-			# 		n = int(msg["ct"])
-			# 		s = float(msg["speed"])
-			# 		ledPix.rainbow(n, s)
-			# 	except:
-			# 		ledPix.rainbow()
-
 			if msg["what"] == "rainbowButton":
 				print("rainbow LEDs ")
 				ledPix.cancelTask()
@@ -110,7 +101,6 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 				s = float(msg["seconds"])
 				task = asyncio.create_task(ledPix.aTimer(self, m, s))
 				ledPix.task = task
-
 
 
 			if msg["what"] == "setColor":
