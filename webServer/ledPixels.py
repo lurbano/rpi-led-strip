@@ -77,6 +77,7 @@ class ledPixels:
                 self.pixels[i] = col
             else:
                 self.pixels[i] = (0,0,0)
+        self.pixels.show()
 
     def setColor(self, col):
         if col[0] == "#":
