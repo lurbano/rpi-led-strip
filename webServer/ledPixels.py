@@ -78,9 +78,9 @@ class ledPixels:
     def twoColors(self, n, col1=(0,0,255), col2=(0,0,0)):
         for i in range(self.nPix):
             if i < n:
-                self.pixels[i] = col1
+                self.pixels[i] = self.brighten(col1)
             else:
-                self.pixels[i] = col2
+                self.pixels[i] = self.brighten(col2)
         self.pixels.show()
 
     def setColor(self, col):
@@ -156,3 +156,6 @@ class ledPixels:
             b = int(255 - pos * 3)
         (r, g, b) = (int(r*mag), int(g*mag), int(b*mag))
         return (r, g, b)
+
+    def brighten(self, color):
+        return (color[0]*self.brightness, color[1]*self.brightness, color[2]*self.brightness)
