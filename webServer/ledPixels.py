@@ -67,16 +67,16 @@ class ledPixels:
         while timeLeft > 0:
             timeLeft -= 1
             nLights = int(self.nPix * timeLeft/totTime)
-            self.nLight(nLights)
+            self.twoColors(nLights, (0,255,0), (100,0,0))
             print(timeLeft, nLights)
             await asyncio.sleep(1)
 
-    def nLight(self, n, col=(0,0,255)):
+    def twoColors(self, n, col1=(0,0,255), col2=(0,0,0)):
         for i in range(self.nPix):
             if i < n:
-                self.pixels[i] = col
+                self.pixels[i] = col1
             else:
-                self.pixels[i] = (0,0,0)
+                self.pixels[i] = col2
         self.pixels.show()
 
     def setColor(self, col):
