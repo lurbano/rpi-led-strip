@@ -69,6 +69,9 @@ class ledPixels:
             nLights = int(self.nPix * timeLeft/totTime)
             self.twoColors(nLights, (0,255,0), (100,0,0))
             print(timeLeft, nLights)
+            m = timeLeft // 60
+            s = timeLeft % 60
+            serv.write_message({"info": "timer", "m":m, "s":s})
             await asyncio.sleep(1)
 
     def twoColors(self, n, col1=(0,0,255), col2=(0,0,0)):
