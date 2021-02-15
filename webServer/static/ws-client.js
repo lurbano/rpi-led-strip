@@ -23,6 +23,7 @@ $(document).ready(function(){
         ws.onmessage = function(evt) {
             //console.log(evt);
             var sData = JSON.parse(evt.data);
+            console.log(sData);
             if (sData.sensor !== 'undefined'){
               //console.log(sData.info + "|" + )
 
