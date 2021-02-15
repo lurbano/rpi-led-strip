@@ -34,7 +34,7 @@ $(document).ready(function(){
               if (sData.info == 'timer'){
                 m = sData.m.toString();
                 s = sData.s.toString().padStart(2,"0");
-                $("#timeLeft").val(m + ":" + s);
+                $("#timeLeft").html(m + ":" + s);
               }
 
             };
