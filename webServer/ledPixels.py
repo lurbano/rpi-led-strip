@@ -60,6 +60,22 @@ class ledPixels:
         while 1:
             await self.aRainbow_cycle(speed)
 
+    async def aTimer(self, serv, m, s):
+        timeLeft = int(m*60 + s)
+        startTime = int(m*60 + s)
+        while timeLeft > 0:
+            timeLeft -= 1
+            nLights = int(self.nPix * timeLeft/startTime)
+            self.nLight(nLights)
+            await asyncio.sleep(1)
+
+    def nLight(self, n, col=(0,0,255)):
+        for i in range(self.nPix):
+            if i < n:
+                self.pixels[i] = col
+            else:
+                self.pixels[i] = (0,0,0)
+
     def setColor(self, col):
         if col[0] == "#":
             col = hex_to_rgb(col)

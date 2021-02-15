@@ -23,27 +23,32 @@ Connection: <span id="ws-status"> Waiting... </span>
 <div id='errorInfo'></div>
 
 <p>
-<input type="button" id="clearButton" value="Clear">
-<br>
-<input type="button" id="rainbowButton" value="Rainbow">
-<input type="number" id="rainbowCount" min="1" value="2">
-<input type="number" id="rainbowSpeed" min="1" value="0.01">
-<br>
-<input type="button" id="rainbowForever" value="Rainbow Forever">
+  <input type="button" id="clearButton" value="Turn off LEDs">
+<p>
+  <input type="button" id="rainbowButton" value="Rainbow">
+  <input type="number" id="rainbowCount" min="1" value="2">
+  <input type="number" id="rainbowSpeed" min="1" value="0.01">
+  <br>
+  <input type="button" id="rainbowForever" value="Rainbow Forever">
+<p>
+  <input type="button" id="timer" value="Start Countdown">
+  <input type="number" id="timerMin" min="0" value="1" title="minutes">
+  <input type="number" id="timerSec" min="0" value="0" title="seconds">
 <p>
 Pick Color:
 <input type="color" id="setColor" value="#ff0000">
-<br>
+<p>
 Brightness:
 <input type="range" id="setBrightness" min="0" max="100" step="1" value="100">
-<br>
-<input type="button" id="interruptButton" value="Interrupt">
+
 <br>
 <input type="button" id="blueButton" value="Blue">
 
 
-
 <div id='signal'></div>
+<br>
+<input type="button" id="interruptButton" value="Interrupt">
+<p>
 <input type="button" id="restart" value="Restart Server">
 <br>
 <input type="button" id="reboot" value="Reboot Pi">

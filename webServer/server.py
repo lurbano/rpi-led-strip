@@ -101,6 +101,16 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 				task = asyncio.create_task(ledPix.aRainbowForever(s))
 				ledPix.task = task
 
+			if msg["what"] == "timer":
+				print("Starting Timer")
+				m = float(msg["minutes"])
+				s = float(msg["seconds"])
+				task = asyncio.create_task(ledPix.aTimer(self, m, s))
+				ledPix.task = task
+
+
+
+
 
 
 

@@ -57,6 +57,12 @@ $(document).ready(function(){
             var msg = '{"what": "rainbowForever", "speed":'+ s +'}';
             ws.send(msg);
         });
+        $("#timer").click(function(){
+            let m = $("#timerMin").val();
+            let s = $("#timerSec").val();
+            let msg = '{"what": "timer", "minutes":'+ m + ', "seconds": '+ s + '}';
+            ws.send(msg);
+        });
         $("#restart").click(function(){
           let check = confirm("Restart Server?");
           if (check){
