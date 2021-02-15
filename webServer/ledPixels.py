@@ -62,11 +62,13 @@ class ledPixels:
 
     async def aTimer(self, serv, m, s):
         timeLeft = int(m*60 + s)
-        startTime = int(m*60 + s)
+        totTime = int(m*60 + s)
+        print("Starting Timer: ", totTime)
         while timeLeft > 0:
             timeLeft -= 1
-            nLights = int(self.nPix * timeLeft/startTime)
+            nLights = int(self.nPix * timeLeft/totTime)
             self.nLight(nLights)
+            print(timeLeft, nLights)
             await asyncio.sleep(1)
 
     def nLight(self, n, col=(0,0,255)):

@@ -76,6 +76,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 
 			if msg["what"] == "clearButton":
 				print("Clearing LEDs ")
+				ledPix.cancelTask()
 				ledPix.clear()
 				self.write_message({"info":"cleared"})
 
@@ -102,7 +103,6 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 				ledPix.task = task
 
 			if msg["what"] == "timer":
-				print("Starting Timer")
 				m = float(msg["minutes"])
 				s = float(msg["seconds"])
 				task = asyncio.create_task(ledPix.aTimer(self, m, s))
