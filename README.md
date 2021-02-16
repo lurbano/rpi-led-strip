@@ -1,8 +1,9 @@
 # RPi-led-strip
- Instructions for setting up a headless raspberry pi to control a NeoPixel (WS281x) LED strip.
+* Instructions for setting up a headless raspberry pi to control a NeoPixel (WS281x) LED strip.
+* Lensyl Urbano
+* https://montessorimuddle.org
 
-
- # References:
+ # References for this project:
   RGB: https://github.com/adafruit/Adafruit_CircuitPython_NeoPixel
        https://thepihut.com/blogs/raspberry-pi-tutorials/using-neopixels-with-the-raspberry-pi
 
@@ -88,6 +89,9 @@ and add the following line (change your filename and path) before the 'exit 0' l
 From your home directory clone the github repository.
 > git clone https://github.com/lurbano/rpi-led-strip.git
 
+# Attaching the LED strip
+
+
 
 # Running with Tornado Webserver
 
@@ -117,7 +121,7 @@ Edit /etc/rc.local (the easy way)
 
 ADD THE LINE (before 'exit 0' ). TO SET THE NUMBER OF PIXELS CHANGE THE -n 20 OPTION TO YOUR NUMBER.
 
-> sudo /usr/bin/python3 /home/pi/rpi-led-strip/webServer/server.py -n 20 2> /home/pi/error.log &
+> sudo /usr/bin/python3 /home/pi/rpi-led-strip/webServer/server.py -n 20 2> /home/pi/rpi-led-strip/error.log &
 
 (optional) This second line allows you to use the physical switch (if it is installed) to clear the led strip:
 > sudo python3 /home/pi/rpi-led-strip/pyLED/clearSwitch.py &
@@ -168,3 +172,8 @@ Here we're sending the dict {"what": "blueButton"} to the server.
 >       for i in range(self.nPix):
 >           self.pixels[i] = (0,0,200)
 >           self.pixels.show()
+
+# Troubleshooting
+
+## Not all lights are being controlled
+The code defaults to 20 LEDs so if some of the lights are not being controlled then
