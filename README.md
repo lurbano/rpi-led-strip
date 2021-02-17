@@ -93,6 +93,11 @@ sudo pip3 install adafruit-circuitpython-neopixel
 sudo pip3 install rpi_ws281x
 ```
 
+# Attaching the LED strip [HARDWARE]
+Using a WS281x strip that has three contacts for input voltage (Vin), controller signal (D0), and ground (GND):
+* Vin connects to any 5V pin,
+* DO connects to GPIO 18 by default (set in server.py as variable: ledPin)
+* GND connects any ground pin
 
 ### [OPTIONAL] test program (test.py)
  If you'd like to test the setup you can create this python file and run it, however, there the test programs are in this repository which you can download individually, or use when you install this repository as described in a following section.
@@ -124,20 +129,13 @@ and add the following line (change your filename and path) before the 'exit 0' l
 sudo python3 /home/pi/clear.py &
 ```
 
-## Installing this software: rpi-led-strip
+# Installing this software: rpi-led-strip
 From your home directory clone the github repository.
 ```console
 git clone https://github.com/lurbano/rpi-led-strip.git
 ```
 
-## Attaching the LED strip [HARDWARE]
-Using a WS281x strip that has three contacts for input voltage (Vin), controller signal (D0), and ground (GND):
-* Vin connects to any 5V pin,
-* DO connects to GPIO 18 by default (set in server.py as variable: ledPin)
-* GND connects any ground pin
-
-
-## Running with Tornado Webserver
+## Install Tornado Webserver
 
 Setting up the tornado server used for Websockets
 ```console
@@ -178,17 +176,16 @@ ADD THE LINE (before `exit 0` ). TO SET THE NUMBER OF PIXELS CHANGE THE -n 20 OP
 sudo /usr/bin/python3 /home/pi/rpi-led-strip/webServer/server.py -n 20 2> /home/pi/rpi-led-strip/error.log &
 ```
 
-[OPTIONAL] This second line allows you to use the physical switch (if it is installed) to clear the led strip:
-```
-sudo python3 /home/pi/rpi-led-strip/pyLED/clearSwitch.py &
-```
-
-[OPTIONAL] I like to have the first pixel light up on booting the Pi as an indicator that the Pi is booted so I usually also include (these also use the -n option for the number of pixels):
+[OPTIONAL] I like to have the first pixel light up on booting the Pi as an indicator that the Pi is booted so I usually also include (these also use the -n option for the number of pixels). Insert these lines before the command to start the server:
 ```
 sudo python3 /home/pi/rpi-led-strip/pyLED/clear.py -n 20 &
 sudo python3 /home/pi/rpi-led-strip/pyLED/startup.py &
 ```
 
+[OPTIONAL] This line allows you to use the physical switch (if it is installed) to clear the led strip:
+```
+sudo python3 /home/pi/rpi-led-strip/pyLED/clearSwitch.py &
+```
 
 Save and exit (Ctrl-S and Ctrl-X) and then restart the Pi from the command line:
 ```console
