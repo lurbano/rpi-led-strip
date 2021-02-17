@@ -131,10 +131,10 @@ ADD THE LINE (before 'exit 0' ). TO SET THE NUMBER OF PIXELS CHANGE THE -n 20 OP
 > sudo python3 /home/pi/rpi-led-strip/pyLED/clearSwitch.py &
 
 [optional] I like to have the first pixel light up on booting the Pi as an indicator that the Pi is booted so I usually also include (these also use the -n option for the number of pixels):
-`
+```
 sudo python3 /home/pi/rpi-led-strip/pyLED/clear.py -n 20 &
 sudo python3 /home/pi/rpi-led-strip/pyLED/startup.py &
-`
+```
 
 
 Save and then restart the Pi from the command line:
@@ -159,36 +159,37 @@ Say you want to add a button that makes the LED's blue
 
 ## Add button to webpage:
 webServer/templates/index.html around line 24
-`<input type="button" id="blueButton" value="Blue">`
+```<input type="button" id="blueButton" value="Blue">
+```
 
 ## Add javascript
 to listen for when someone clicks the blueButton:
 webserver/static/ws-client.js near bottom of file
-`
+```
 $("#blueButton").click(function(){
    var msg = '{"what": "blueButton"}';
    ws.send(msg);
 });
-`
+```
 
 Here we're sending the dict {"what": "blueButton"} to the server.
 
 ## Have the server act
 It has to figure out what to do when it gets the message: msg = {"what": "blueButton"} in webserver/server.py around line 76. Here it cancels anything already going on (ledPix.cancelTask) and calls the method .blue() from the ledPix instance of the ledPixels class (you'll most often need to add your own method (see next step)).
-`
+```
       if msg["what"] == "blueButton":
         print("blue LEDs ")
         ledPix.cancelTask()
         ledPix.blue()
-`
+```
 ## Code method
 If needed, add code to the ledPixels class (in webserver/ledPixels.py file) to do what you want it to do (ledPix is an instance of this class).
-`
+```
 def blue(self):
       for i in range(self.nPix):
           self.pixels[i] = (0,0,200)
           self.pixels.show()
-`
+```
 # Troubleshooting
 
 ## Not all lights are being controlled
