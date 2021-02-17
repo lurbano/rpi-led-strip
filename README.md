@@ -35,12 +35,14 @@ network={
 
 3) [copy] over or update files on the SD Card for usb connection (https://learn.adafruit.com/turning-your-raspberry-pi-zero-into-a-usb-gadget/ethernet-gadget)
 
-a) *config.txt*: Add `dtoverlay=dwc2` as the last line.
+a) ***config.txt***: Add `dtoverlay=dwc2` as the last line.
  ```
 dtoverlay=dwc2
 ```
 
- b) *cmdline.txt*: Add ` modules-load=dwc2,g_ether` after `rootwait` (e.g. `rootwait modules-load=dwc2,g_ether`).
+ b) ***cmdline.txt***: Insert:
+``` modules-load=dwc2,g_ether```
+after `rootwait` (e.g. `rootwait modules-load=dwc2,g_ether`).
 
 
 # Set up Pi
@@ -49,14 +51,13 @@ dtoverlay=dwc2
 
 Plug Pi into Laptop USB then once pi has booted up:
 
-Windows:
-Login with (putty):
+Option 1: Windows: Login with (putty: https://www.putty.org/):
 * PuTTY Host/IP: raspberrypi.local
 * Port: 22
 * Username: pi
 * Password: raspberry
 
-OR (command line) Use Terminal on Mac or Linux:
+Option 2: Mac or Linux (use Terminal app, which is built in, for the command line):
 ```console
 ssh pi@raspberrypi.local
 ```
@@ -98,7 +99,7 @@ pixels = neopixel.NeoPixel(board.D18, 20)
 pixels[-1] = (0,10,0)
 ```
 
- ### to run the test program
+To run the test program use `sudo` (neopixel needs sudo to work) and `python3`:
  ```console
 sudo python3 test.py
 ```
@@ -120,7 +121,7 @@ From your home directory clone the github repository.
 git clone https://github.com/lurbano/rpi-led-strip.git
 ```
 
-## Attaching the LED strip
+## Attaching the LED strip [HARDWARE]
 Using a WS281x strip that has three contacts for input voltage (Vin), controller signal (D0), and ground (GND):
 * Vin connects to any 5V pin,
 * DO connects to GPIO 18 by default (set in server.py as variable: ledPin)
@@ -135,30 +136,29 @@ sudo pip3 install tornado
 ```
 
 ### Starting server
-Go to the folder ~/rpi-led-strip/webServer/ and run the command
+Go to the folder *~/rpi-led-strip/webServer/* and run the command
 ```console
 sudo python3 server.py
 ```
 
-This assumes 20 pixels. To set a different number of pixels add the -n option (43 pixels in this example):
+This assumes 20 pixels. To set a different number of pixels add the `-n` option (43 pixels in this example):
 ```console
 sudo python3 server.py -n 43
 ```
 
-[optional] You can override the default number of pixels by changing on about line 24 of rpi-led-strip/webServer/server.py the number on the line below (the default is 20):
+[OPTIONAL] You can override the default number of pixels by changing on about line 24 of rpi-led-strip/webServer/server.py the number on the line below (the default is 20):
 ```.py
 nPix = 20
 ```
 
 ### The webpage
-The webpage will be at the pi's ip address (which should be printed to the screen when you start the server) and on port 8040 so if your ip address is 192.168.1.234 use:
+The webpage will be at the pi's ip address (which should be printed to the screen when you start the server) and on port 8040 so if your ip address is 192.168.1.234, open up your browser and go to:
 > http://192.168.1.234:8040
 
 ### Starting up on boot
-** IMPORTANT **: the directory with the files needs to be in the pi home directory (e.g. */home/pi/rpi-led-strip*) with this setup. You can change this but be sure to put the full path to the commands
-* From: https://learn.sparkfun.com/tutorials/how-to-run-a-raspberry-pi-program-on-startup
+** IMPORTANT **: the directory with the files needs to be in the pi home directory (e.g. */home/pi/rpi-led-strip*) with this setup. You can change this but be sure to put the full path to the commands. (From: https://learn.sparkfun.com/tutorials/how-to-run-a-raspberry-pi-program-on-startup)
 
-Edit */etc/rc.local* (the easy way)
+EDIT */etc/rc.local* (the easy way)
 ```console
 sudo nano /etc/rc.local
 ```
@@ -169,12 +169,12 @@ ADD THE LINE (before `exit 0` ). TO SET THE NUMBER OF PIXELS CHANGE THE -n 20 OP
 sudo /usr/bin/python3 /home/pi/rpi-led-strip/webServer/server.py -n 20 2> /home/pi/rpi-led-strip/error.log &
 ```
 
-[optional] This second line allows you to use the physical switch (if it is installed) to clear the led strip:
+[OPTIONAL] This second line allows you to use the physical switch (if it is installed) to clear the led strip:
 ```
 sudo python3 /home/pi/rpi-led-strip/pyLED/clearSwitch.py &
 ```
 
-[optional] I like to have the first pixel light up on booting the Pi as an indicator that the Pi is booted so I usually also include (these also use the -n option for the number of pixels):
+[OPTIONAL] I like to have the first pixel light up on booting the Pi as an indicator that the Pi is booted so I usually also include (these also use the -n option for the number of pixels):
 ```
 sudo python3 /home/pi/rpi-led-strip/pyLED/clear.py -n 20 &
 sudo python3 /home/pi/rpi-led-strip/pyLED/startup.py &
@@ -203,14 +203,14 @@ sudo kill nnn
 Say you want to add a button that makes the LED's blue
 
 ## Add button to webpage:
-webServer/templates/index.html around line 24
+*webServer/templates/index.html* around line 24
 ```HTML
 <input type="button" id="blueButton" value="Blue">
 ```
 
 ## Add javascript
 to listen for when someone clicks the blueButton:
-webserver/static/ws-client.js near bottom of file
+*webserver/static/ws-client.js* near bottom of file
 ```js
 $("#blueButton").click(function(){
    var msg = '{"what": "blueButton"}';
@@ -221,7 +221,7 @@ $("#blueButton").click(function(){
 Here we're sending the dict {"what": "blueButton"} to the server.
 
 ## Have the server act
-It has to figure out what to do when it gets the message: msg = {"what": "blueButton"} in webserver/server.py around line 76. Here it cancels anything already going on (ledPix.cancelTask) and calls the method .blue() from the ledPix instance of the ledPixels class (you'll most often need to add your own method (see next step)).
+It has to figure out what to do when it gets the message: msg = {"what": "blueButton"} in *webserver/server.py* around line 76. Here it cancels anything already going on (ledPix.cancelTask) and calls the method .blue() from the ledPix instance of the ledPixels class (you'll most often need to add your own method (see next step)).
 ```.py
       if msg["what"] == "blueButton":
         print("blue LEDs ")
