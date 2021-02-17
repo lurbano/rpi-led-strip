@@ -78,7 +78,7 @@
  > sudo python3 test.py
 
 
- ## [SKIP] to set the program to run on startup.
+ ### [SKIP] to set the program to run on startup.
  Ref: https://learn.sparkfun.com/tutorials/how-to-run-a-raspberry-pi-program-on-startup/all
  > sudo nano /etc/rc.local
 
@@ -109,7 +109,7 @@ Go to the folder ~/rpi-led-strip/webServer/ and run the command
 This assumes 20 pixels. To set a different number of pixels add the -n option (43 pixels in this example):
 > sudo python3 server.py -n 43
 
-(optional) You can override the default number of pixels by changing on about line 24 of rpi-led-strip/webServer/server.py the number on the line below (the default is 20):
+[optional] You can override the default number of pixels by changing on about line 24 of rpi-led-strip/webServer/server.py the number on the line below (the default is 20):
 > nPix = 20
 
 ## The webpage
@@ -127,12 +127,14 @@ ADD THE LINE (before 'exit 0' ). TO SET THE NUMBER OF PIXELS CHANGE THE -n 20 OP
 
 > sudo /usr/bin/python3 /home/pi/rpi-led-strip/webServer/server.py -n 20 2> /home/pi/rpi-led-strip/error.log &
 
-(optional) This second line allows you to use the physical switch (if it is installed) to clear the led strip:
+[optional] This second line allows you to use the physical switch (if it is installed) to clear the led strip:
 > sudo python3 /home/pi/rpi-led-strip/pyLED/clearSwitch.py &
 
-(optional) I like to have the first pixel light up on booting the Pi as an indicator that the Pi is booted so I usually also include (these also use the -n option for the number of pixels):
-      sudo python3 /home/pi/rpi-led-strip/pyLED/clear.py -n 20 &
-      sudo python3 /home/pi/rpi-led-strip/pyLED/startup.py &
+[optional] I like to have the first pixel light up on booting the Pi as an indicator that the Pi is booted so I usually also include (these also use the -n option for the number of pixels):
+`
+sudo python3 /home/pi/rpi-led-strip/pyLED/clear.py -n 20 &
+sudo python3 /home/pi/rpi-led-strip/pyLED/startup.py &
+`
 
 
 Save and then restart the Pi from the command line:
@@ -142,7 +144,7 @@ Save and then restart the Pi from the command line:
 ## If you need to kill the server (and it's the only thing running with python3)
 * https://unix.stackexchange.com/questions/104821/how-to-terminate-a-background-process
 > pgrep -a python3
-* this will give you the process id, a number 'nnn'. Use the one that has 'python3 server.py'. To kill use:
+* this will give you the process id, the name line of the command, and a number 'nnn'. Find the one that has 'python3 server.py'. To kill use:
 > sudo kill nnn
 
 
@@ -152,37 +154,41 @@ Save and then restart the Pi from the command line:
 
 
 
-# Adding things to be controlled by the webpage
+# [EXAMPLE] Adding things to be controlled by the webpage
 Say you want to add a button that makes the LED's blue
 
 ## Add button to webpage:
 webServer/templates/index.html around line 24
-> <input type="button" id="blueButton" value="Blue">
+`<input type="button" id="blueButton" value="Blue">`
 
 ## Add javascript
 to listen for when someone clicks the blueButton:
 webserver/static/ws-client.js near bottom of file
-> $("#blueButton").click(function(){
->    var msg = '{"what": "blueButton"}';
->    ws.send(msg);
-> });
+`
+$("#blueButton").click(function(){
+   var msg = '{"what": "blueButton"}';
+   ws.send(msg);
+});
+`
 
 Here we're sending the dict {"what": "blueButton"} to the server.
 
 ## Have the server act
 It has to figure out what to do when it gets the message: msg = {"what": "blueButton"} in webserver/server.py around line 76. Here it cancels anything already going on (ledPix.cancelTask) and calls the method .blue() from the ledPix instance of the ledPixels class (you'll most often need to add your own method (see next step)).
+`
       if msg["what"] == "blueButton":
         print("blue LEDs ")
         ledPix.cancelTask()
         ledPix.blue()
-
+`
 ## Code method
 If needed, add code to the ledPixels class (in webserver/ledPixels.py file) to do what you want it to do (ledPix is an instance of this class).
-> def blue(self):
->       for i in range(self.nPix):
->           self.pixels[i] = (0,0,200)
->           self.pixels.show()
-
+`
+def blue(self):
+      for i in range(self.nPix):
+          self.pixels[i] = (0,0,200)
+          self.pixels.show()
+`
 # Troubleshooting
 
 ## Not all lights are being controlled
