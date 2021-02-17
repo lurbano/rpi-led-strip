@@ -16,15 +16,16 @@ RGB:
  Working on the boot directory of the SD Card
 
 #### 1) ssh
-[copy] or create empty file ***ssh*** from raspberry-pi_setup directory to boot directory
-* Filename: ssh
+[copy] or create empty file ***ssh*** on SD Card's boot directory
+* Filename: *ssh*
 
 #### 2) wpa_supplicant.conf
 [edit] or create file for wifi connection and copy to boot directory of Pi:
-* File name: wpa_supplicant.conf
-* Change: networkName and yourPassword
+* File name: *wpa_supplicant.conf*
+* Change: `networkName` and `yourPassword`
 
 The file should look like:
+
 *wpa_supplicant.conf*
 ```
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
@@ -36,7 +37,7 @@ network={
 }
 ```
 
-#### USB connection
+#### 3) USB connection
 [copy] over or update files on the SD Card for usb connection (https://learn.adafruit.com/turning-your-raspberry-pi-zero-into-a-usb-gadget/ethernet-gadget)
 
 ***config.txt***: Add `dtoverlay=dwc2` as the last line.
