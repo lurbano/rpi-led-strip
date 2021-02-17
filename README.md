@@ -138,7 +138,9 @@ sudo python3 /home/pi/rpi-led-strip/pyLED/startup.py &
 
 
 Save and then restart the Pi from the command line:
-> sudo reboot
+```console
+sudo reboot
+```
 
 
 ## If you need to kill the server (and it's the only thing running with python3)
@@ -159,7 +161,8 @@ Say you want to add a button that makes the LED's blue
 
 ## Add button to webpage:
 webServer/templates/index.html around line 24
-```<input type="button" id="blueButton" value="Blue">
+```
+<input type="button" id="blueButton" value="Blue">
 ```
 
 ## Add javascript
