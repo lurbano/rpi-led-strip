@@ -1,5 +1,5 @@
 # RPi-led-strip
-* Instructions for setting up a headless raspberry pi to control a NeoPixel (WS281x) LED strip.
+* Instructions for setting up a headless Raspberry Pi Zero to control a NeoPixel (WS281x) LED strip. This procedure has only been tested on the Pi Zero. It does not work on the B+, and I don't know about other Pi versions.
 * Lensyl Urbano
 * https://montessorimuddle.org
 
@@ -56,21 +56,25 @@ after `rootwait` (e.g. `rootwait modules-load=dwc2,g_ether`).
 
 Plug Pi into Laptop USB then once pi has booted up:
 
-Option 1: Windows: Login with (putty: https://www.putty.org/):
+*Option 1: Windows*: Login with (putty: https://www.putty.org/):
 * PuTTY Host/IP: raspberrypi.local
 * Port: 22
 * Username: pi
 * Password: raspberry
 
-Option 2: Mac or Linux (use Terminal app, which is built in, for the command line):
+*Option 2: Mac or Linux*: use Terminal app, which is built in, for the command line:
 ```console
 ssh pi@raspberrypi.local
 ```
 
-NOTE: you may have to remove the ~/.ssh/known_hosts file if you find yourself logging in to the wrong pi.
+*NOTE: Troubleshooting*: you may have to remove the **~/.ssh/known_hosts** file if you find yourself logging in to the wrong pi or unable to connect.
+```console
+rm .ssh/known_hosts
+```
 
 
 ### update Pi
+Once you're logged into the Pi
  ```console
 sudo apt-get update
 sudo apt-get upgrade
