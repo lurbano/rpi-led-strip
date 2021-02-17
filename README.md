@@ -3,7 +3,7 @@
 * Lensyl Urbano
 * https://montessorimuddle.org
 
- ## References
+### References
 RGB:
 * https://github.com/adafruit/Adafruit_CircuitPython_NeoPixel
 * https://thepihut.com/blogs/raspberry-pi-tutorials/using-neopixels-with-the-raspberry-pi
@@ -22,6 +22,7 @@ RGB:
      Change: networkName and yourPassword
 
 The file should look like:
+*wpa_supplicant.conf*
 ```
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
@@ -33,42 +34,49 @@ network={
 ```
 
 3) [copy] over or update files on the SD Card for usb connection (https://learn.adafruit.com/turning-your-raspberry-pi-zero-into-a-usb-gadget/ethernet-gadget)
- a) "config.txt": Add 'dtoverlay=dwc2' as the last line.
+
+a) *config.txt*: Add `dtoverlay=dwc2` as the last line.
  ```
 dtoverlay=dwc2
 ```
 
- b) "cmdline.txt": Add ' modules-load=dwc2,g_ether' after 'rootwait' (e.g. 'rootwait modules-load=dwc2,g_ether').
+ b) *cmdline.txt*: Add ` modules-load=dwc2,g_ether` after `rootwait` (e.g. `rootwait modules-load=dwc2,g_ether`).
 
 
- # Connect to pi
+# Set up Pi
 
- B: Plug Pi into Laptop USB then once pi has booted up:
-     Login with (putty):
-       PuTTY Host/IP: raspberrypi.local
-       Port: 22
-       Username: pi
-       Password: raspberry
+## Connect to Pi
 
-     OR (command line):
+Plug Pi into Laptop USB then once pi has booted up:
+
+Windows:
+Login with (putty):
+* PuTTY Host/IP: raspberrypi.local
+* Port: 22
+* Username: pi
+* Password: raspberry
+
+OR (command line) Use Terminal on Mac or Linux:
 ```console
 ssh pi@raspberrypi.local
 ```
 
-     NOTE: you may have to remove the ~/.ssh/known_hosts file if you find yourself logging in to the wrong pi.
+NOTE: you may have to remove the ~/.ssh/known_hosts file if you find yourself logging in to the wrong pi.
 
- ## update pi
+
+### update Pi
  ```console
 sudo apt-get update
 sudo apt-get upgrade
 ```
 
- ## REBOOT pi
+### REBOOT pi
  ```console
 sudo reboot
 ```
 
- ## Install neopixel and rpi_ws281x
+## Install neopixel and rpi_ws281x
+To be able to control the led strip.
 
  ```console
 sudo pip3 install adafruit-circuitpython-neopixel
@@ -76,10 +84,11 @@ sudo pip3 install rpi_ws281x
 ```
 
 
- ## [OPTIONAL] test program (test.py)
+### [OPTIONAL] test program (test.py)
  If you'd like to test the setup you can create this python file and run it, however, there the test programs are in this repository which you can download individually, or use when you install this repository as described in a following section.
- * test files can be found in ~/rpi-led-strip/pyLED
+ * NOTE: test files can be found in ~/rpi-led-strip/pyLED
 
+*test.py*
 ```.py
 import board
 import neopixel
@@ -105,27 +114,27 @@ and add the following line (change your filename and path) before the 'exit 0' l
 sudo python3 /home/pi/clear.py &
 ```
 
-# Installing this software: rpi-led-strip
+## Installing this software: rpi-led-strip
 From your home directory clone the github repository.
 ```console
 git clone https://github.com/lurbano/rpi-led-strip.git
 ```
 
-# Attaching the LED strip
+## Attaching the LED strip
 Using a WS281x strip that has three contacts for input voltage (Vin), controller signal (D0), and ground (GND):
 * Vin connects to any 5V pin,
 * DO connects to GPIO 18 by default (set in server.py as variable: ledPin)
 * GND connects any ground pin
 
 
-# Running with Tornado Webserver
+## Running with Tornado Webserver
 
 Setting up the tornado server used for Websockets
 ```console
 sudo pip3 install tornado
 ```
 
-## Starting server
+### Starting server
 Go to the folder ~/rpi-led-strip/webServer/ and run the command
 ```console
 sudo python3 server.py
@@ -141,44 +150,44 @@ sudo python3 server.py -n 43
 nPix = 20
 ```
 
-## The webpage
+### The webpage
 The webpage will be at the pi's ip address (which should be printed to the screen when you start the server) and on port 8040 so if your ip address is 192.168.1.234 use:
 > http://192.168.1.234:8040
 
-## Starting up on boot
-** IMPORTANT **: the directory with the files needs to be in the pi home directory (e.g. /home/pi/rpi-led-strip) with this setup. You can change this but be sure to put the full path to the commands
-from: https://learn.sparkfun.com/tutorials/how-to-run-a-raspberry-pi-program-on-startup
+### Starting up on boot
+** IMPORTANT **: the directory with the files needs to be in the pi home directory (e.g. */home/pi/rpi-led-strip*) with this setup. You can change this but be sure to put the full path to the commands
+* From: https://learn.sparkfun.com/tutorials/how-to-run-a-raspberry-pi-program-on-startup
 
-Edit /etc/rc.local (the easy way)
+Edit */etc/rc.local* (the easy way)
 ```console
 sudo nano /etc/rc.local
 ```
 
-ADD THE LINE (before 'exit 0' ). TO SET THE NUMBER OF PIXELS CHANGE THE -n 20 OPTION TO YOUR NUMBER.
+ADD THE LINE (before `exit 0` ). TO SET THE NUMBER OF PIXELS CHANGE THE -n 20 OPTION TO YOUR NUMBER.
 
-```console
+```
 sudo /usr/bin/python3 /home/pi/rpi-led-strip/webServer/server.py -n 20 2> /home/pi/rpi-led-strip/error.log &
 ```
 
 [optional] This second line allows you to use the physical switch (if it is installed) to clear the led strip:
-```console
+```
 sudo python3 /home/pi/rpi-led-strip/pyLED/clearSwitch.py &
 ```
 
 [optional] I like to have the first pixel light up on booting the Pi as an indicator that the Pi is booted so I usually also include (these also use the -n option for the number of pixels):
-```console
+```
 sudo python3 /home/pi/rpi-led-strip/pyLED/clear.py -n 20 &
 sudo python3 /home/pi/rpi-led-strip/pyLED/startup.py &
 ```
 
 
-Save and then restart the Pi from the command line:
+Save and exit (Ctrl-S and Ctrl-X) and then restart the Pi from the command line:
 ```console
 sudo reboot
 ```
 
 
-## If you need to kill the server (and it's the only thing running with python3)
+### If you need to kill the server
 * https://unix.stackexchange.com/questions/104821/how-to-terminate-a-background-process
 ```console
 pgrep -a python3
@@ -187,10 +196,6 @@ pgrep -a python3
 ```console
 sudo kill nnn
 ```
-
-## Refs:
-* OLED: http://codelectron.com/setup-oled-display-raspberry-pi-python/
-* https://learn.adafruit.com/adafruit-pioled-128x32-mini-oled-for-raspberry-pi/usage
 
 
 
@@ -231,6 +236,12 @@ def blue(self):
           self.pixels[i] = (0,0,200)
           self.pixels.show()
 ```
+
+# Refs:
+OLED:
+* http://codelectron.com/setup-oled-display-raspberry-pi-python/
+* https://learn.adafruit.com/adafruit-pioled-128x32-mini-oled-for-raspberry-pi/usage
+
 # Troubleshooting
 
 ## Not all lights are being controlled
