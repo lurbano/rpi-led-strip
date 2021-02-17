@@ -62,8 +62,9 @@
  > sudo pip3 install rpi_ws281x
 
 
- ## test program (test.py) [OPTIONAL]
+ ## [OPTIONAL] test program (test.py)
  If you'd like to test the setup you can create this python file and run it, however, there the test programs are in this repository which you can download individually, or use when you install this repository as described in a following section.
+ * test files can be found in ~/rpi-led-strip/pyLED
 
     import board
     import neopixel
@@ -90,7 +91,10 @@ From your home directory clone the github repository.
 > git clone https://github.com/lurbano/rpi-led-strip.git
 
 # Attaching the LED strip
-
+Using a WS281x strip that has three contacts for input voltage (Vin), controller signal (D0), and ground (GND):
+* Vin connects to any 5V pin,
+* DO connects to GPIO 18 by default (set in server.py as variable: ledPin)
+* GND connects any ground pin
 
 
 # Running with Tornado Webserver
@@ -127,8 +131,8 @@ ADD THE LINE (before 'exit 0' ). TO SET THE NUMBER OF PIXELS CHANGE THE -n 20 OP
 > sudo python3 /home/pi/rpi-led-strip/pyLED/clearSwitch.py &
 
 (optional) I like to have the first pixel light up on booting the Pi as an indicator that the Pi is booted so I usually also include (these also use the -n option for the number of pixels):
-> sudo python3 /home/pi/rpi-led-strip/pyLED/clear.py -n 20 &
-> sudo python3 /home/pi/rpi-led-strip/pyLED/startup.py &
+      sudo python3 /home/pi/rpi-led-strip/pyLED/clear.py -n 20 &
+      sudo python3 /home/pi/rpi-led-strip/pyLED/startup.py &
 
 
 Save and then restart the Pi from the command line:
@@ -151,10 +155,13 @@ Save and then restart the Pi from the command line:
 # Adding things to be controlled by the webpage
 Say you want to add a button that makes the LED's blue
 
-## Add button to webpage: webServer/templates/index.html around line 24
+## Add button to webpage:
+webServer/templates/index.html around line 24
 > <input type="button" id="blueButton" value="Blue">
 
-## Add javascript to act when someone clicks the blueButton: webserver/static/ws-client.js near bottom of file
+## Add javascript
+to listen for when someone clicks the blueButton:
+webserver/static/ws-client.js near bottom of file
 > $("#blueButton").click(function(){
 >    var msg = '{"what": "blueButton"}';
 >    ws.send(msg);
@@ -162,12 +169,15 @@ Say you want to add a button that makes the LED's blue
 
 Here we're sending the dict {"what": "blueButton"} to the server.
 
-## Have the server figure out what to do when it gets the message: msg = {"what": "blueButton"} in webserver/server.py around line 76.
-> if msg["what"] == "blueButton":
->   print("blue LEDs ")
->   ledPix.blue()
+## Have the server act
+It has to figure out what to do when it gets the message: msg = {"what": "blueButton"} in webserver/server.py around line 76. Here it cancels anything already going on (ledPix.cancelTask) and calls the method .blue() from the ledPix instance of the ledPixels class (you'll most often need to add your own method (see next step)).
+      if msg["what"] == "blueButton":
+        print("blue LEDs ")
+        ledPix.cancelTask()
+        ledPix.blue()
 
-## If needed, add code to the ledPixels class (in webserver/ledPixels.py file) to do what you want it to do (ledPix is an instance of this class).
+## Code method
+If needed, add code to the ledPixels class (in webserver/ledPixels.py file) to do what you want it to do (ledPix is an instance of this class).
 > def blue(self):
 >       for i in range(self.nPix):
 >           self.pixels[i] = (0,0,200)
