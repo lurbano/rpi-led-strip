@@ -8,7 +8,9 @@ RGB:
 * https://github.com/adafruit/Adafruit_CircuitPython_NeoPixel
 * https://thepihut.com/blogs/raspberry-pi-tutorials/using-neopixels-with-the-raspberry-pi
 
-# Install OS
+# Set up Raspberry Pi
+
+## Install OS
 ### Create image on the SD card:
  (make image using Raspberry Pi Imager: https://www.raspberrypi.org/software/)
 
@@ -50,9 +52,9 @@ dtoverlay=dwc2
 after `rootwait` (e.g. `rootwait modules-load=dwc2,g_ether`).
 
 
-# Set up Pi
+## Set up Pi
 
-## Connect to Pi
+### Connect to Pi
 
 Plug Pi into Laptop USB then once pi has booted up:
 
@@ -85,7 +87,7 @@ sudo apt-get upgrade
 sudo reboot
 ```
 
-## Install neopixel and rpi_ws281x
+### Install neopixel and rpi_ws281x
 To be able to control the led strip.
 
  ```console
@@ -135,6 +137,11 @@ From your home directory clone the github repository.
 git clone https://github.com/lurbano/rpi-led-strip.git
 ```
 
+This includes python programs to run the led strip in the folder ***rpi-led-strip/pyLED***, as well as the programs to run the server (see below).
+
+You don't need to set up the server if you just want to log in to the Pi and run programs from the command line. The server allows you to control the LED strip using a web page.
+
+# Setting up Server
 ## Install Tornado Webserver
 
 Setting up the tornado server used for Websockets
