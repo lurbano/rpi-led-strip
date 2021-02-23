@@ -1,3 +1,5 @@
+# LED STRIP
+
 import neopixel
 import board
 import time

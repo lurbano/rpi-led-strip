@@ -17,10 +17,12 @@ import argparse
 import asyncio
 #from numpy import arange, mean
 import numpy as np
-
-#from ledController import *
-from ledPixels import *
 #from oledU import *
+
+
+# LED STRIP (1/3)
+
+from ledPixels import *
 
 nPix = 20
 ledPin = board.D18
@@ -39,6 +41,9 @@ if args.nPix:
 
 #Initialize neopixels
 ledPix = ledPixels(nPix, ledPin)
+
+# LED STRIP (END)
+
 
 #oled = oledU(128,32)
 
@@ -74,6 +79,8 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 				if msg["opts"] == "off":
 					sys.exit("Stopping server")
 
+			# LED STRIP (2/3)
+
 			if msg["what"] == "clearButton":
 				print("Clearing LEDs ")
 				ledPix.cancelTask()
@@ -95,14 +102,6 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 				task = asyncio.create_task(ledPix.aRainbowForever(s))
 				ledPix.task = task
 
-			if msg["what"] == "timer":
-				ledPix.cancelTask()
-				m = float(msg["minutes"])
-				s = float(msg["seconds"])
-				task = asyncio.create_task(ledPix.aTimer(self, m, s))
-				ledPix.task = task
-
-
 			if msg["what"] == "setColor":
 				ledPix.cancelTask()
 				col = msg["color"]
@@ -115,6 +114,22 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 			if msg["what"] == "interruptButton":
 				ledPix.cancelTask()
 
+			if msg["what"] == "blueButton":
+				print("blue LEDs ")
+				ledPix.cancelTask()
+				ledPix.blue()
+
+			# LED STRIP (END)
+
+			# TIMER
+			if msg["what"] == "timer":
+				ledPix.cancelTask()
+				m = float(msg["minutes"])
+				s = float(msg["seconds"])
+				task = asyncio.create_task(ledPix.aTimer(self, m, s))
+				ledPix.task = task
+			# TIMER (END)
+
 			if msg["what"] == "restart":
 				ledPix.clear()
 				subprocess.Popen('sleep 5 ; sudo python3 '+os.path.join(os.path.dirname(__file__), "server.py" + f' -n {nPix}'), shell=True)
@@ -125,10 +140,6 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 				subprocess.Popen('sleep 5 ; sudo reboot', shell=True)
 				main_loop.stop()
 
-			if msg["what"] == "blueButton":
-				print("blue LEDs ")
-				ledPix.cancelTask()
-				ledPix.blue()
 
 
 		except Exception as e:
@@ -160,9 +171,14 @@ if __name__ == "__main__":
 		main_loop = tornado.ioloop.IOLoop.instance()
 
 		print ("Tornado Server started")
+
+		# LED STRIP (3/3)
+
 		ledPix.pixels[-1] = (0, 100, 0)
 		ledPix.pixels[-2] = (0, 0, 100)
 		ledPix.pixels.show()
+
+		# LED STRIP (END)
 
 		# get ip address
 		cmd = "hostname -I | cut -d\' \' -f1"

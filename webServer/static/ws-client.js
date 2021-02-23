@@ -28,14 +28,26 @@ $(document).ready(function(){
               //console.log(sData.info + "|" + )
 
               //WHAT TO DO WHEN WE GET A MESSAGE FROM THE SERVER
+
+              // LED STRIP (1/2)
+
               if (sData.info == 'cleared'){
                 $("#signal").html("Cleared");
               }
+
+              //LED STRIP
+
+
+              // TIMER (1/2)
+
               if (sData.info == 'timer'){
                 m = sData.m.toString();
                 s = sData.s.toString().padStart(2,"0");
                 $("#timeLeft").html(m + ":" + s);
               }
+
+              // TIMER (END)
+
 
             };
         };
@@ -47,6 +59,9 @@ $(document).ready(function(){
         };
 
         //MESSAGES TO SEND TO THE SERVER
+
+        // LED STRIP (2/2)
+
         $("#clearButton").click(function(){
             //var opt = $(this).val() == "OFF" ? "on" : "off";
             var msg = '{"what": "clearButton"}';
@@ -63,26 +78,7 @@ $(document).ready(function(){
             var msg = '{"what": "rainbowForever", "speed":'+ s +'}';
             ws.send(msg);
         });
-        $("#timer").click(function(){
-            let m = $("#timerMin").val();
-            let s = $("#timerSec").val();
-            let msg = '{"what": "timer", "minutes":'+ m + ', "seconds": '+ s + '}';
-            ws.send(msg);
-        });
-        $("#restart").click(function(){
-          let check = confirm("Restart Server?");
-          if (check){
-            var msg = '{"what": "restart"}';
-            ws.send(msg);
-          }
-        });
-        $("#reboot").click(function(){
-            let check = confirm("Reboot Pi?");
-            if (check){
-              var msg = '{"what": "reboot"}';
-              ws.send(msg);
-            }
-        });
+
         $("#setColor").change(function(){
             var col = this.value;
             var msg = '{"what": "setColor", "color": "'+ col +'"}';
@@ -102,6 +98,34 @@ $(document).ready(function(){
             ws.send(msg);
         });
 
+        // LED STRIP (END)
 
+
+        // TIMER (2/2)
+
+        $("#timer").click(function(){
+            let m = $("#timerMin").val();
+            let s = $("#timerSec").val();
+            let msg = '{"what": "timer", "minutes":'+ m + ', "seconds": '+ s + '}';
+            ws.send(msg);
+        });
+
+        // TIMER (END)
+
+        
+        $("#restart").click(function(){
+          let check = confirm("Restart Server?");
+          if (check){
+            var msg = '{"what": "restart"}';
+            ws.send(msg);
+          }
+        });
+        $("#reboot").click(function(){
+            let check = confirm("Reboot Pi?");
+            if (check){
+              var msg = '{"what": "reboot"}';
+              ws.send(msg);
+            }
+        });
 
       });
