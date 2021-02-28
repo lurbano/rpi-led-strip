@@ -117,7 +117,7 @@ class ledPixels:
     def blue(self):
         for i in range(self.nPix):
             self.pixels[i] = (0,0,int(255*self.brightness))
-            self.pixels.show()
+        self.pixels.show()
         self.setOldColors((0,0,255))
 
     #UTILITY METHODS
