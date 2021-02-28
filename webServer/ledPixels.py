@@ -26,6 +26,11 @@ class ledPixels:
         for i in range(nPix):
             self.oldColors.append((0,0,0))
 
+    def initCodeColor(self):
+        self.pixels[-1] = (0, 100, 0)
+    	self.pixels[-2] = (0, 0, 100)
+    	self.pixels.show()
+
     def setOldColors(self, col=None):
         if col == None:
             for i in range(self.nPix):

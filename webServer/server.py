@@ -40,11 +40,12 @@ if args.nPix:
 
 
 #Initialize neopixels
-def initPixels(nPix, ledPin = board.D18):
-	ledPix = ledPixels(nPix, ledPin)
-	return ledPix
-
-ledPix = initPixels(nPix, ledPin)
+ledPix = ledPixels(nPix, ledPin)
+# def initPixels(nPix, ledPin = board.D18):
+# 	ledPix = ledPixels(nPix, ledPin)
+# 	return ledPix
+#
+# ledPix = initPixels(nPix, ledPin)
 
 # LED STRIP (END)
 
@@ -84,6 +85,13 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 					sys.exit("Stopping server")
 
 			# LED STRIP (2/3)
+
+			if msg["what"] == "nPix":
+				print("Reset Number of Pixels")
+				ledPix.cancelTask()
+				n = int(msg["n"])
+				ledPix = ledPixels(n, ledPin)
+				ledPix.initCodeColor()
 
 			if msg["what"] == "clearButton":
 				print("Clearing LEDs ")
@@ -178,9 +186,10 @@ if __name__ == "__main__":
 
 		# LED STRIP (3/3)
 
-		ledPix.pixels[-1] = (0, 100, 0)
-		ledPix.pixels[-2] = (0, 0, 100)
-		ledPix.pixels.show()
+		ledPix.initCodeColor()
+		# ledPix.pixels[-1] = (0, 100, 0)
+		# ledPix.pixels[-2] = (0, 0, 100)
+		# ledPix.pixels.show()
 
 		# LED STRIP (END)
 

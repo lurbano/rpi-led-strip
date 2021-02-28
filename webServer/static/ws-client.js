@@ -127,6 +127,15 @@ $(document).ready(function(){
               ws.send(msg);
             }
         });
+        $("#nPix").change(function(){
+            let nPix = this.value;
+            let check = confirm("Change Number of Pixels to: " + nPix);
+            if (check){
+              var msg = '{"what": "nPix", "n": "'+nPix+'"}';
+              ws.send(msg);
+            }
+        });
+
 
         $(".flagButton").click(function(){
 
