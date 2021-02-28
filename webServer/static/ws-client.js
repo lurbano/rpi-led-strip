@@ -66,8 +66,11 @@ $(document).ready(function(){
             let nPix = this.value;
             let check = confirm("Change Number of Pixels to: " + nPix);
             if (check){
-              var msg = '{"what": "nPix", "n": "'+nPix+'"}';
-              ws.send(msg);
+              // var msg = '{"what": "nPix", "n": "'+nPix+'"}';
+              // ws.send(msg);
+              let msg = {"what": "nPix", "n": nPix};
+              ws.send(JSON.stringify(msg));
+
             }
         });
 
