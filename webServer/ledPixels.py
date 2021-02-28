@@ -139,6 +139,7 @@ class ledPixels:
 
 
     def cancelTask(self):
+        print("Canceling last task.")
         if self.task:
             self.task.cancel()
 
