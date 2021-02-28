@@ -112,7 +112,7 @@ $(document).ready(function(){
 
         // TIMER (END)
 
-        
+
         $("#restart").click(function(){
           let check = confirm("Restart Server?");
           if (check){
@@ -126,6 +126,14 @@ $(document).ready(function(){
               var msg = '{"what": "reboot"}';
               ws.send(msg);
             }
+        });
+
+        $(".flagButton").click(function(){
+          console.log(this.id);
+          let id = this.id;
+          let prefix = id.split("_")[0];
+          let ctrlDiv = $("#"+prefix+"_CONTROLS");
+          //now toggle visibility
         });
 
       });

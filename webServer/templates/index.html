@@ -22,40 +22,48 @@
 Connection: <span id="ws-status"> Waiting... </span>
 <div id='errorInfo'></div>
 
-<!-- LED STRIP -->
+<div id="controlFlags">
+  <!-- The prefix of the flag name should be the same as the prefix of the div with the controls -->
+  <!-- LED STRIP (1/2) -->
+  <span id="LED_FLAG" class="flagButton"></span>
+  <!-- LED STRIP (END) -->
+</div>
 
-<p>
-  <input type="button" id="clearButton" value="Turn off LEDs">
+<!-- LED STRIP (2/2)-->
+<!-- div id should have the same prefix as the flag -->
+<div id="LED_CONTROLS">
+  <p>
+    <input type="button" id="clearButton" value="Turn off LEDs">
 
-<p>
-  <input type="button" id="rainbowButton" value="Rainbow">
-  <input type="number" id="rainbowCount" min="1" value="2">
-  <input type="number" id="rainbowSpeed" min="1" value="0.01">
+  <p>
+    <input type="button" id="rainbowButton" value="Rainbow">
+    <input type="number" id="rainbowCount" min="1" value="2">
+    <input type="number" id="rainbowSpeed" min="1" value="0.01">
+    <br>
+    <input type="button" id="rainbowForever" value="Rainbow Forever">
+
+  <p>
+    <input type="button" id="timer" value="Start Countdown">
+    <input type="number" id="timerMin" min="0" value="0" title="minutes">
+    <input type="number" id="timerSec" min="0" value="0" title="seconds">
+    <span id="timeLeft"></span>
+
+  <p>
+  Pick Color:
+  <input type="color" id="setColor" value="#ff0000">
+  <p>
+  Brightness:
+  <input type="range" id="setBrightness" min="0" max="100" step="1" value="100">
+
   <br>
-  <input type="button" id="rainbowForever" value="Rainbow Forever">
-
-<p>
-  <input type="button" id="timer" value="Start Countdown">
-  <input type="number" id="timerMin" min="0" value="0" title="minutes">
-  <input type="number" id="timerSec" min="0" value="0" title="seconds">
-  <span id="timeLeft"></span>
-
-<p>
-Pick Color:
-<input type="color" id="setColor" value="#ff0000">
-<p>
-Brightness:
-<input type="range" id="setBrightness" min="0" max="100" step="1" value="100">
-
-<br>
-<input type="button" id="blueButton" value="Blue">
+  <input type="button" id="blueButton" value="Blue">
 
 
-<div id='signal'></div>
-<br>
-<input type="button" id="interruptButton" value="Interrupt">
-<p>
-
+  <div id='signal'></div>
+  <br>
+  <input type="button" id="interruptButton" value="Interrupt">
+  <p>
+</div>
 <!-- LED STRIP (END) -->
 
 <input type="button" id="restart" value="Restart Server">
