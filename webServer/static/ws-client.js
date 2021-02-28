@@ -62,6 +62,15 @@ $(document).ready(function(){
 
         // LED STRIP (2/2)
 
+        $("#nPix").change(function(){
+            let nPix = this.value;
+            let check = confirm("Change Number of Pixels to: " + nPix);
+            if (check){
+              var msg = '{"what": "nPix", "n": "'+nPix+'"}';
+              ws.send(msg);
+            }
+        });
+
         $("#clearButton").click(function(){
             //var opt = $(this).val() == "OFF" ? "on" : "off";
             var msg = '{"what": "clearButton"}';
@@ -124,14 +133,6 @@ $(document).ready(function(){
             let check = confirm("Reboot Pi?");
             if (check){
               var msg = '{"what": "reboot"}';
-              ws.send(msg);
-            }
-        });
-        $("#nPix").change(function(){
-            let nPix = this.value;
-            let check = confirm("Change Number of Pixels to: " + nPix);
-            if (check){
-              var msg = '{"what": "nPix", "n": "'+nPix+'"}';
               ws.send(msg);
             }
         });
