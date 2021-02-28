@@ -66,8 +66,6 @@ $(document).ready(function(){
             let nPix = this.value;
             let check = confirm("Change Number of Pixels to: " + nPix);
             if (check){
-              // var msg = '{"what": "nPix", "n": "'+nPix+'"}';
-              // ws.send(msg);
               let msg = {"what": "nPix", "n": nPix};
               ws.send(JSON.stringify(msg));
 
@@ -75,31 +73,40 @@ $(document).ready(function(){
         });
 
         $("#clearButton").click(function(){
-            //var opt = $(this).val() == "OFF" ? "on" : "off";
             var msg = '{"what": "clearButton"}';
             ws.send(msg);
         });
         $("#rainbowButton").click(function(){
             var ct = $("#rainbowCount").val();
             var s = $("#rainbowSpeed").val();
-            var msg = '{"what": "rainbowButton", "ct": '+ parseInt(ct) +', "speed":'+ s +'}';
-            ws.send(msg);
+            let msg = {
+              "what": "rainbowButton",
+              "ct": parseInt(ct),
+              "speed": s
+            }
+            ws.send(JSON.stringify(msg));
         });
         $("#rainbowForever").click(function(){
-            var s = $("#rainbowSpeed").val();
-            var msg = '{"what": "rainbowForever", "speed":'+ s +'}';
-            ws.send(msg);
+            let msg = {
+              "what": "rainbowForever",
+              "speed": $("#rainbowSpeed").val()
+            }
+            ws.send(JSON.stringify(msg));
         });
 
         $("#setColor").change(function(){
-            var col = this.value;
-            var msg = '{"what": "setColor", "color": "'+ col +'"}';
-            ws.send(msg);
+            let msg = {
+              "what": "setColor",
+              "color": this.value
+            }
+            ws.send(JSON.stringify(msg));
         });
         $("#setBrightness").change(function(){
-            var bright = this.value;
-            var msg = '{"what": "setBrightness", "brightness": "'+ bright +'"}';
-            ws.send(msg);
+            let msg = {
+              "what": "setBrightness",
+              "brightness": this.value
+            }
+            ws.send(JSON.stringify(msg));
         });
         $("#interruptButton").click(function(){
             var msg = '{"what": "interruptButton"}';
