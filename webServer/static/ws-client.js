@@ -129,10 +129,12 @@ $(document).ready(function(){
         });
 
         $(".flagButton").click(function(){
-          console.log(this.id);
+
           let id = this.id;
           let prefix = id.split("_")[0];
           let ctrlDiv = $("#"+prefix+"_CONTROLS");
+          console.log(this.id);
+          ctrlDiv.toggle();
           //now toggle visibility
         });
 
