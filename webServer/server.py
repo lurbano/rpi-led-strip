@@ -187,12 +187,7 @@ if __name__ == "__main__":
 		print ("Tornado Server started")
 
 		# LED STRIP (3/3)
-
 		ledPix.initCodeColor()
-		# ledPix.pixels[-1] = (0, 100, 0)
-		# ledPix.pixels[-2] = (0, 0, 100)
-		# ledPix.pixels.show()
-
 		# LED STRIP (END)
 
 		# get ip address
