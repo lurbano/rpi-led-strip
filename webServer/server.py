@@ -40,7 +40,10 @@ if args.nPix:
 
 
 #Initialize neopixels
-ledPix = ledPixels(nPix, ledPin)
+def initPixels(nPix, ledPin = board.D18):
+	ledPix = ledPixels(nPix, ledPin)
+
+initPixels(nPix, ledPin)
 
 # LED STRIP (END)
 
