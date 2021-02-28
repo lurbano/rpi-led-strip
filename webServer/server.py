@@ -81,6 +81,12 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 
 			# LED STRIP (2/3)
 
+			if msg["what"] == "nPix":
+				print("Clearing LEDs ")
+				ledPix.cancelTask()
+				ledPix.clear()
+				self.write_message({"info":"cleared"})
+
 			if msg["what"] == "clearButton":
 				print("Clearing LEDs ")
 				ledPix.cancelTask()
