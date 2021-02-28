@@ -85,7 +85,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 				print("Resetting nPix")
 				global ledPix
 				ledPix.cancelTask()
-				ledPix.clear()
+				n = int(msg["n"])
 				ledPix = ledPixels(n, ledPin)
 				ledPix.initCodeColor()
 
@@ -182,9 +182,7 @@ if __name__ == "__main__":
 
 		# LED STRIP (3/3)
 
-		ledPix.pixels[-1] = (0, 100, 0)
-		ledPix.pixels[-2] = (0, 0, 100)
-		ledPix.pixels.show()
+		ledPix.initCodeColor()
 
 		# LED STRIP (END)
 
