@@ -83,9 +83,9 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 
 			if msg["what"] == "nPix":
 				print("Resetting nPix")
+				global ledPix
 				ledPix.cancelTask()
 				ledPix.clear()
-				global ledPix
 				ledPix = ledPixels(n, ledPin)
 				ledPix.initCodeColor()
 
