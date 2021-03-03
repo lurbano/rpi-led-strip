@@ -74,6 +74,29 @@ ssh pi@raspberrypi.local
 rm .ssh/known_hosts
 ```
 
+### Other ways to connect (optional):
+
+#### Find the local IP address (optional)
+You may want to find the IP address of the pi to log in with instead of using pi@raspberrypi.local. When you are ssh'd into the pi. This is particularly useful if you have multiple pi's on the network. Run the command:
+```console
+ifconfig
+```
+There will be a section of the output labeled `wlan` that has a couple lines that look like this:
+```bash
+wlan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.4.76  netmask 255.255.0.0  broadcast 192.168.255.255
+```
+In this case the IP address is 192.168.4.76 and you can log in using:
+```console
+ssh pi@192.168.4.76
+```
+
+#### Changing the hostname (optional)
+This is makes it easier to connect, because you don't have to remember the ip address. You have to edit two files `/etc/hostname` and `/etc/hosts`.
+
+Follow instructions: https://thepihut.com/blogs/raspberry-pi-tutorials/19668676-renaming-your-raspberry-pi-the-hostname
+
+
 
 ### update Pi
 Once you're logged into the Pi
