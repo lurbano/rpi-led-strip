@@ -46,8 +46,10 @@ File: ***cmdline.txt***:
 ``` modules-load=dwc2,g_ether``` after `rootwait`
 * It should look something like: ( `rootwait modules-load=dwc2,g_ether`).
 
+The SD Card should now be ready for the Pi.
 
 # Set up Pi
+Plug the SD Card into the Pi.
 
 ## Connect to Pi
 
@@ -87,7 +89,7 @@ In this case the IP address is 192.168.4.76 and you can log in using:
 ssh pi@192.168.4.76
 ```
 
-## [Optional] Changing the hostname 
+## [Optional] Changing the hostname
 This is makes it easier to connect, because you don't have to remember the ip address. You have to edit two files `/etc/hostname` and `/etc/hosts`.
 
 Follow instructions: https://thepihut.com/blogs/raspberry-pi-tutorials/19668676-renaming-your-raspberry-pi-the-hostname
