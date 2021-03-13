@@ -3,10 +3,6 @@ Instructions for setting up a headless Raspberry Pi Zero to control a NeoPixel (
 * Lensyl Urbano
 * https://montessorimuddle.org
 
-### References
-RGB:
-* https://github.com/adafruit/Adafruit_CircuitPython_NeoPixel
-* https://thepihut.com/blogs/raspberry-pi-tutorials/using-neopixels-with-the-raspberry-pi
 
 # Set up Raspberry Pi
 
@@ -179,6 +175,10 @@ def blue(self):
 OLED:
 * http://codelectron.com/setup-oled-display-raspberry-pi-python/
 * https://learn.adafruit.com/adafruit-pioled-128x32-mini-oled-for-raspberry-pi/usage
+
+RGB:
+* https://github.com/adafruit/Adafruit_CircuitPython_NeoPixel
+* https://thepihut.com/blogs/raspberry-pi-tutorials/using-neopixels-with-the-raspberry-pi
 
 # Troubleshooting
 
