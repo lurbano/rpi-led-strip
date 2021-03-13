@@ -10,6 +10,8 @@ RGB:
 
 # Set up Raspberry Pi
 
+[Set up instructions](PI_SETUP.md)
+
 ## Install OS
 ### Create image on the SD card:
  (make image using Raspberry Pi Imager: https://www.raspberrypi.org/software/)
