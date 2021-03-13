@@ -11,7 +11,7 @@ RGB:
 # Set up Raspberry Pi
 
 [Set up instructions](PI_SETUP.md)
-
+* Used these [instructions](PI_SETUP.md) to install the operating system on your Pi and allow it to connect to your local network.
 
 
 # Install LED specific software: neopixel and rpi_ws281x
