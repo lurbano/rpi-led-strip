@@ -10,11 +10,11 @@ Instructions for setting up a headless Raspberry Pi Zero. Projects for controlli
 ## Setup ssh, wifi, and usb connection
  Working in the /boot directory of the newly created SD Card:
 
-### 1) ssh
+### 1) File: ssh
 [copy] or create empty file ***ssh*** on SD Card's boot directory
 * Filename: *ssh*
 
-### 2) wpa_supplicant.conf
+### 2) File: wpa_supplicant.conf
 [edit] or create file for wifi connection and copy to boot directory of Pi:
 * File name: *wpa_supplicant.conf*
 * Change: `networkName` and `yourPassword`
@@ -35,13 +35,13 @@ network={
 ### 3) USB connection
 [copy] over or update files on the SD Card for usb connection (https://learn.adafruit.com/turning-your-raspberry-pi-zero-into-a-usb-gadget/ethernet-gadget)
 
-***config.txt***:
+File: ***config.txt***:
 * Add `dtoverlay=dwc2` as the last line.
  ```
 dtoverlay=dwc2
 ```
 
-***cmdline.txt***:
+File: ***cmdline.txt***:
 * Insert:
 ``` modules-load=dwc2,g_ether``` after `rootwait`
 * It should look something like: ( `rootwait modules-load=dwc2,g_ether`).
@@ -69,7 +69,8 @@ ssh pi@raspberrypi.local
 rm .ssh/known_hosts
 ```
 
-## Other ways to connect [optional]:
+## [Optional] Other ways to connect:
+You can connect using the pi's IP address if you're logged into the pi, or using an IP address scanner (I've used *Fing* on my Android device).
 
 ### Find the local IP address (optional)
 You may want to find the IP address of the pi to log in with instead of using pi@raspberrypi.local. When you are ssh'd into the pi. This is particularly useful if you have multiple pi's on the network. Run the command:
@@ -86,7 +87,7 @@ In this case the IP address is 192.168.4.76 and you can log in using:
 ssh pi@192.168.4.76
 ```
 
-### Changing the hostname [optional]
+## [Optional] Changing the hostname 
 This is makes it easier to connect, because you don't have to remember the ip address. You have to edit two files `/etc/hostname` and `/etc/hosts`.
 
 Follow instructions: https://thepihut.com/blogs/raspberry-pi-tutorials/19668676-renaming-your-raspberry-pi-the-hostname
