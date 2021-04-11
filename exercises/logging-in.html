@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="prism.css" rel="stylesheet" />
+    <style>
+      .command {
+        position: relative;
+        left: 2em;
+      }
+    </style>
+
+  </head>
+  <body>
+    <h1>Logging In and Navigating</h1>
+
+    <h2>Logging in to the Pi</h2>
+Log into the Pi using <b>putty</b> (Windows) or <b>ssh</b> (Linus or OSX) depending on your operating system. <br>
+In this example we assume that we already know the ip address of the Pi, and it is <b>192.168.4.76</b>. We also assume that the Pi still has it's default name, <b>"raspberrypi"</b>, and default username ("<b>pi</b>") and password ("<b>raspberry</b>"):
+<ul>
+<li><b>IP address</b>: 192.168.4.76 <i>or</i> raspberrypi.local</li>
+<li><b>Username</b>: pi</li>
+<li><b>Password</b>: raspberry</li>
+</ul>
+
+<h2>Navigating the Terminal window</h2>
+
+Terminal commands:
+<p>
+<b>ls</b>: list files in the directory.
+<div class="command">
+<pre class="command-line" data-user="pi" data-host="ledpi" data-output="2-3"><code class="language-bash" >ls
+Bookshelf  Documents   Pictures   rpi-led-strip  Videos
+Desktop    Downloads   Music      Public         Templates
+</code></pre>
+</div>
+</p>
+
+<p>
+<b>cd</b>: change directory.
+<div class="command">
+<pre class="command-line" data-user="pi" data-host="ledpi"><code class="language-bash" >cd rpi-led-strip
+</code></pre>
+The example programs for controlling the LED's are in the <b>pyLED</b> subdirectory of the <b>rpi-led-strip</b> directory, so we'll go into the <b>rpi-led-strip</b> directory first. The command gives no response; many terminal commands are silent if successful. However, you should see your prompt change to reflect the new directory you're in. We can check that we're in the right directry with the <b>pwd</b> command.
+</div>
+</p>
+
+<p>
+<b>pwd</b>: print working directory.
+<div class="command">
+<pre class="command-line" data-user="pi" data-host="ledpi" data-output="2"><code class="language-bash" >pwd
+/home/pi/rpi-led-strip
+</code></pre>
+Prints the full path to the directory you're currently working in, which should be <b>/home/pi/rpi-led-strip</b>.
+</div>
+</p>
+
+<p>
+<div class="command">
+<i>Moving forward:</i>
+Now we list the files and directories in the working directory and change into the <b>pyLED</b> directory with the commands:
+<pre class="command-line" data-user="pi" data-host="ledpi" data-output="2-4,7-8"><code class="language-bash" >ls
+error.log  old-web      README.md      webServer
+flags      PI_SETUP.md  ssh            wpa_supplicant.conf
+NOTES.txt  pyLED        testTime.html
+cd pyLED
+ls
+aRainbow.py  clearSwitch.py  startup.py  test2.py
+clear.py     rainbow.py      test1.py    test3.py
+</code></pre>
+</div>
+</p>
+
+<p>
+<b>more</b>: showing the contents of a file.
+<div class="command">
+<pre class="command-line" data-user="pi" data-host="ledpi" data-output="2-7"><code class="language-bash" >more test1.py
+import board
+import neopixel
+
+pixels = neopixel.NeoPixel(board.D18, 20)
+
+pixels[2] = (10,0,0)
+</code></pre>
+This shows the entire contents of the <i>test1.py</i> file. For longer files you can tap the Space Bar to move forward a page, or Enter to move forward one line.
+</div>
+</p>
+
+
+<p>
+<b>python3</b>: calling the python interpreter to run a program.
+<div class="command">
+<pre class="command-line" data-user="pi" data-host="ledpi" data-output="2-7"><code class="language-bash" >python3 test1.py
+Can't open /dev/mem: Permission denied
+...
+</code></pre>
+You'll see a long error output that starts with "Permission denied". Most python programs should not have this problem, but in order to control the LED's we need superuser permissions. We use <b>sudo</b> to aquire these permissions.
+</div>
+</p>
+
+
+<p>
+<b>sudo</b>: run a program with superuser status.
+<div class="command">
+<pre class="command-line" data-user="pi" data-host="ledpi" data-output="2"><code class="language-bash" >sudo python3 test1.py
+</code></pre>
+You should get no response from the terminal window, but the third LED should light up and turn red.
+</div>
+</p>
+
+
+<p>
+<b>cp</b>: copy file
+<div class="command">
+<pre class="command-line" data-user="pi" data-host="ledpi" data-output="3-4"><code class="language-bash" >cp test1.py myTest1.py
+ls
+aRainbow.py  clearSwitch.py  rainbow.py  test1.py  test3.py
+clear.py     myTest1.py      startup.py  test2.py
+</code></pre>
+Here we copy the <i>test1.py</i> file to a new file named <i>myTest1.py</i>, so when we try to make changes to the program (see next step), we won't run the risk of messing up a working program that we may need for reference. 
+</div>
+</p>
+
+
+<p>
+<b>nano</b>: file editor
+<div class="command">
+<pre class="command-line" data-user="pi" data-host="ledpi" data-output="2"><code class="language-bash" >nano myTest1.py
+</code></pre>
+There are a number of file editors available, but we'll use <b>nano</b> because it's easy enough. Here we open the file for editing. <br>
+If you change the number <b>"2"</b> in the last line of the <i>myTest1.py</i> file to, for example, <b>"5"</b> you'll change which light lights up. We're old-school here, so you won't be able to use the mouse to navigate through the file, you'll have to use the arrow keys.
+<ul>
+  <li><b>Ctrl-S</b>: To save your changes.</li>
+  <li><b>Ctrl-X</b>: To exit</li>
+</ul>
+Since you already know the command to run the program, so you can test to see if your changes worked.
+</div>
+</p>
+
+
+
+
+
+
+  </body>
+  <script type="text/javascript" src="prism.js"></script>
+</html>
