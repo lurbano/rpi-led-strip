@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>RPi: Lighting Lights</title>
+    <link href="prism.css" rel="stylesheet" />
+    <style media="screen">
+      .answer{
+        position: relative;
+        left: 2em;
+      }
+      .solution {
+        background-color: lightGreen;
+        padding: 1em;
+      }
+    </style>
+  </head>
+  <body class="line-numbers">
+
+    <div id="exercises">
+      <div class="exercise">
+        <div class="question">
+          <b>1) Light up the fifth light.</b>
+        </div>
+        <div class="answer">
+          <div class="explanation">
+
+            Examine the <i>test1.py</i> file:
+            <pre><code class="language-python" >
+            import board
+            import neopixel
+
+            pixels = neopixel.NeoPixel(board.D18, 20)
+
+            pixels[2] = (10,0,0)
+            </code></pre>
+
+            Looking through the code line by line:<br>
+            <p>
+              <b>Lines 1 and 2</b>:
+              <pre data-start="1"><code class="language-python" >
+                import board
+                import neopixel
+              </code></pre>
+              Import two modules that we need to light the LED's.
+              <ul>
+                <li><b>import board</b>: The board module helps control the general purpose input/output (GPIO) pins on the Pi.</li>
+                <li><b>import neopixel</b>: The neopixel module specifically focuses on operating this type (WS2811) of individually addressable LED lights.</li>
+              </ul>
+            </p>
+            <p>
+              <b>Line 4</b>:
+              <pre data-start="4"><code class="language-python" >
+              pixels = neopixel.NeoPixel(board.D18, 20)
+              </code></pre>
+              This activates the LED strip. Specifically it indicates that:
+              <ul>
+                <li><b>pixels =</b>: It gives the strip a variable name, <b>pixels</b> so we can refer to it later.</li>
+                <li><b>neopixel.NeoPixel()</b>: it uses an object called <b>NeoPixel</b> from the <b>neopixel</b> library we imported on line 2.</li>
+                <li><b>board.D18</b>: indicates that the strip is being controlled by the <b>GPIO 18</b> pin, (you can look at the Pi and see that the data wire of the LED is connected to Pin 18)</li>
+                <li><b>20</b>: there are <b>20</b> LED's in the strip.</li>
+              </ul>
+            </p>
+            <p>
+              <b>Line 6</b>:
+              <pre data-start="6"><code class="language-python" >
+              pixels[2] = (10,0,0)
+              </code></pre>
+              This makes the third light red.
+              <ul>
+                <li><b>pixels</b>: this is the variable that refers to the LED strip that we created on Line 4 that comes from the <i>neopixel</i> library we imported on Line 2.</li>
+                <li><b>[2]</b>: the <i>pixels</i> variable has an array that refers to each LED light, all 20 of them. However, the array indices starts at 0 so the <b>2</b> here refers to the third LED.</li>
+                <li><b>(10,0,0)</b>: sets the color. Colors are RGB--(red, blue, green). The color values range from <b>0</b> to <b>255</b>, so <code>(10,0,0)</code> indicates a low level of red, but no green or blue. Thus the third light shows a faint red.</li>
+              </ul>
+            </p>
+          </div>
+          <div class="solution">
+            <p>
+              <b>Solution</b>: Thus, to light up the 5th light just change the index of <b>pixels</b> to get:
+              <pre data-start="6"><code class="language-python" >
+                import board
+                import neopixel
+
+                pixels = neopixel.NeoPixel(board.D18, 20)
+
+                pixels[4] = (10,0,0)
+              </code></pre>
+            </p>
+
+
+          </div>
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </body>
+  <script type="text/javascript" src="prism.js"></script>
+</html>
