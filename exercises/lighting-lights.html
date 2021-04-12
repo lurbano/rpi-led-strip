@@ -9,9 +9,32 @@
         position: relative;
         left: 2em;
       }
+      .notes {
+
+        position: relative;
+        left: 2em;
+      }
       .solution {
         background-color: lightGreen;
         padding: 1em;
+        position: relative;
+        left: 2em;
+      }
+      .toggle-next {
+        width: 12em;
+        margin: 2px;
+        color: blue;
+      }
+      .toggle-next:hover {
+        cursor: pointer;
+        background-color: #bbbbff;
+      }
+      .answers {
+        position: relative;
+        left: 2em;
+      }
+      .exercise {
+        margin-top: 1em;
       }
     </style>
   </head>
@@ -20,10 +43,13 @@
     <div id="exercises">
       <div class="exercise">
         <div class="question">
-          <b>1) Light up the fifth light.</b>
+          1) Light up the fifth light.
         </div>
-        <div class="answer">
-          <div class="explanation">
+        <div class="answers">
+          <div class="toggle-next">
+            Show Notes
+          </div>
+          <div class="notes" hidden>
 
             Examine the <i>test1.py</i> file:
             <pre><code class="language-python" >
@@ -74,7 +100,12 @@
               </ul>
             </p>
           </div>
-          <div class="solution">
+
+
+          <div class="toggle-next">
+            Show Solution
+          </div>
+          <div class="solution" hidden>
             <p>
               <b>Solution</b>: Thus, to light up the 5th light just change the index of <b>pixels</b> to get:
               <pre data-start="6"><code class="language-python" >
@@ -86,14 +117,159 @@
                 pixels[4] = (10,0,0)
               </code></pre>
             </p>
-
-
           </div>
-          </p>
         </div>
       </div>
+
+      <div class="exercise">
+        <div class="question">
+          2) Make the second light green.
+        </div>
+      </div>
+
+      <div class="exercise">
+        <div class="question">
+          3)  Make the 4th light yellow.
+        </div>
+        <div class="answers">
+          <div class="toggle-next">
+            Show Notes
+          </div>
+          <div class="notes" hidden>
+            Colors are RGB (red, blue, green). With light, you get yellow when you mix red and green. You can search for "color picker" if you'd like to find your own custom color, just note that some colors are not represented accurately by the LED's.
+          </div>
+
+          <div class="toggle-next">
+            Show Solution
+          </div>
+          <div class="solution" hidden>
+            <p>
+              <b>Solution</b>: For the brightest, purest yellow:
+              <pre data-start="1"><code class="language-python" >
+                import board
+                import neopixel
+
+                pixels = neopixel.NeoPixel(board.D18, 20)
+
+                pixels[3] = (255,255,0)
+              </code></pre>
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="exercise">
+        <div class="question">
+          4) Light up the first 5 lights.
+        </div>
+        <div class="answers">
+          <div class="toggle-next">
+            Show Notes
+          </div>
+          <div class="notes" hidden>
+            You could do this all by hand with copy and paste, but it's easier with a loop. With the simplest form of a <b>for</b> loop you can give it a range that it will <i>itterate</i> through: basically the loop will repeat so many times. To repeat something 5 times do:
+            <pre data-start="1"><code class="language-python" >
+              for i in range(5):
+            </code></pre>
+            Don't forget the colon (<b>:</b>), otherwise this will not work.
+            In python, you indicate what gets repeated by tabbing it over like so:
+            <pre data-start="1"><code class="language-python" >
+              for i in range(5):
+                pixels[i] = (10,0,0)
+            </code></pre>
+            Notice how the index in <b>pixels[i]</b> is the variable <b>i</b>. The variable is created in the for loop (you can use any variable name you like, it does not have to be <b>i</b>)
+
+          </div>
+
+          <div class="toggle-next">
+            Show Solution (loop)
+          </div>
+          <div class="solution" hidden>
+            <p>
+              <b>Solution</b>: Making the first 5 lights red
+              <pre data-start="1"><code class="language-python" >
+                import board
+                import neopixel
+
+                pixels = neopixel.NeoPixel(board.D18, 20)
+
+                for i in range(5):
+                  pixels[i] = (10,0,0)
+              </code></pre>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="exercise">
+        <div class="question">
+          5) Light up the first 16 lights.
+        </div>
+      </div>
+
+      <div class="exercise">
+        <div class="question">
+          6) Make the first 5 lights red and the rest blue
+        </div>
+      </div>
+
+      <div class="exercise">
+        <div class="question">
+          7) Make all of the lights light up one at a time (with a 0.25 seconds between each lighting up.)
+        </div>
+        <div class="answers">
+          <div class="toggle-next">
+            Show Notes
+          </div>
+          <div class="notes" hidden>
+            Here you just need to wait a moment (0.25 seconds to be exact) before lighting up the next light. We can do this by using the <b>time</b> module and the <b>sleep</b> function.
+            <p>First import <b>time</b>:</p>
+            <pre data-start="1"><code class="language-python" >
+              import time
+            </code></pre>
+            Then use the <b>sleep</b> function like so:
+            <pre data-start="1"><code class="language-python" >
+              time.sleep(0.25)
+            </code></pre>
+
+          </div>
+
+          <div class="toggle-next">
+            Show Solution (time)
+          </div>
+          <div class="solution" hidden>
+            <p>
+              <b>Solution</b>: Lighting up all lights with a delay
+              <pre class="language-python no-line-numbers" data-line="3,9"><code >
+                import board
+                import neopixel
+                import time
+
+                pixels = neopixel.NeoPixel(board.D18, 20)
+
+                for i in range(20):
+                  pixels[i] = (10,0,0)
+                  time.sleep(0.25)
+              </code></pre>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="exercise">
+        <div class="question">
+          8) Over 2.5 seconds have a single light of the 20 light up and march across the strip, with all the other lights being black.
+        </div>
+      </div>
+
     </div>
 
+
+
+
   </body>
+  <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="prism.js"></script>
+  <script type="text/javascript" src="exercises.js"></script>
 </html>
