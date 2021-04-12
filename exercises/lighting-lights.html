@@ -38,7 +38,7 @@
       }
     </style>
   </head>
-  <body class="line-numbers">
+  <body>
 
     <div id="exercises">
       <div class="exercise">
@@ -47,12 +47,12 @@
         </div>
         <div class="answers">
           <div class="toggle-next">
-            Show Notes
+            Show Notes ▼
           </div>
           <div class="notes" hidden>
 
             Examine the <i>test1.py</i> file:
-            <pre><code class="language-python" >
+            <pre class="line-numbers"><code class="language-python" >
             import board
             import neopixel
 
@@ -64,7 +64,7 @@
             Looking through the code line by line:<br>
             <p>
               <b>Lines 1 and 2</b>:
-              <pre data-start="1"><code class="language-python" >
+              <pre  class="line-numbers" data-start="1"><code class="language-python" >
                 import board
                 import neopixel
               </code></pre>
@@ -76,7 +76,7 @@
             </p>
             <p>
               <b>Line 4</b>:
-              <pre data-start="4"><code class="language-python" >
+              <pre class="line-numbers" data-start="4"><code class="language-python" >
               pixels = neopixel.NeoPixel(board.D18, 20)
               </code></pre>
               This activates the LED strip. Specifically it indicates that:
@@ -89,7 +89,7 @@
             </p>
             <p>
               <b>Line 6</b>:
-              <pre data-start="6"><code class="language-python" >
+              <pre  class="line-numbers" data-start="6"><code class="language-python" >
               pixels[2] = (10,0,0)
               </code></pre>
               This makes the third light red.
@@ -103,12 +103,12 @@
 
 
           <div class="toggle-next">
-            Show Solution
+            Show Solution ▼
           </div>
           <div class="solution" hidden>
             <p>
               <b>Solution</b>: Thus, to light up the 5th light just change the index of <b>pixels</b> to get:
-              <pre data-start="6"><code class="language-python" >
+              <pre class="line-numbers" data-start="1"><code class="language-python" >
                 import board
                 import neopixel
 
@@ -133,19 +133,19 @@
         </div>
         <div class="answers">
           <div class="toggle-next">
-            Show Notes
+            Show Notes ▼
           </div>
           <div class="notes" hidden>
             Colors are RGB (red, blue, green). With light, you get yellow when you mix red and green. You can search for "color picker" if you'd like to find your own custom color, just note that some colors are not represented accurately by the LED's.
           </div>
 
           <div class="toggle-next">
-            Show Solution
+            Show Solution ▼
           </div>
           <div class="solution" hidden>
             <p>
               <b>Solution</b>: For the brightest, purest yellow:
-              <pre data-start="1"><code class="language-python" >
+              <pre class="line-numbers" data-start="1"><code class="language-python" >
                 import board
                 import neopixel
 
@@ -165,11 +165,11 @@
         </div>
         <div class="answers">
           <div class="toggle-next">
-            Show Notes
+            Show Notes ▼
           </div>
           <div class="notes" hidden>
             You could do this all by hand with copy and paste, but it's easier with a loop. With the simplest form of a <b>for</b> loop you can give it a range that it will <i>itterate</i> through: basically the loop will repeat so many times. To repeat something 5 times do:
-            <pre data-start="1"><code class="language-python" >
+            <pre><code class="language-python" >
               for i in range(5):
             </code></pre>
             Don't forget the colon (<b>:</b>), otherwise this will not work.
@@ -183,12 +183,12 @@
           </div>
 
           <div class="toggle-next">
-            Show Solution (loop)
+            Show Solution (loop) ▼
           </div>
           <div class="solution" hidden>
             <p>
               <b>Solution</b>: Making the first 5 lights red
-              <pre data-start="1"><code class="language-python" >
+              <pre class="line-numbers" data-start="1"><code class="language-python" >
                 import board
                 import neopixel
 
@@ -220,28 +220,28 @@
         </div>
         <div class="answers">
           <div class="toggle-next">
-            Show Notes
+            Show Notes ▼
           </div>
           <div class="notes" hidden>
             Here you just need to wait a moment (0.25 seconds to be exact) before lighting up the next light. We can do this by using the <b>time</b> module and the <b>sleep</b> function.
             <p>First import <b>time</b>:</p>
-            <pre data-start="1"><code class="language-python" >
+            <pre><code class="language-python" >
               import time
             </code></pre>
             Then use the <b>sleep</b> function like so:
-            <pre data-start="1"><code class="language-python" >
+            <pre class="language-python" ><code>
               time.sleep(0.25)
             </code></pre>
 
           </div>
 
           <div class="toggle-next">
-            Show Solution (time)
+            Show Solution (time) ▼
           </div>
           <div class="solution" hidden>
             <p>
               <b>Solution</b>: Lighting up all lights with a delay
-              <pre class="language-python no-line-numbers" data-line="3,9"><code >
+              <pre class="language-python" data-line="3,9"><code>
                 import board
                 import neopixel
                 import time
