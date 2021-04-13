@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>RPi: Lighting Lights</title>
+    <link href="prism.css" rel="stylesheet" />
+    <link href="exercises.css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <h1>Lesson 2: Lighting Lights</h1>
+
+    <div class="intro">
+      The basic <b>for</b> loop:
+      <pre class="language-python"><code>
+        for i in range([start], stop, [step]):
+      </code></pre>
+      <p></p>
+
+      <div class="answers">
+        <div class="toggle-next">
+          Hide Notes ▼
+        </div>
+        <div class="notes">
+          <p>
+          The <i>range</i> function can be used in three ways.</p>
+
+          <h3>1) range(stop) </h3>Given a stopping value only,
+          <ul>
+            <li>Starts at <b>0</b> by default.</li>
+            <li>Ends at <b>one less</b> than the stopping value</li>
+          </ul>
+          The program:
+          <pre class="language-python line-numbers"><code>
+            for i in range(5):
+              print(i)
+          </code> </pre>
+          will output:
+          <pre class="language-python"><code>
+            0
+            1
+            2
+            3
+            4
+          </code> </pre>
+
+          <h3>2) range(start, stop) </h3>Given a starting and a stopping value,
+          The program:
+          <pre class="language-python line-numbers"><code>
+            for i in range(2, 6):
+              print(i)
+          </code> </pre>
+          will output:
+          <pre class="language-python"><code>
+            2
+            3
+            4
+            5
+          </code> </pre>
+
+          <h3>1) range(start, stop, step) </h3>Given a starting, stopping, and a step value,
+          <ul>
+            <li>Without the <i>step</i> value the default step is <b>1</b> </li>
+            <li>You still end up at one step less than the stopping value. </li>
+          </ul>
+          The program:
+          <pre class="language-python line-numbers"><code>
+            for i in range(4, 10, 2):
+              print(i)
+          </code> </pre>
+          will output:
+          <pre class="language-python"><code>
+            4
+            6
+            8
+          </code> </pre>
+
+
+          <h3>Example</h3>
+
+          The <b><i>test2.py</i></b> file lights up every other light:
+          <pre class="line-numbers"><code class="language-python" >
+            import board
+            import neopixel
+
+            nPix = 20
+
+            pixels = neopixel.NeoPixel(board.D18, nPix)
+
+            for i in range(0, nPix, 2):
+            	pixels[i] = (0, 0, 255)
+          </code></pre>
+
+          <b>Line 8</b>: It uses a <b>for</b> loop with a starting value (<b>0</b>), ending value (<b>nPix</b>), and step value (<b>2</b>). <b>nPix</b> is defined on Line <b>4</b> with a value of <b>20</b>.
+          <p>
+
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+<h2>Exercises</h2>
+
+
+    <div id="exercises">
+      <div class="exercise">
+        <div class="question">
+          1) Make the last 5 lights red.
+        </div>
+        <div class="answers">
+          <div class="toggle-next">
+            Show Notes ▼
+          </div>
+          <div class="notes" hidden>
+            There are 20 LED's in the strip, so your starting value should be <b>15</b> and the ending value should be <b>20</b>. The sequence stops at one less than the last value given.
+          </div>
+
+
+          <div class="toggle-next">
+            Show Solution ▼
+          </div>
+          <div class="solution" hidden>
+            <p>
+              <b>Solution</b>: To light up the last 5 lights (green) use:
+              <pre data-line="6"><code class="language-python" >
+                import board
+                import neopixel
+
+                pixels = neopixel.NeoPixel(board.D18, 20)
+
+                for i in range(15, 20):
+                  pixels[i] = (0, 20, 0)
+
+              </code></pre>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="exercise">
+        <div class="question">
+          2) Make lights 5 through 10 blue.
+        </div>
+      </div>
+
+      <div class="exercise">
+        <div class="question">
+          3) Light up every other light.
+        </div>
+      </div>
+
+      <div class="exercise">
+        <div class="question">
+          4) Going backwards, make all of the lights light up one at a time (with a 0.25 seconds between each lighting up.)
+        </div>
+        <div class="answers">
+          <div class="toggle-next">
+            Show Hint ▼
+          </div>
+          <div class="notes" hidden>
+            Start at the end, stop at the beginning, and step backwards (a negative step).
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="exercise">
+
+        <div class="question">
+          5) Repeat this sequence 5 times (lighting up all lights backwards with a 0.25 second delay between lights).
+        </div>
+
+        <div class="answers">
+
+          <div class="toggle-next">
+            Show Notes ▼
+          </div>
+          <div class="notes" hidden>
+            You can put <b>loops within loops</b>. This is called <b>nesting loops</b>.
+            <ul>
+              <li>Just use a different index. We've been using <b>i</b> as the variable for the index of the loop, but you can use any variable, for example <b>j</b> would work just the same (it does not even have to be a single letter for a variable name):</li>
+              <pre class="language-python"><code>
+                for j in range(5):
+              </code> </pre>
+              <li>Also, remember to indent the interior loop:</li>
+              <pre class="language-python"><code>
+                for j in range(5):
+                  for i in range(20):
+                    print(i,j)
+              </code> </pre>
+            </ul>
+
+          </div>
+
+          <div class="toggle-next">
+            Show Solution ▼
+          </div>
+          <div class="solution" hidden>
+            <p>
+              <b>Solution</b>: To repeat the lighting sequence 5 times use:
+              <pre data-line="7"><code class="language-python" >
+                import board
+                import neopixel
+                import time
+
+                pixels = neopixel.NeoPixel(board.D18, 20)
+
+                for j in range(5):
+                  for i in range(19, 0, -1):
+                    pixels[i] = (0, 20, 0)
+                    time.sleep(0.25)
+
+              </code></pre>
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="exercise">
+
+        <div class="question">
+          6) Over 2.5 seconds have a single light of the 20 light up and march across the strip, with all the other lights being black (you may have done this before in the Lighting Lights exercises).
+        </div>
+
+      </div>
+
+      <div class="exercise">
+
+        <div class="question">
+          7) Do the same as above, but backwards.
+            (i.e.: Over 2.5 seconds have a single light of the 20 light up and march across the strip, with all the other lights being black.
+        </div>
+
+      </div>
+
+      <div class="exercise">
+
+        <div class="question">
+          8) Have the previous two sequences repeat 5 times so the single light seems to be going back and forth.
+        </div>
+
+      </div>
+
+
+
+
+
+    </div>
+
+
+
+
+  </body>
+  <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="prism.js"></script>
+  <script type="text/javascript" src="exercises.js"></script>
+</html>

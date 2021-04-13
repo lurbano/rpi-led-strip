@@ -1,0 +1,41 @@
+.answer{
+  position: relative;
+  left: 2em;
+}
+.notes {
+
+  position: relative;
+  left: 2em;
+}
+.solution {
+  background-color: lightGreen;
+  padding: 1em;
+  position: relative;
+  left: 2em;
+}
+.toggle-next {
+  width: 12em;
+  margin: 2px;
+  color: blue;
+}
+.toggle-next:hover {
+  cursor: pointer;
+  background-color: #bbbbff;
+}
+.answers {
+  position: relative;
+  left: 2em;
+}
+.intro {
+  position: relative;
+  left: 2em;
+}
+.exercise {
+  margin-top: 1em;
+}
+code {
+  user-select: none;
+}
+body {
+  font-family: Georgia, sans-serif;
+}
