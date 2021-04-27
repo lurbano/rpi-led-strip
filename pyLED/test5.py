@@ -12,5 +12,5 @@ def turnOff(n):
 for i in range(0, nPix, 2):
 	pixels[i] = (0, 0, 255)
 
-#time.sleep(2)
-#turnOff(nPix)
+time.sleep(2)
+turnOff(nPix)
