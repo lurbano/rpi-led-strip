@@ -19,52 +19,56 @@
         </div>
         <div class="notes">
 
-          Examine the <i>test1.py</i> file:
+          Examine the <i>test5.py</i> file, which lights up every other light (blue) for two seconds and then turns them all off:
           <pre class="line-numbers"><code class="language-python" >
-          import board
-          import neopixel
+            import board
+            import neopixel
+            import time
 
-          pixels = neopixel.NeoPixel(board.D18, 20)
+            nPix = 20
+            pixels = neopixel.NeoPixel(board.D18, nPix)
 
-          pixels[2] = (10,0,0)
+            def turnOff(n):
+            	for i in range(n):
+            		pixels[i] = (0,0,0)
+
+            for i in range(0, nPix, 2):
+            	pixels[i] = (0, 0, 255)
+
+            time.sleep(2)
+            turnOff(nPix)
           </code></pre>
 
-          Looking through the code line by line:<br>
           <p>
-            <b>Lines 1 and 2</b>:
-            <pre  class="line-numbers" data-start="1"><code class="language-python" >
-              import board
-              import neopixel
+            <b>Lines 8-10</b>: The function
+            <pre  class="line-numbers" data-start="8"><code class="language-python" >
+              def turnOff(n):
+              	for i in range(n):
+              		pixels[i] = (0,0,0)
             </code></pre>
-            Import two modules that we need to light the LED's.
+            This is the function that turns off the lights. Looking at line 8 <code>def turnOff(n):</code>.
             <ul>
-              <li><b>import board</b>: The board module helps control the general purpose input/output (GPIO) pins on the Pi.</li>
-              <li><b>import neopixel</b>: The neopixel module specifically focuses on operating this type (WS2811) of individually addressable LED lights.</li>
+              <li><b>def</b>: The keyword in python that indicates a function is coming</li>
+              <li><b>turnOff</b>: This is the name of the function. You can name your function almost anything, as long as you follow the same rules for variable names and don't conflict with a built in function name (like <code>len</code>).</li>
+              <li><b>(n)</b>: This indicates that the function needs some sort of input that is going to be given the variable name <code>n</code>. It does not say what type of input (string, integer, etc.), nor does it have a default value (you can set a default by using <code>(n=10)</code>) for example). But it's mostly up to you to send the right type of information.</li>
             </ul>
           </p>
           <p>
-            <b>Line 4</b>:
-            <pre class="line-numbers" data-start="4"><code class="language-python" >
-            pixels = neopixel.NeoPixel(board.D18, 20)
-            </code></pre>
-            This activates the LED strip. Specifically it indicates that:
+            <b>Lines 9 and 10 </b> are the body of the function that just turn off the number of lights you told it to. Note that the body is indented, which is how python indicates what's inside the function.
             <ul>
-              <li><b>pixels =</b>: It gives the strip a variable name, <b>pixels</b> so we can refer to it later.</li>
-              <li><b>neopixel.NeoPixel()</b>: it uses an object called <b>NeoPixel</b> from the <b>neopixel</b> library we imported on line 2.</li>
-              <li><b>board.D18</b>: indicates that the strip is being controlled by the <b>GPIO 18</b> pin, (you can look at the Pi and see that the data wire of the LED is connected to Pin 18)</li>
-              <li><b>20</b>: there are <b>20</b> LED's in the strip.</li>
+              <li>The variable <b>n</b> is a <b>local variable</b>. It was defined in the function definition, and only exists within the function. If you were to try to access it somewhere else in the program, you'd get an error. But this does mean that you could have a different variable named <b>n</b> somewhere else in the program and there would be no conflict. This also means that you don't have to worry about using the same variable name in different functions. </li>
+              <li>The variable <b>pixels</b> is a <b>global variable</b>. It was defined in the main part of the program so the function can use it.</li>
             </ul>
           </p>
           <p>
-            <b>Line 6</b>:
-            <pre  class="line-numbers" data-start="6"><code class="language-python" >
-            pixels[2] = (10,0,0)
+            <b>Line 16: Calling the function.</b>
+            <pre class="line-numbers" data-start="16"><code class="language-python" >
+            turnOff(nPix)
             </code></pre>
-            This makes the third light red.
+            This <b>calls</b> the function and <b>passes</b> it the number of pixels (nPix) which was set to 20 on line 5.
             <ul>
-              <li><b>pixels</b>: this is the variable that refers to the LED strip that we created on Line 4 that comes from the <i>neopixel</i> library we imported on Line 2.</li>
-              <li><b>[2]</b>: the <i>pixels</i> variable has an array that refers to each LED light, all 20 of them. However, the array indices starts at 0 so the <b>2</b> here refers to the third LED.</li>
-              <li><b>(10,0,0)</b>: sets the color. Colors are RGB--(red, blue, green). The color values range from <b>0</b> to <b>255</b>, so <code>(10,0,0)</code> indicates a low level of red, but no green or blue. Thus the third light shows a faint red.</li>
+              <li>The value of nPix (20) is sent to the function, and inside the function that value is given the variable name <b>n</b>.</li>
+              <li>Notice the sequence of the program. The function is defined on line 8-10, before the loop that turns on the lights (lines 12-13) and the pause (line 15), but it is not executed until the <b>function</b> call on line 16.</li>
             </ul>
           </p>
         </div>
@@ -78,62 +82,23 @@
     <div id="exercises">
       <div class="exercise">
         <div class="question">
-          1) Light up the fifth light.
+          1) Create a function that lights up a given number of lights. Get it to:
+          <ul>
+            <li>light up 5 lights</li>
+            <li>wait 2 seconds</li>
+            <li>light up 10 lights</li>
+            <li>wait 2 seconds</li>
+            <li>light up 15 lights</li>
+            <li>wait 2 seconds</li>
+            <li>light up 3 lights</li>
+          </ul>
         </div>
         <div class="answers">
           <div class="toggle-next">
             Show Notes ▼
           </div>
           <div class="notes" hidden>
-
-            Examine the <i>test1.py</i> file:
-            <pre class="line-numbers"><code class="language-python" >
-            import board
-            import neopixel
-
-            pixels = neopixel.NeoPixel(board.D18, 20)
-
-            pixels[2] = (10,0,0)
-            </code></pre>
-
-            Looking through the code line by line:<br>
-            <p>
-              <b>Lines 1 and 2</b>:
-              <pre  class="line-numbers" data-start="1"><code class="language-python" >
-                import board
-                import neopixel
-              </code></pre>
-              Import two modules that we need to light the LED's.
-              <ul>
-                <li><b>import board</b>: The board module helps control the general purpose input/output (GPIO) pins on the Pi.</li>
-                <li><b>import neopixel</b>: The neopixel module specifically focuses on operating this type (WS2811) of individually addressable LED lights.</li>
-              </ul>
-            </p>
-            <p>
-              <b>Line 4</b>:
-              <pre class="line-numbers" data-start="4"><code class="language-python" >
-              pixels = neopixel.NeoPixel(board.D18, 20)
-              </code></pre>
-              This activates the LED strip. Specifically it indicates that:
-              <ul>
-                <li><b>pixels =</b>: It gives the strip a variable name, <b>pixels</b> so we can refer to it later.</li>
-                <li><b>neopixel.NeoPixel()</b>: it uses an object called <b>NeoPixel</b> from the <b>neopixel</b> library we imported on line 2.</li>
-                <li><b>board.D18</b>: indicates that the strip is being controlled by the <b>GPIO 18</b> pin, (you can look at the Pi and see that the data wire of the LED is connected to Pin 18)</li>
-                <li><b>20</b>: there are <b>20</b> LED's in the strip.</li>
-              </ul>
-            </p>
-            <p>
-              <b>Line 6</b>:
-              <pre  class="line-numbers" data-start="6"><code class="language-python" >
-              pixels[2] = (10,0,0)
-              </code></pre>
-              This makes the third light red.
-              <ul>
-                <li><b>pixels</b>: this is the variable that refers to the LED strip that we created on Line 4 that comes from the <i>neopixel</i> library we imported on Line 2.</li>
-                <li><b>[2]</b>: the <i>pixels</i> variable has an array that refers to each LED light, all 20 of them. However, the array indices starts at 0 so the <b>2</b> here refers to the third LED.</li>
-                <li><b>(10,0,0)</b>: sets the color. Colors are RGB--(red, blue, green). The color values range from <b>0</b> to <b>255</b>, so <code>(10,0,0)</code> indicates a low level of red, but no green or blue. Thus the third light shows a faint red.</li>
-              </ul>
-            </p>
+            If you find yourself having trouble in the last section, lighting up just the last three lights, you may want to check line 22 of the solution below.
           </div>
 
 
@@ -142,207 +107,37 @@
           </div>
           <div class="solution" hidden>
             <p>
-              <b>Solution</b>: Thus, to light up the 5th light just change the index of <b>pixels</b> to get:
+              <b>Solution</b>:
               <pre class="line-numbers" data-start="1"><code class="language-python" >
-                import board
-                import neopixel
-
-                pixels = neopixel.NeoPixel(board.D18, 20)
-
-                pixels[4] = (10,0,0)
-              </code></pre>
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="exercise">
-        <div class="question">
-          2) Make the second light green.
-        </div>
-      </div>
-
-      <div class="exercise">
-        <div class="question">
-          3)  Make the 4th light yellow.
-        </div>
-        <div class="answers">
-          <div class="toggle-next">
-            Show Notes ▼
-          </div>
-          <div class="notes" hidden>
-            Colors are RGB (red, blue, green). With light, you get yellow when you mix red and green. You can search for "color picker" if you'd like to find your own custom color, just note that some colors are not represented accurately by the LED's.
-          </div>
-
-          <div class="toggle-next">
-            Show Solution ▼
-          </div>
-          <div class="solution" hidden>
-            <p>
-              <b>Solution</b>: For the brightest, purest yellow:
-              <pre class="line-numbers" data-start="1"><code class="language-python" >
-                import board
-                import neopixel
-
-                pixels = neopixel.NeoPixel(board.D18, 20)
-
-                pixels[3] = (255,255,0)
-              </code></pre>
-            </p>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="exercise">
-        <div class="question">
-          4) Light up the first 5 lights.
-        </div>
-        <div class="answers">
-          <div class="toggle-next">
-            Show Notes ▼
-          </div>
-          <div class="notes" hidden>
-            You could do this all by hand with copy and paste, but it's easier with a loop. With the simplest form of a <b>for</b> loop you can give it a range that it will <i>itterate</i> through: basically the loop will repeat so many times. To repeat something 5 times do:
-            <pre><code class="language-python" >
-              for i in range(5):
-            </code></pre>
-            Don't forget the colon (<b>:</b>), otherwise this will not work.
-            In python, you indicate what gets repeated by tabbing it over like so:
-            <pre data-start="1"><code class="language-python" >
-              for i in range(5):
-                pixels[i] = (10,0,0)
-            </code></pre>
-            Notice how the index in <b>pixels[i]</b> is the variable <b>i</b>. The variable is created in the for loop (you can use any variable name you like, it does not have to be <b>i</b>)
-
-          </div>
-
-          <div class="toggle-next">
-            Show Solution (loop) ▼
-          </div>
-          <div class="solution" hidden>
-            <p>
-              <b>Solution</b>: Making the first 5 lights red
-              <pre class="line-numbers" data-start="1"><code class="language-python" >
-                import board
-                import neopixel
-
-                pixels = neopixel.NeoPixel(board.D18, 20)
-
-                for i in range(5):
-                  pixels[i] = (10,0,0)
-              </code></pre>
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="exercise">
-        <div class="question">
-          5) Light up the first 16 lights.
-        </div>
-      </div>
-
-      <div class="exercise">
-        <div class="question">
-          6) Make the first 5 lights red and the rest blue
-        </div>
-        <div class="answers">
-          <div class="toggle-next">
-            Show Notes ▼
-          </div>
-          <div class="notes" hidden>
-            The <b>range()</b> function can do more than just create a set of numbers starting from zero. You can give it a starting number and a stopping number. Say you wanted to get the numbers <b>4</b> through <b>8</b>, you could write:
-            <pre><code class="language-python" >
-              for i in range(4, 9):
-            </code></pre>
-            Notice that the second number ("9"), is one more than the last number we want.
-
-          </div>
-
-          <div class="toggle-next">
-            Show Solution (two loops) ▼
-          </div>
-          <div class="solution" hidden>
-            <p>
-              <b>Solution</b>: Make the first 5 lights red and the rest blue
-              <pre class="language-python line-numbers" data-line="6-12"><code>
-                import board
-                import neopixel
-
-                pixels = neopixel.NeoPixel(board.D18, 20)
-
-                # red
-                for i in range(6):
-                  pixels[i] = (10,0,0)
-
-                # blue
-                for i in range(5, 20):
-                  pixels[i] = (0,0,10)
-              </code></pre>
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="exercise">
-        <div class="question">
-          7) Make all of the lights light up one at a time (with a 0.25 seconds between each lighting up.)
-        </div>
-        <div class="answers">
-          <div class="toggle-next">
-            Show Notes ▼
-          </div>
-          <div class="notes" hidden>
-            Here you just need to wait a moment (0.25 seconds to be exact) before lighting up the next light. We can do this by using the <b>time</b> module and the <b>sleep</b> function.
-            <p>First import <b>time</b>:</p>
-            <pre><code class="language-python" >
-              import time
-            </code></pre>
-            Then use the <b>sleep</b> function like so:
-            <pre class="language-python" ><code>
-              time.sleep(0.25)
-            </code></pre>
-
-          </div>
-
-          <div class="toggle-next">
-            Show Solution (time) ▼
-          </div>
-          <div class="solution" hidden>
-            <p>
-              <b>Solution</b>: Lighting up all lights with a delay
-              <pre class="language-python" data-line="3,9"><code>
                 import board
                 import neopixel
                 import time
 
-                pixels = neopixel.NeoPixel(board.D18, 20)
+                nPix = 20
+                pixels = neopixel.NeoPixel(board.D18, nPix)
 
-                for i in range(20):
-                  pixels[i] = (10,0,0)
-                  time.sleep(0.25)
+                def turnOff(n):
+                	for i in range(n):
+                		pixels[i] = (0,0,0)
+
+                def turnOn(n):
+                	for i in range(n):
+                		pixels[i] = (0,200,0)
+
+                turnOn(5)
+                time.sleep(2)
+                turnOn(10)
+                time.sleep(2)
+                turnOn(15)
+                time.sleep(2)
+                turnOff(15)
+                turnOn(3)
               </code></pre>
             </p>
           </div>
         </div>
       </div>
 
-      <div class="exercise">
-        <div class="question">
-          8) Over 2.5 seconds have a single light of the 20 light up and march across the strip, with all the other lights being black.
-        </div>
-
-        <div class="answers">
-          <div class="toggle-next">
-            Show Hint ▼
-          </div>
-          <div class="notes" hidden>
-            How to turn off a light? Make it black (0,0,0).
-
-          </div>
-        </div>
-      </div>
 
     </div>
 
