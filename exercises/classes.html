@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>RPi: Lighting Lights</title>
+    <link href="prism.css" rel="stylesheet" />
+    <link href="exercises.css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <h1>Classes: Making Tools to do a Specific Job</h1>
+
+    <div class="intro">
+      A class can be thought of as a thing (an object) that has a specific job--though there may be a bunch of different things you have to do for that job. In this example, we'll make a class that makes a binary stopwatch. To do this we'll break down the different tasks, so we'll need to:
+
+      <ul>
+          <li>Convert base 10 numbers for time to binary.</li>
+          <li>Light up the correct lights in the binary sequence.</li>
+          <li>Clear the lights in between each change in the countdown.</li>
+      </ul>
+
+      <div class="answers">
+        <div class="toggle-next">
+          Hide Notes ▼
+        </div>
+        <div class="notes">
+
+          Examine the <i>test5.py</i> file, which lights up every other light (blue) for two seconds and then turns them all off:
+          <pre class="line-numbers"><code class="language-python" >
+            import board
+            import neopixel
+            import time
+
+            nPix = 20
+            pixels = neopixel.NeoPixel(board.D18, nPix)
+
+            def turnOff(n):
+            	for i in range(n):
+            		pixels[i] = (0,0,0)
+
+            for i in range(0, nPix, 2):
+            	pixels[i] = (0, 0, 255)
+
+            time.sleep(2)
+            turnOff(nPix)
+          </code></pre>
+
+          <p>
+            <b>Lines 8-10</b>: The function
+            <pre  class="line-numbers" data-start="8"><code class="language-python" >
+              def turnOff(n):
+              	for i in range(n):
+              		pixels[i] = (0,0,0)
+            </code></pre>
+            This is the function that turns off the lights. Looking at line 8 <code>def turnOff(n):</code>.
+            <ul>
+              <li><b>def</b>: The keyword in python that indicates a function is coming</li>
+              <li><b>turnOff</b>: This is the name of the function. You can name your function almost anything, as long as you follow the same rules for variable names and don't conflict with a built in function name (like <code>len</code>).</li>
+              <li><b>(n)</b>: This indicates that the function needs some sort of input that is going to be given the variable name <code>n</code>. It does not say what type of input (string, integer, etc.), nor does it have a default value (you can set a default by using <code>(n=10)</code>) for example). But it's mostly up to you to send the right type of information.</li>
+            </ul>
+          </p>
+          <p>
+            <b>Lines 9 and 10 </b> are the body of the function that just turn off the number of lights you told it to. Note that the body is indented, which is how python indicates what's inside the function.
+            <ul>
+              <li>The variable <b>n</b> is a <b>local variable</b>. It was defined in the function definition, and only exists within the function. If you were to try to access it somewhere else in the program, you'd get an error. But this does mean that you could have a different variable named <b>n</b> somewhere else in the program and there would be no conflict. This also means that you don't have to worry about using the same variable name in different functions. </li>
+              <li>The variable <b>pixels</b> is a <b>global variable</b>. It was defined in the main part of the program so the function can use it.</li>
+            </ul>
+          </p>
+          <p>
+            <b>Line 16: Calling the function.</b>
+            <pre class="line-numbers" data-start="16"><code class="language-python" >
+            turnOff(nPix)
+            </code></pre>
+            This <b>calls</b> the function and <b>passes</b> it the number of pixels (nPix) which was set to 20 on line 5.
+            <ul>
+              <li>The value of nPix (20) is sent to the function, and inside the function that value is given the variable name <b>n</b>.</li>
+              <li>Notice the sequence of the program. The function is defined on line 8-10, before the loop that turns on the lights (lines 12-13) and the pause (line 15), but it is not executed until the <b>function</b> call on line 16.</li>
+            </ul>
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+<h2>Exercises</h2>
+
+
+    <div id="exercises">
+      <div class="exercise">
+        <div class="question">
+          1) Create a function that lights up a given number of lights. Get it to:
+          <ul>
+            <li>light up 5 lights</li>
+            <li>wait 2 seconds</li>
+            <li>light up 10 lights</li>
+            <li>wait 2 seconds</li>
+            <li>light up 15 lights</li>
+            <li>wait 2 seconds</li>
+            <li>light up 3 lights</li>
+          </ul>
+        </div>
+        <div class="answers">
+          <div class="toggle-next">
+            Show Notes ▼
+          </div>
+          <div class="notes" hidden>
+            If you find yourself having trouble in the last section, lighting up just the last three lights, you may want to check line 22 of the solution below.
+          </div>
+
+
+          <div class="toggle-next">
+            Show Solution ▼
+          </div>
+          <div class="solution" hidden>
+            <p>
+              <b>Solution</b>:
+              <pre class="line-numbers" data-start="1"><code class="language-python" >
+                import board
+                import neopixel
+                import time
+
+                nPix = 20
+                pixels = neopixel.NeoPixel(board.D18, nPix)
+
+                def turnOff(n):
+                	for i in range(n):
+                		pixels[i] = (0,0,0)
+
+                def turnOn(n):
+                	for i in range(n):
+                		pixels[i] = (0,200,0)
+
+                turnOn(5)
+                time.sleep(2)
+                turnOn(10)
+                time.sleep(2)
+                turnOn(15)
+                time.sleep(2)
+                turnOff(15)
+                turnOn(3)
+              </code></pre>
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+
+
+  </body>
+  <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="prism.js"></script>
+  <script type="text/javascript" src="exercises.js"></script>
+</html>
