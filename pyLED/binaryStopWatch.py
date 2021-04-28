@@ -39,5 +39,7 @@ class ledStopwatch:
 
 
 binTimer = ledStopwatch(20)
-s = input("Enter binary Sequence:")
-binTimer.lightString(s)
+s = ""
+while s != "q":
+	s = input("Enter binary Sequence:")
+	binTimer.lightString(s)
