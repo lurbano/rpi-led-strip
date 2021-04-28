@@ -28,6 +28,7 @@ class ledStopwatch:
 		return binaryString
 
 	def lightString(self, s):
+		print(s)
 		for i in range(len(s)):
 			if s[i] == "1":
 				pixels[i] = (0,200,200)
