@@ -31,7 +31,9 @@ class ledStopwatch:
 		print(s)
 		for i in range(len(s)):
 			if s[i] == "1":
-				pixels[i] = (0,200,200)
+				pixels[i] = (0,200,0)
+			else:
+				pixels[i] = (100,0,0)
 
 	def turnOff(self):
 		for i in range(nPix):
