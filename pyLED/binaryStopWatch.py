@@ -8,10 +8,11 @@ pixels = neopixel.NeoPixel(board.D18, nPix)
 
 class ledStopwatch:
 
-	def __init__(self, startTime):
-		self.t = startTime
+	def __init__(self, nPix):
+		self.nPix = nPix
 
-	def run(self):
+	def run(self, startTime):
+		self.t = startTime
 		for i in range(self.t, -1, -1):
 			s = self.decimalToBinary(i)
 			self.lightString(s)
@@ -30,11 +31,11 @@ class ledStopwatch:
 		for i in range(len(s)):
 			if s[i] == "1":
 				pixels[i] = (0,200,200)
-				
+
 	def turnOff(self):
-		for i in range(n):
+		for i in range(nPix):
 			pixels[i] = (0,0,0)
 
 
-binTimer = ledStopwatch(10)
-binTimer.run()
+binTimer = ledStopwatch(20)
+binTimer.run(10)
