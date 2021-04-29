@@ -141,6 +141,103 @@
 
     </div>
 
+    <div id="exercises">
+      <div class="exercise">
+        <div class="question">
+          2) Create a function that you can tell to light up a given number of lights (same as question 1 above), but also set the color. Get it to:
+          <ul>
+            <li>light up 5 lights as green</li>
+            <li>wait 2 seconds</li>
+            <li>light up 10 lights as red</li>
+            <li>wait 2 seconds</li>
+            <li>light up 15 lights, as yellow</li>
+            <li>wait 2 seconds</li>
+            <li>light up 3 lights as blue</li>
+          </ul>
+          One option would be to adapt the function from the previous question and add the color as a second,  input but give it a default value so you don't have to give the color unless you want to (see this Notes section).
+        </div>
+        <div class="answers">
+          <div class="toggle-next">
+            Show Notes ▼
+          </div>
+          <div class="notes" hidden>
+            Here we update the <b>turnOn</b> function to have two inputs, one required and one optional with a default value:
+            <pre class="line-numbers" data-start="1"><code class="language-python" >
+              def turnOn(n, col = (255,0,0)):
+            </code></pre>
+
+            <ul>
+              <li>the first input <b>n</b> is required since it has no default value.</li>
+              <li>the second input <b>col = (255,0,0)</b> gets the three rgb values for color as a tuple in a variable named <b>col</b>. The default value is red ((255,0,0)).</li>
+            </ul>
+
+          </div>
+
+
+          <div class="toggle-next">
+            Show Solution ▼
+          </div>
+          <div class="solution" hidden>
+            <p>
+              <b>Solution</b>:
+              <pre class="line-numbers" data-start="1"><code class="language-python" >
+                import board
+                import neopixel
+                import time
+
+                nPix = 20
+                pixels = neopixel.NeoPixel(board.D18, nPix)
+
+                def turnOff(n):
+                	for i in range(n):
+                		pixels[i] = (0,0,0)
+
+                def turnOn(n, col = (255,0,0)):
+                	for i in range(n):
+                		pixels[i] = col
+
+                turnOn(5, (0,255,0))
+                time.sleep(2)
+                turnOn(10)
+                time.sleep(2)
+                turnOn(15, (255,255,0))
+                time.sleep(2)
+                turnOff(15)
+                turnOn(3, (0,0,255))
+              </code></pre>
+            </p>
+
+            Note on <b>line 16</b> how the color (green) is passed, while on <b>line 18</b> no value is passed so the color defaults to red.
+            <pre class="line-numbers" data-start="16"><code class="language-python" >
+              turnOn(5, (0,255,0))
+              time.sleep(2)
+              turnOn(10)
+            </code></pre>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+      <div class="exercise">
+        <div class="question">
+          3) Create a function that lights up the lights but you can specify:
+          <ul>
+            <li>the time between each light lighting up</li>
+            <li>the color of the lights</li>
+          </ul>
+        </div>
+
+      </div>
+
+
+
+
+    </div>
+
 
 
 
