@@ -5,6 +5,19 @@
     <title>RPi: Lighting Lights</title>
     <link href="prism.css" rel="stylesheet" />
     <link href="exercises.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+      function getLEDs(id){
+        var leds = []
+        for (let i = 0; i <= 20; i++){
+          leds.push(document.createElement("SPAN"));
+          leds[i].classList.add("led");
+          document.getElementById(id).append(leds[i]);
+        }
+        return leds;
+      }
+    </script>
+
   </head>
   <body>
 
@@ -18,6 +31,13 @@
           Hide Notes ▼
         </div>
         <div class="notes">
+
+          <!-- led Sim -->
+          <div id="demoTest1"></div>
+          <script type="text/javascript">
+            var leds = getLEDs("demoTest1");
+            leds[3].style.backgroundColor = "red";
+          </script>
 
           Examine the <i>test1.py</i> file:
           <pre class="line-numbers"><code class="language-python" >
@@ -79,6 +99,14 @@
       <div class="exercise">
         <div class="question">
           1) Light up the fifth light.
+
+          <!-- led Sim -->
+          <div id="ex1"></div>
+          <script type="text/javascript">
+            var leds = getLEDs("ex1");
+            leds[4].style.backgroundColor = "red";
+          </script>
+
         </div>
         <div class="answers">
           <div class="toggle-next">
@@ -159,12 +187,28 @@
       <div class="exercise">
         <div class="question">
           2) Make the second light green.
+
+          <!-- led Sim -->
+          <div id="ex2"></div>
+          <script type="text/javascript">
+            var leds = getLEDs("ex2");
+            leds[1].style.backgroundColor = "green";
+          </script>
+
         </div>
       </div>
 
       <div class="exercise">
         <div class="question">
           3)  Make the 4th light yellow.
+
+          <!-- led Sim -->
+          <div id="ex3"></div>
+          <script type="text/javascript">
+            var leds = getLEDs("ex3");
+            leds[3].style.backgroundColor = "yellow";
+          </script>
+
         </div>
         <div class="answers">
           <div class="toggle-next">
@@ -197,6 +241,16 @@
       <div class="exercise">
         <div class="question">
           4) Light up the first 5 lights.
+
+          <!-- led Sim -->
+          <div id="ex4"></div>
+          <script type="text/javascript">
+            var leds = getLEDs("ex4");
+            for (let i=0; i<=5; i++){
+              leds[i].style.backgroundColor = "red";
+            }
+          </script>
+
         </div>
         <div class="answers">
           <div class="toggle-next">
@@ -240,12 +294,35 @@
       <div class="exercise">
         <div class="question">
           5) Light up the first 16 lights.
+
+          <!-- led Sim -->
+          <div id="ex5"></div>
+          <script type="text/javascript">
+            var leds = getLEDs("ex5");
+            for (let i=0; i<=16; i++){
+              leds[i].style.backgroundColor = "red";
+            }
+          </script>
+
         </div>
       </div>
 
       <div class="exercise">
         <div class="question">
           6) Make the first 5 lights red and the rest blue
+
+          <!-- led Sim -->
+          <div id="ex6"></div>
+          <script type="text/javascript">
+            var leds = getLEDs("ex6");
+            for (let i=0; i<=5; i++){
+              leds[i].style.backgroundColor = "red";
+            }
+            for (let i=5; i<leds.length; i++){
+              leds[i].style.backgroundColor = "blue";
+            }
+          </script>
+
         </div>
         <div class="answers">
           <div class="toggle-next">
@@ -288,6 +365,26 @@
       <div class="exercise">
         <div class="question">
           7) Make all of the lights light up one at a time (with a 0.25 seconds between each lighting up.)
+
+          <!-- led Sim -->
+          <br> <input type="button" onclick="ex7()"  value="Play">
+          <span id="ex7"></span>
+          <script type="text/javascript">
+            var leds = getLEDs("ex7");
+            function ex7(){
+              for (let i=0; i<leds.length; i++){
+                setTimeout(function(){
+                  leds[i].style.backgroundColor = "red";
+                }, i*0.25*1000);
+              }
+              setTimeout(function(){
+                for (let i=0; i<leds.length; i++){
+                  leds[i].style.backgroundColor = "white";
+                }
+              }, leds.length*.25*1000+1000);
+            }
+          </script>
+
         </div>
         <div class="answers">
           <div class="toggle-next">
@@ -331,6 +428,29 @@
       <div class="exercise">
         <div class="question">
           8) Over 2.5 seconds have a single light of the 20 light up and march across the strip, with all the other lights being black.
+
+          <!-- led Sim -->
+          <br> <input type="button" onclick="ex8()"  value="Play">
+          <span id="ex8"></span>
+          <script type="text/javascript">
+            var leds = getLEDs("ex8");
+            function ex8(){
+              for (let i=0; i<leds.length; i++){
+                setTimeout(function(){
+                  if (i>0){
+                    leds[i-1].style.backgroundColor = "white";
+                  }
+                  leds[i].style.backgroundColor = "red";
+                }, i*0.25*1000);
+              }
+              setTimeout(function(){
+                for (let i=0; i<leds.length; i++){
+                  leds[i].style.backgroundColor = "white";
+                }
+              }, leds.length*.25*1000+1000);
+            }
+          </script>
+
         </div>
 
         <div class="answers">
@@ -346,11 +466,10 @@
 
     </div>
 
-
-
-
   </body>
+
   <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="prism.js"></script>
   <script type="text/javascript" src="exercises.js"></script>
+
 </html>
