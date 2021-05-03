@@ -5,6 +5,19 @@
     <title>RPi: Lighting Lights</title>
     <link href="prism.css" rel="stylesheet" />
     <link href="exercises.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+      function getLEDs(id){
+        var leds = []
+        for (let i = 0; i < 20; i++){
+          leds.push(document.createElement("SPAN"));
+          leds[i].classList.add("led");
+          document.getElementById(id).append(leds[i]);
+        }
+        return leds;
+      }
+    </script>
+
   </head>
   <body>
 
@@ -107,6 +120,16 @@
       <div class="exercise">
         <div class="question">
           1) Make the last 5 lights red.
+
+          <!-- led Sim -->
+          <div id="ex1"></div>
+          <script type="text/javascript">
+            var leds = getLEDs("ex1");
+            for (let i=15; i<leds.length; i++){
+              leds[i].style.backgroundColor = "red";
+            }
+          </script>
+
         </div>
         <div class="answers">
           <div class="toggle-next">
@@ -141,18 +164,55 @@
       <div class="exercise">
         <div class="question">
           2) Make lights 5 through 10 blue.
+
+          <!-- led Sim -->
+          <div id="ex2"></div>
+          <script type="text/javascript">
+            var leds = getLEDs("ex2");
+            for (let i=4; i<10; i++){
+              leds[i].style.backgroundColor = "blue";
+            }
+          </script>
+
         </div>
       </div>
 
       <div class="exercise">
         <div class="question">
           3) Light up every other light.
+
+          <!-- led Sim -->
+          <div id="ex3"></div>
+          <script type="text/javascript">
+            var leds = getLEDs("ex3");
+            for (let i=0; i<leds.length; i+=2){
+              leds[i].style.backgroundColor = "red";
+            }
+          </script>
+
         </div>
       </div>
 
       <div class="exercise">
         <div class="question">
           4) Going backwards, make all of the lights light up one at a time (with a 0.25 seconds between each lighting up.)
+
+          <!-- led Sim -->
+          <br> <input type="button" onclick="ex4()"  value="Play">
+          <span id="ex4"></span>
+          <script type="text/javascript">
+            var leds = getLEDs("ex4");
+            function ex4(){
+              document.getElementById("ex4").innerHTML = "";
+              leds = getLEDs("ex4");
+              for (let i=0; i<leds.length; i++){
+                setTimeout(function(leds7){
+                  leds[19-i].style.backgroundColor = "red";
+                }, i*0.25*1000);
+              }
+            }
+          </script>
+
         </div>
         <div class="answers">
           <div class="toggle-next">
@@ -170,6 +230,33 @@
 
         <div class="question">
           5) Repeat this sequence 5 times (lighting up all lights backwards with a 0.25 second delay between lights).
+
+          <!-- led Sim -->
+          <br> <input type="button" onclick="ex5()"  value="Play">
+          <span id="ex5"></span>
+          <script type="text/javascript">
+            var leds = getLEDs("ex5");
+            ct = 0;
+            function ex5(){
+              document.getElementById("ex5").innerHTML = "";
+              leds = getLEDs("ex5");
+              for (let i=0; i<leds.length; i++){
+                setTimeout(function(){
+                  leds[19-i].style.backgroundColor = "red";
+                  if (i === leds.length-1){
+                    ct++;
+                    console.log("ct: ", ct)
+                    if (ct < 5) {
+                      setTimeout(ex5(), 0.25*1000);
+                    } else {
+                      ct = 0;
+                    }
+                  }
+                }, i*0.25*1000);
+              }
+            }
+          </script>
+
         </div>
 
         <div class="answers">
@@ -225,6 +312,26 @@
 
         <div class="question">
           6) Over 2.5 seconds have a single light of the 20 light up and march across the strip, with all the other lights being black (you may have done this before in the Lighting Lights exercises).
+
+          <!-- led Sim -->
+          <br> <input type="button" onclick="ex6()"  value="Play">
+          <span id="ex6"></span>
+          <script type="text/javascript">
+            var leds = getLEDs("ex6");
+            function ex6(){
+              document.getElementById("ex6").innerHTML = "";
+              var leds = getLEDs("ex6");
+              for (let i=0; i<leds.length; i++){
+                setTimeout(function(){
+                  if (i>0){
+                    leds[i-1].style.backgroundColor = "white";
+                  }
+                  leds[i].style.backgroundColor = "red";
+                }, i*0.25*1000);
+              }
+            }
+          </script>
+
         </div>
 
       </div>
@@ -234,6 +341,26 @@
         <div class="question">
           7) Do the same as above, but backwards.
             (i.e.: Over 2.5 seconds have a single light of the 20 light up and march across the strip, with all the other lights being black.
+
+          <!-- led Sim -->
+          <br> <input type="button" onclick="ex7()"  value="Play">
+          <span id="ex7"></span>
+          <script type="text/javascript">
+            var leds = getLEDs("ex7");
+            function ex7(){
+              document.getElementById("ex7").innerHTML = "";
+              var leds = getLEDs("ex7");
+              for (let i=0; i<leds.length; i++){
+                setTimeout(function(){
+                  if (i>0){
+                    leds[19-i+1].style.backgroundColor = "white";
+                  }
+                  leds[19-i].style.backgroundColor = "red";
+                }, i*0.25*1000);
+              }
+            }
+          </script>
+
         </div>
 
       </div>
@@ -242,6 +369,53 @@
 
         <div class="question">
           8) Have the previous two sequences repeat 5 times so the single light seems to be going back and forth.
+
+          <!-- led Sim -->
+          <br> <input type="button" onclick="ex8f()"  value="Play">
+          <span id="ex8"></span>
+          <script type="text/javascript">
+            var leds = getLEDs("ex8");
+            ct = 0;
+            function ex8f(){
+              document.getElementById("ex8").innerHTML = "";
+              var leds = getLEDs("ex8");
+              for (let i=0; i<leds.length; i++){
+                setTimeout(function(){
+                  if (i>0){
+                    leds[i-1].style.backgroundColor = "white";
+                  }
+                  leds[i].style.backgroundColor = "red";
+                  if (i === leds.length-1){
+                    setTimeout(ex8b(), 0.05*1000);
+                  }
+                }, i*0.25*1000);
+              }
+            }
+            function ex8b(){
+              document.getElementById("ex8").innerHTML = "";
+              var leds = getLEDs("ex8");
+              for (let i=0; i<leds.length; i++){
+                setTimeout(function(){
+                  if (i>0){
+                    leds[19-i+1].style.backgroundColor = "white";
+                  }
+                  leds[19-i].style.backgroundColor = "red";
+
+                  if (i === leds.length-1){
+                    ct++;
+                    console.log("ct: ", ct)
+                    if (ct < 5) {
+                      setTimeout(ex8f(), 0.05*1000);
+                    } else {
+                      ct = 0;
+                    }
+                  }
+
+                }, i*0.25*1000);
+              }
+            }
+          </script>
+
         </div>
 
       </div>
