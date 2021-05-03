@@ -372,16 +372,18 @@
           <script type="text/javascript">
             var leds = getLEDs("ex7");
             function ex7(){
+              document.getElementById("ex7").innerHTML = "";
+              leds = getLEDs("ex7");
               for (let i=0; i<leds.length; i++){
-                setTimeout(function(){
+                setTimeout(function(leds7){
                   leds[i].style.backgroundColor = "red";
                 }, i*0.25*1000);
               }
-              setTimeout(function(){
-                for (let i=0; i<leds.length; i++){
-                  leds[i].style.backgroundColor = "white";
-                }
-              }, leds.length*.25*1000+1000);
+              // setTimeout(function(){
+              //   for (let i=0; i<leds.length; i++){
+              //     leds[i].style.backgroundColor = "white";
+              //   }
+              // }, leds.length*.25*1000+1000);
             }
           </script>
 
@@ -435,6 +437,8 @@
           <script type="text/javascript">
             var leds = getLEDs("ex8");
             function ex8(){
+              document.getElementById("ex8").innerHTML = "";
+              var leds = getLEDs("ex8");
               for (let i=0; i<leds.length; i++){
                 setTimeout(function(){
                   if (i>0){
@@ -443,11 +447,11 @@
                   leds[i].style.backgroundColor = "red";
                 }, i*0.25*1000);
               }
-              setTimeout(function(){
-                for (let i=0; i<leds.length; i++){
-                  leds[i].style.backgroundColor = "white";
-                }
-              }, leds.length*.25*1000+1000);
+              // setTimeout(function(){
+              //   for (let i=0; i<leds.length; i++){
+              //     leds[i].style.backgroundColor = "white";
+              //   }
+              // }, leds.length*.25*1000+1000);
             }
           </script>
 
