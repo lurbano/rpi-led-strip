@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>RPi: Lighting Lights</title>
+    <link href="prism.css" rel="stylesheet" />
+    <link href="exercises.css" rel="stylesheet" />
+
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_SVG">
+    </script>
+
+    <script type="text/javascript">
+      function getLEDs(id){
+        var leds = []
+        for (let i = 0; i < 20; i++){
+          leds.push(document.createElement("SPAN"));
+          leds[i].classList.add("led");
+          document.getElementById(id).append(leds[i]);
+        }
+        return leds;
+      }
+    </script>
+
+  </head>
+  <body>
+
+    <h1>Rates of Change</h1>
+
+    <div class="intro">
+      How can we change the speed at which the lights light up, so they accelerate or decelerate as they move across the LED strip?
+
+      <div class="answers">
+        <div class="toggle-next">
+          Hide Notes ▼
+        </div>
+        <div class="notes">
+          <p>
+            So far, when we've lit up the lights in sequence, we've had a constant rate of change. For example, if we light up all the lights in sequence with a 0.25 second delay, we would do this:
+
+            <pre class="language-python" data-line="3,9"><code>
+              import board
+              import neopixel
+              import time
+
+              pixels = neopixel.NeoPixel(board.D18, 20)
+
+              for i in range(20):
+                pixels[i] = (10,0,0)
+                time.sleep(0.25)
+            </code></pre>
+
+            Which should result in something like this:
+            <!-- led Sim -->
+            <br> <input type="button" onclick="eg1()"  value="Play">
+            <span id="eg1"></span>
+            <script type="text/javascript">
+              var leds = getLEDs("eg1");
+              function eg1(){
+                document.getElementById("eg1").innerHTML = "";
+                leds = getLEDs("eg1");
+                for (let i=0; i<leds.length; i++){
+                  setTimeout(function(leds7){
+                    leds[i].style.backgroundColor = "red";
+                  }, i*0.25*1000);
+                }
+
+              }
+            </script>
+
+            <p>
+              It takes 0.25 seconds for each light to light up, so if we refer to each light as a node (<b>n</b>), then the rate of change is 0.25 seconds per node. We can write this as:
+
+              $$\frac{\Delta t}{\Delta n} = 0.25 \text{ sec/node}$$
+
+              Where:
+              $$ t = \text{time [seconds]} $$
+              $$ n = \text{node (LED) [unitless]} $$
+
+              The <b>Δ</b> symbol indicates the change, so <b><i>Δt</i></b> is the change in time. <b>Δ</b> is used to represent a discreet change
+
+              If we were to graph the rate of change it would be pretty boring; just a straight horizontal line: <br>
+
+              <img src="graphs/dtdn-1.png" alt="dn/dt" style="width:400px;"><br>
+
+
+              So, how long does it take to light up all 20 lights? Well if it takes 0.25 seconds/node then the total time (<b><i>t</i> </b>), and we call total number of nodes <b><i>n<sub>nodes</sub></i> </b>  will be:
+
+              $$ t =  \frac{\Delta t}{\Delta n} \cdot n_{nodes} $$
+
+              and:
+
+              $$ nt = 0.25 \cdot 20 = 5 \text{ sec} $$
+
+              A graph of the change with time would look something like this.<br>
+
+              <img src="graphs/tn-1.png" alt="dn/dt" style="width:400px;"> <br>
+
+              The function is stepwise because, in the sequence, a light turns on and then it waits 0.25 seconds for the next light to turn on. This is one of the reasons we use the <b>Δ</b> notation.
+
+
+
+            </p>
+
+            <p>
+              <h3>Instantaneous Change</h3>
+              <p>A note on notation: Now we're going to cheat a bit and use the <b><i>d</i></b> notation instead of <b>Δ</b>. <b><i>d</i></b> represents an instantaneous rate of change, so it's not quite appropriate in this example, but it allows us to generalize a bit and show thing in two different ways. So our rate of change equation would be written as:
+              </p>
+
+              $$\frac{dt}{dn} = 0.25 \text{ sec/node}$$
+
+              <p>
+                Given this rate equation, there are ways for us to figure out the equation for time as a function of node number (<b><i>t(n)</i></b>).
+              </p>
+              <p>
+                The easiest way is to realize that the rate dt/dn is the slope of the graph of time versus node number. Since the rate is constant (0.25) then the slope of the time vs node number graph is constant which would result in a straight line.
+              </p>
+
+              <img src="graphs/tn-2-anno.png" alt="dn/dt" style="width:400px;"> <br>
+
+              <p>
+                This is the same graph as before but without the steps.
+              </p>
+
+            </p>
+
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+<h2>Exercises</h2>
+
+
+    <div id="exercises">
+      <div class="exercise">
+        <div class="question">
+          1) Make the last 5 lights red.
+
+          <!-- led Sim -->
+          <div id="ex1"></div>
+          <script type="text/javascript">
+            var leds = getLEDs("ex1");
+            for (let i=15; i<leds.length; i++){
+              leds[i].style.backgroundColor = "red";
+            }
+          </script>
+
+        </div>
+        <div class="answers">
+          <div class="toggle-next">
+            Show Notes ▼
+          </div>
+          <div class="notes" hidden>
+            There are 20 LED's in the strip, so your starting value should be <b>15</b> and the ending value should be <b>20</b>. The sequence stops at one less than the last value given.
+          </div>
+
+
+          <div class="toggle-next">
+            Show Solution ▼
+          </div>
+          <div class="solution" hidden>
+            <p>
+              <b>Solution</b>: To light up the last 5 lights (green) use:
+              <pre data-line="6"><code class="language-python" >
+                import board
+                import neopixel
+
+                pixels = neopixel.NeoPixel(board.D18, 20)
+
+                for i in range(15, 20):
+                  pixels[i] = (0, 20, 0)
+
+              </code></pre>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="exercise">
+        <div class="question">
+          2) Make lights 5 through 10 blue.
+
+          <!-- led Sim -->
+          <div id="ex2"></div>
+          <script type="text/javascript">
+            var leds = getLEDs("ex2");
+            for (let i=4; i<10; i++){
+              leds[i].style.backgroundColor = "blue";
+            }
+          </script>
+
+        </div>
+      </div>
+
+      <div class="exercise">
+        <div class="question">
+          3) Light up every other light.
+
+          <!-- led Sim -->
+          <div id="ex3"></div>
+          <script type="text/javascript">
+            var leds = getLEDs("ex3");
+            for (let i=0; i<leds.length; i+=2){
+              leds[i].style.backgroundColor = "red";
+            }
+          </script>
+
+        </div>
+      </div>
+
+      <div class="exercise">
+        <div class="question">
+          4) Going backwards, make all of the lights light up one at a time (with a 0.25 seconds between each lighting up.)
+
+          <!-- led Sim -->
+          <br> <input type="button" onclick="ex4()"  value="Play">
+          <span id="ex4"></span>
+          <script type="text/javascript">
+            var leds = getLEDs("ex4");
+            function ex4(){
+              document.getElementById("ex4").innerHTML = "";
+              leds = getLEDs("ex4");
+              for (let i=0; i<leds.length; i++){
+                setTimeout(function(leds7){
+                  leds[19-i].style.backgroundColor = "red";
+                }, i*0.25*1000);
+              }
+            }
+          </script>
+
+        </div>
+        <div class="answers">
+          <div class="toggle-next">
+            Show Hint ▼
+          </div>
+          <div class="notes" hidden>
+            Start at the end, stop at the beginning, and step backwards (a negative step).
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="exercise">
+
+        <div class="question">
+          5) Repeat this sequence 5 times (lighting up all lights backwards with a 0.25 second delay between lights).
+
+          <!-- led Sim -->
+          <br> <input type="button" onclick="ex5()"  value="Play">
+          <span id="ex5"></span>
+          <script type="text/javascript">
+            var leds = getLEDs("ex5");
+            ct = 0;
+            function ex5(){
+              document.getElementById("ex5").innerHTML = "";
+              leds = getLEDs("ex5");
+              for (let i=0; i<leds.length; i++){
+                setTimeout(function(){
+                  leds[19-i].style.backgroundColor = "red";
+                  if (i === leds.length-1){
+                    ct++;
+                    console.log("ct: ", ct)
+                    if (ct < 5) {
+                      setTimeout(ex5(), 0.25*1000);
+                    } else {
+                      ct = 0;
+                    }
+                  }
+                }, i*0.25*1000);
+              }
+            }
+          </script>
+
+        </div>
+
+        <div class="answers">
+
+          <div class="toggle-next">
+            Show Notes ▼
+          </div>
+          <div class="notes" hidden>
+            You can put <b>loops within loops</b>. This is called <b>nesting loops</b>.
+            <ul>
+              <li>Just use a different index. We've been using <b>i</b> as the variable for the index of the loop, but you can use any variable, for example <b>j</b> would work just the same (it does not even have to be a single letter for a variable name):</li>
+              <pre class="language-python"><code>
+                for j in range(5):
+              </code> </pre>
+              <li>Also, remember to indent the interior loop:</li>
+              <pre class="language-python"><code>
+                for j in range(5):
+                  for i in range(20):
+                    print(i,j)
+              </code> </pre>
+            </ul>
+
+          </div>
+
+          <div class="toggle-next">
+            Show Solution ▼
+          </div>
+          <div class="solution" hidden>
+            <p>
+              <b>Solution</b>: To repeat the lighting sequence 5 times use:
+              <pre data-line="7"><code class="language-python" >
+                import board
+                import neopixel
+                import time
+
+                pixels = neopixel.NeoPixel(board.D18, 20)
+
+                for j in range(5):
+                  for i in range(19, 0, -1):
+                    pixels[i] = (0, 20, 0)
+                    time.sleep(0.25)
+
+              </code></pre>
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="exercise">
+
+        <div class="question">
+          6) Over 2.5 seconds have a single light of the 20 light up and march across the strip, with all the other lights being black (you may have done this before in the Lighting Lights exercises).
+
+          <!-- led Sim -->
+          <br> <input type="button" onclick="ex6()"  value="Play">
+          <span id="ex6"></span>
+          <script type="text/javascript">
+            var leds = getLEDs("ex6");
+            function ex6(){
+              document.getElementById("ex6").innerHTML = "";
+              var leds = getLEDs("ex6");
+              for (let i=0; i<leds.length; i++){
+                setTimeout(function(){
+                  if (i>0){
+                    leds[i-1].style.backgroundColor = "white";
+                  }
+                  leds[i].style.backgroundColor = "red";
+                }, i*0.25*1000);
+              }
+            }
+          </script>
+
+        </div>
+
+      </div>
+
+      <div class="exercise">
+
+        <div class="question">
+          7) Do the same as above, but backwards.
+            (i.e.: Over 2.5 seconds have a single light of the 20 light up and march across the strip, with all the other lights being black.
+
+          <!-- led Sim -->
+          <br> <input type="button" onclick="ex7()"  value="Play">
+          <span id="ex7"></span>
+          <script type="text/javascript">
+            var leds = getLEDs("ex7");
+            function ex7(){
+              document.getElementById("ex7").innerHTML = "";
+              var leds = getLEDs("ex7");
+              for (let i=0; i<leds.length; i++){
+                setTimeout(function(){
+                  if (i>0){
+                    leds[19-i+1].style.backgroundColor = "white";
+                  }
+                  leds[19-i].style.backgroundColor = "red";
+                }, i*0.25*1000);
+              }
+            }
+          </script>
+
+        </div>
+
+      </div>
+
+      <div class="exercise">
+
+        <div class="question">
+          8) Have the previous two sequences repeat 5 times so the single light seems to be going back and forth.
+
+          <!-- led Sim -->
+          <br> <input type="button" onclick="ex8f()"  value="Play">
+          <span id="ex8"></span>
+          <script type="text/javascript">
+            var leds = getLEDs("ex8");
+            ct = 0;
+            function ex8f(){
+              document.getElementById("ex8").innerHTML = "";
+              var leds = getLEDs("ex8");
+              for (let i=0; i<leds.length; i++){
+                setTimeout(function(){
+                  if (i>0){
+                    leds[i-1].style.backgroundColor = "white";
+                  }
+                  leds[i].style.backgroundColor = "red";
+                  if (i === leds.length-1){
+                    setTimeout(ex8b(), 0.05*1000);
+                  }
+                }, i*0.25*1000);
+              }
+            }
+            function ex8b(){
+              document.getElementById("ex8").innerHTML = "";
+              var leds = getLEDs("ex8");
+              for (let i=0; i<leds.length; i++){
+                setTimeout(function(){
+                  if (i>0){
+                    leds[19-i+1].style.backgroundColor = "white";
+                  }
+                  leds[19-i].style.backgroundColor = "red";
+
+                  if (i === leds.length-1){
+                    ct++;
+                    console.log("ct: ", ct)
+                    if (ct < 5) {
+                      setTimeout(ex8f(), 0.05*1000);
+                    } else {
+                      ct = 0;
+                    }
+                  }
+
+                }, i*0.25*1000);
+              }
+            }
+          </script>
+
+        </div>
+
+      </div>
+
+
+
+
+
+    </div>
+
+
+
+
+  </body>
+  <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="prism.js"></script>
+  <script type="text/javascript" src="exercises.js"></script>
+</html>

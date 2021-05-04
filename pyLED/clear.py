@@ -1,5 +1,6 @@
 import board
 import neopixel
+import argparse
 
 nPix = 20
 
