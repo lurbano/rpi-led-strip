@@ -15,6 +15,7 @@ for i in range(nPix):
 ledPix = ledPixels(nPix, board.D18)
 
 ledPix.pixels[5] = (0, 255, 0)
+ledPix.pixels[10] = (255, 0, 0)
 ledPix.pixels[15] = (0, 0, 255)
 ledPix.pixels.show()
 
