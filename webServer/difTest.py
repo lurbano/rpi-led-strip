@@ -21,5 +21,5 @@ for i in range(100):
     ledPix.diffuse(k=0.1)
     for j in range(nPix):
         r[j] = round(ledPix.pixels[j][0])
-    print(n, r)
+    print(i, r)
     time.sleep(0.01)
