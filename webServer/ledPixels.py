@@ -247,6 +247,7 @@ class ledPixels:
                     gSumNew += g[i]
                     bSumNew += b[i]
                 print("newSums:", rSumNew, gSumNew, bSumNew)
+            print(t, r)
 
             for i in range(self.nPix):
                 self.pixels[i] = (r[i], g[i], b[i])
