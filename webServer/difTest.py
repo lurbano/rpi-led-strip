@@ -18,7 +18,7 @@ ledPix.pixels[10] = (255, 0, 0)
 ledPix.pixels.show()
 
 for i in range(100):
-    ledPix.diffuse()
+    ledPix.diffuse(k=1)
     for j in range(nPix):
         r[j] = round(ledPix.pixels[j][0])
     print(r)
