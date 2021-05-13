@@ -224,7 +224,6 @@ class ledPixels:
         #(rn, gn, bn) = ([], [], [])
         n = self.nPix
 
-        print(r)
 
         # initialize
         for i in range(n):
@@ -234,6 +233,9 @@ class ledPixels:
             # rn.append(0.0)
             # gn.append(0.0)
             # gn.append(0.0)
+
+        print(r)
+
 
         r = diffuse(r, k=0.1)
         g = diffuse(g, k=0.1)
