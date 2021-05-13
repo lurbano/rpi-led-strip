@@ -253,3 +253,4 @@ class ledPixels:
                 self.pixels[i] = (r[i], g[i], b[i])
 
             self.pixels.show()
+            time.sleep(dt)
