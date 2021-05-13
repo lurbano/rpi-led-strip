@@ -22,4 +22,4 @@ for i in range(100):
     for j in range(nPix):
         r[j] = round(ledPix.pixels[j][0])
     print(r)
-    time.sleep(0.1)
+    time.sleep(0.01)
