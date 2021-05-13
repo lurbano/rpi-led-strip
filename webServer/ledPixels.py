@@ -237,6 +237,8 @@ class ledPixels:
         g = diffuse(g, k=0.1)
         b = diffuse(b, k=0.1)
 
+        print(r)
+
         for i in range(nPix):
             self.pixels[i] = (r[i], g[i], b[i])
 
