@@ -215,7 +215,7 @@ class ledPixels:
     def brighten(self, color):
         return (color[0]*self.brightness, color[1]*self.brightness, color[2]*self.brightness)
 
-    def diffuse(self, k=0.1, normalize=True, nsteps=1, dt=0.1):
+    def diffuse(self, k=0.1, normalize=False, nsteps=1, dt=0.1):
         # k is the diffusion coefficient
         #   higher coefficients mean faster diffusion
         # Uses explicit finite difference equation so
@@ -246,8 +246,8 @@ class ledPixels:
                     rSumNew += r[i]
                     gSumNew += g[i]
                     bSumNew += b[i]
-                print("newSums:", rSumNew, gSumNew, bSumNew)
-            print(t, r)
+                #print("newSums:", rSumNew, gSumNew, bSumNew)
+            #print(t, r)
 
             for i in range(self.nPix):
                 self.pixels[i] = (r[i], g[i], b[i])
