@@ -24,4 +24,4 @@ ledPix.pixels.show()
 #     #print(i, r)
 #     time.sleep(0.01)
 
-ledPix.diffuse(k=0.1, nsteps=10)
+ledPix.diffuse(k=0.1, nsteps=100)
