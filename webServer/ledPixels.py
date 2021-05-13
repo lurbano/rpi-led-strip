@@ -224,6 +224,8 @@ class ledPixels:
         #(rn, gn, bn) = ([], [], [])
         n = self.nPix
 
+        print(r)
+
         # initialize
         for i in range(n):
             r.append(self.pixels[0])
