@@ -227,9 +227,9 @@ class ledPixels:
 
         # initialize
         for i in range(n):
-            r.append(self.pixels[0])
-            g.append(self.pixels[1])
-            b.append(self.pixels[2])
+            r.append(self.pixels[i][0])
+            g.append(self.pixels[i][1])
+            b.append(self.pixels[i][2])
             # rn.append(0.0)
             # gn.append(0.0)
             # gn.append(0.0)
