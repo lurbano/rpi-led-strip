@@ -1,8 +1,8 @@
 import board
 import neopixel
 import time
-import numpy as np
-import matplotlib.pyplot as plt
+#import numpy as np
+#import matplotlib.pyplot as plt
 
 
 from ledPixels import *
