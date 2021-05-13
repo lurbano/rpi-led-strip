@@ -221,12 +221,9 @@ class ledPixels:
         # Uses explicit finite difference equation so
         #   instabilities may occur at high k values
         (r, g, b) = ([], [], [])
-        #(rn, gn, bn) = ([], [], [])
-        n = self.nPix
-
 
         # initialize
-        for i in range(n):
+        for i in range(self.nPix):
             r.append(self.pixels[i][0])
             g.append(self.pixels[i][1])
             b.append(self.pixels[i][2])
@@ -234,27 +231,13 @@ class ledPixels:
             # gn.append(0.0)
             # gn.append(0.0)
 
-        print(r)
-
-
         r = diffuse(r, k=0.1)
         g = diffuse(g, k=0.1)
         b = diffuse(b, k=0.1)
 
         print(r)
 
-        for i in range(nPix):
+        for i in range(self.nPix):
             self.pixels[i] = (r[i], g[i], b[i])
 
         self.pixels.show()
-
-        # rn[0] = r[0] + k * (r[1] - r[0])
-        # gn[0] = g[0] + k * (g[1] - g[0])
-        # bn[0] = b[0] + k * (b[1] - b[0])
-        #
-        # rn[n-1] = r[n-1] + k * (r[n-2] - r[n-1])
-        # gn[n-1] = g[n-1] + k * (g[n-2] - g[n-1])
-        # bn[n-1] = b[n-1] + k * (b[n-2] - b[n-1])
-        #
-        # for i in range(1, n-1):
-        #     qin = -k * (r[])
