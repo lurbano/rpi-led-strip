@@ -13,6 +13,20 @@ def hex_to_rgb(value):
 def rgb_to_hex(rgb):
     return '#%02x%02x%02x' % rgb
 
+def diffuse(T, k=0.1):
+    n = len(T)
+    Tnew = []
+    for i in range(n):
+        Tnew.append(0.0)
+
+    Tnew[0] = T[0] + k * (T[1] - T[0])
+    Tnew[n-1] = T[n-1] + k * (T[n-2] - T[n-1])
+    for i in range(1, n-1):
+        qin = -k * (T[i] - T[i-1])
+        qout = k * (T[i+1] - T[i])
+        Tnew[i] = T[i] + qin + qout
+    return Tnew
+
 
 class ledPixels:
     def __init__(self, nPix, ledPin):
@@ -200,3 +214,37 @@ class ledPixels:
 
     def brighten(self, color):
         return (color[0]*self.brightness, color[1]*self.brightness, color[2]*self.brightness)
+
+    def diffuse(self, k=0.1):
+        # k is the diffusion coefficient
+        #   higher coefficients mean faster diffusion
+        # Uses explicit finite difference equation so
+        #   instabilities may occur at high k values
+        (r, g, b) = ([], [], [])
+        #(rn, gn, bn) = ([], [], [])
+        n = self.nPix
+
+        # initialize
+        for i in range(n):
+            r.append(self.pixels[0])
+            g.append(self.pixels[1])
+            b.append(self.pixels[2])
+            # rn.append(0.0)
+            # gn.append(0.0)
+            # gn.append(0.0)
+
+        r = diffuse(r, k=0.1)
+
+        for i in range(nPix):
+            self.pixels[i] = (r[i], g[i], b[i])
+
+        # rn[0] = r[0] + k * (r[1] - r[0])
+        # gn[0] = g[0] + k * (g[1] - g[0])
+        # bn[0] = b[0] + k * (b[1] - b[0])
+        #
+        # rn[n-1] = r[n-1] + k * (r[n-2] - r[n-1])
+        # gn[n-1] = g[n-1] + k * (g[n-2] - g[n-1])
+        # bn[n-1] = b[n-1] + k * (b[n-2] - b[n-1])
+        #
+        # for i in range(1, n-1):
+        #     qin = -k * (r[])
