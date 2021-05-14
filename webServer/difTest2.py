@@ -23,7 +23,7 @@ for i in range(nPix):
     for j in range(nPix):
         if i == j:
             ledPix.pixels[i] = (0,255,0)
-            print("green")
+            print(i, "green")
         else:
             ledPix.pixels[i] = (0,0,0)
     ledPix.pixels.show()
