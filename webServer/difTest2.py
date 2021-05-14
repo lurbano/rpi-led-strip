@@ -27,6 +27,6 @@ for i in range(nPix):
         else:
             ledPix.pixels[i] = (0,0,0)
     ledPix.pixels.show()
-    time.sleep(0.1)
-    ledPix.diffuse(nsteps=10)
-    time.sleep(0.1)
+    time.sleep(0.25)
+    #ledPix.diffuse(nsteps=10)
+    time.sleep(0.25)
