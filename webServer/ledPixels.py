@@ -4,6 +4,7 @@ import neopixel
 import board
 import time
 import asyncio
+import numpy as np
 
 def hex_to_rgb(value):
     value = value.lstrip('#')
@@ -244,3 +245,11 @@ class ledPixels:
 
             self.pixels.show()
             time.sleep(dt)
+
+    def normalDistribution(self, n, col=(255,0,0), sig=1.0):
+        for i in range(self.nPix):
+            (r,g,b) = self.pixels[i]
+
+            r = r * 0.4 * (1/(sig*(2*np.pi)**0.5))*np.e**(-0.5*(np.abs(i-n)/sig)**2)
+            self.pixels = (r, g, b)
+        self.pixels.show()
