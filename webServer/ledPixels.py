@@ -232,7 +232,7 @@ class ledPixels:
             gSum += g[-1]
             bSum += b[-1]
 
-        print("sums:", rSum, gSum, bSum)
+        #print("sums:", rSum, gSum, bSum)
 
         for t in range(nsteps):
             r = diffuse(r, k=0.1)
