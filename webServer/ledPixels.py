@@ -248,7 +248,9 @@ class ledPixels:
 
     def normalDistribution(self, n, col=(255,0,0), sig=1.0):
         for i in range(self.nPix):
-            (r,g,b) = self.pixels[i]
+            r = self.pixels[i][0]
+            g = self.pixels[i][1]
+            b = self.pixels[i][2]
 
             r = r * 0.4 * (1/(sig*(2*np.pi)**0.5))*np.e**(-0.5*(np.abs(i-n)/sig)**2)
             self.pixels = (r, g, b)
