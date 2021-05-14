@@ -19,7 +19,7 @@ ledPix = ledPixels(nPix, board.D18)
 # ledPix.diffuse(k=0.1, nsteps=100)
 
 for i in range(nPix):
-    #ledPix.clear()
+    ledPix.clear()
     ledPix.pixels[i] = (0,255,0)
     ledPix.diffuse(nsteps=10)
-    time.sleep(0.25)
+    time.sleep(0.1)
