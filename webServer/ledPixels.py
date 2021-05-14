@@ -248,7 +248,7 @@ class ledPixels:
 
     def normalDistribution(self, n, col=(255,0,0), sig=1.0):
         for i in range(self.nPix):
-            print(self.pixels[i])
+            print(i, self.pixels[i])
             r = self.pixels[i][0]
             g = self.pixels[i][1]
             b = self.pixels[i][2]
