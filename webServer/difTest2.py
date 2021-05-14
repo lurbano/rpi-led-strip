@@ -30,5 +30,5 @@ for i in range(nPix):
     #     print(ledPix.pixels[i])
     #ledPix.pixels.show()
     #time.sleep(0.25)
-    ledPix.diffuse(nsteps=10)
+    ledPix.diffuse(nsteps=2)
     time.sleep(0.1)
