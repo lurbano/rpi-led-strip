@@ -247,8 +247,7 @@ class ledPixels:
             time.sleep(dt)
 
     def normalDistribution(self, n, col=(255,0,0), sig=1.0):
-        # for i in range(self.nPix):
-        #     print("p:", i, self.pixels[i])
+
         for i in range(self.nPix):
             #print(i, self.pixels[i])
             r = self.pixels[i][0]
@@ -257,4 +256,6 @@ class ledPixels:
 
             r = r * 0.4 * (1/(sig*(2*np.pi)**0.5))*np.e**(-0.5*(np.abs(i-n)/sig)**2)
             self.pixels[i] = (r, g, b)
+        for i in range(self.nPix):
+            print("p:", i, self.pixels[i])
         self.pixels.show()
