@@ -22,13 +22,13 @@ for i in range(nPix):
     #ledPix.clear()
     for j in range(nPix):
         if i == j:
-            ledPix.pixels[i] = (0,255,0)
-            print(i, "green")
+            ledPix.pixels[j] = (0,255,0)
+            #print(i, "green")
         else:
-            ledPix.pixels[i] = (0,0,0)
-    for i in range(nPix):
-        print(ledPix.pixels[i])
+            ledPix.pixels[j] = (0,0,0)
+    # for i in range(nPix):
+    #     print(ledPix.pixels[i])
     ledPix.pixels.show()
     time.sleep(0.25)
-    #ledPix.diffuse(nsteps=10)
+    ledPix.diffuse(nsteps=10)
     time.sleep(0.25)
