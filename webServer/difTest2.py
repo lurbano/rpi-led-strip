@@ -28,7 +28,7 @@ for i in range(nPix):
             ledPix.pixels[j] = (0,0,0)
     # for i in range(nPix):
     #     print(ledPix.pixels[i])
-    ledPix.pixels.show()
-    time.sleep(0.25)
+    #ledPix.pixels.show()
+    #time.sleep(0.25)
     ledPix.diffuse(nsteps=10)
-    time.sleep(0.25)
+    time.sleep(0.1)
