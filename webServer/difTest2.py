@@ -26,5 +26,6 @@ for i in range(nPix):
             print("green")
         else:
             ledPix.pixels[i] = (0,0,0)
+    ledPix.pixels.show()
     ledPix.diffuse(nsteps=10)
     time.sleep(0.1)
