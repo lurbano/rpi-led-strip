@@ -6,4 +6,4 @@ nPix = 20
 
 ledPix = ledPixels(nPix, board.D18)
 
-ledPix.normalDistribution(10)
+ledPix.normalDistribution(n=10, sig=2)
