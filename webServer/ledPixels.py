@@ -257,11 +257,6 @@ class ledPixels:
 
             d = (1/(sig*(2*np.pi)**0.5))*np.e**(-0.5*(np.abs(i-n)/sig)**2)
 
-
             r = d * r / 0.4
-            print("d:", r, d)
-
             self.pixels[i] = (r, g, b)
-        for i in range(self.nPix):
-            print("p:", i, self.pixels[i])
         self.pixels.show()
