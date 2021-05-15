@@ -10,6 +10,6 @@ ledPix = ledPixels(nPix, board.D18)
 for i in range(nPix*speed):
     ledPix.resetPix()
     ledPix.normalDistribution(n=float(i)/speed, sig=2, col=(255, 0,0))
-    ledPix.normalDistribution(n=float(nPix-i)/speed, sig=2, col=(0, 255,0))
+    ledPix.normalDistribution(n=nPix-float(i)/speed, sig=2, col=(0, 255,0))
     ledPix.pixels.show()
     time.sleep(0.1/speed)
