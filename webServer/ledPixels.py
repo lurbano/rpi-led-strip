@@ -75,6 +75,10 @@ class ledPixels:
         self.pixels.show()
         self.setOldColors()
 
+    def resetPix(self):
+        for i in range(self.nPix):
+            self.pixels[i] = (0,0,0)
+
     def rainbow(self, n=1, speed=0.01):
         for i in range(n):
             if (self.interrupt):
