@@ -2,7 +2,7 @@ import time
 
 from ledPixels import *
 
-nPix = 20
+nPix = 43
 
 ledPix = ledPixels(nPix, board.D18)
 
