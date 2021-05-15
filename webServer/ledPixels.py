@@ -250,13 +250,13 @@ class ledPixels:
 
         for i in range(self.nPix):
             #print(i, self.pixels[i])
-            # r = self.pixels[i][0]
-            # g = self.pixels[i][1]
-            # b = self.pixels[i][2]
+            r_o = self.pixels[i][0]
+            g_o = self.pixels[i][1]
+            b_o = self.pixels[i][2]
             (r,g,b) = col
 
             d = (1/(sig*(2*np.pi)**0.5))*np.e**(-0.5*(np.abs(i-n)/sig)**2)
 
-            r = d * r / 0.4
+            r = min(r_0 + d * r / 0.4, 255)
             self.pixels[i] = (r, g, b)
-        self.pixels.show()
+        #self.pixels.show()
