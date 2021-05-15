@@ -9,5 +9,5 @@ ledPix = ledPixels(nPix, board.D18)
 for i in range(nPix*2):
     ledPix.clear()
     ledPix.normalDistribution(n=float(i)/2.0, sig=2)
-    ledPix.show()
+    ledPix.pixels.show()
     time.sleep(0.1)
