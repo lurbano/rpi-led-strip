@@ -262,5 +262,7 @@ class ledPixels:
             d = (1/(sig*(2*np.pi)**0.5))*np.e**(-0.5*(np.abs(i-n)/sig)**2)
 
             r = min(r_o + d * r / 0.4, 255)
+            g = min(g_o + d * g / 0.4, 255)
+            b = min(b_o + d * b / 0.4, 255)
             self.pixels[i] = (r, g, b)
         #self.pixels.show()
