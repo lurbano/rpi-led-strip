@@ -6,4 +6,6 @@ nPix = 43
 
 ledPix = ledPixels(nPix, board.D18)
 
-ledPix.normalDistribution(n=30, sig=2)
+for i in range(nPix):
+    ledPix.normalDistribution(n=i, sig=2)
+    time.sleep(0.1)
