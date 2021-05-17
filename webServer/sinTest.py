@@ -16,6 +16,7 @@ parser.add_argument("-o", "--offset", default=0, type=float, help = "Offset")
 
 args = parser.parse_args()
 
+color = args.color
 color = color.strip()
 color = color.replace("(","").replace(")","")
 color = color.replace(" ","")
