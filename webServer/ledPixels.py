@@ -267,7 +267,7 @@ class ledPixels:
             self.pixels[i] = (r, g, b)
         #self.pixels.show()
 
-    def sinFunc(self, frequency, phase, color=(255,0,0)):
+    def sinFunc(self, frequency, phase, col=(255,0,0)):
         for i in range(self.nPix):
             r_o = self.pixels[i][0]
             g_o = self.pixels[i][1]
