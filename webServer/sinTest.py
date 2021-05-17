@@ -10,7 +10,7 @@ ledPix = ledPixels(nPix, board.D18)
 
 for i in range(nPix):
     r = np.sin(np.pi*i/nPix)
-    ledPix.pixels[i] = (r,0,0)
+    ledPix.pixels[i] = (255*r,0,0)
 ledPix.pixels.show()
 
 # for i in range(nPix*speed):
