@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>RPi: Arithmetic Sequences</title>
+    <link href="prism.css" rel="stylesheet" />
+    <link href="exercises.css" rel="stylesheet" />
+
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_SVG">
+    </script>
+
+    <script type="text/javascript">
+      function getLEDs(id){
+        var leds = []
+        for (let i = 0; i < 20; i++){
+          leds.push(document.createElement("SPAN"));
+          leds[i].classList.add("led");
+          document.getElementById(id).append(leds[i]);
+        }
+        return leds;
+      }
+    </script>
+
+  </head>
+  <body>
+
+    <h1>Arithmetic Sequence</h1>
+
+    <div class="intro">
+
+
+
+      <div class="answers">
+        <div class="toggle-next">
+          Hide Notes ▼
+        </div>
+        <div class="notes">
+          <p>
+            An arithmetic sequence is a series of numbers with a constant, common difference between each one. For example:
+
+            $$ a_n = 4, 6, 8, 10, 12, ... \tag{1}$$
+
+            Here the starting value is <b>4</b> and the difference between each successive pair of numbers is <b>2</b>. The notation for the first number would be:
+
+            $$ a_1 = 4 $$
+
+            and the 4th number:
+
+            $$ a_4 = 10 $$
+
+
+
+            <h2>The Arithmetic Sequence Equation</h2>
+
+              So, can we write a program that prints any number in the sequence?
+
+            The general equation that gives the value of the nth number of an arithmetic sequence is:
+
+            <div class="importantEqn">
+              <i>Arithmetic Sequence Equation</i>
+            $$ a_n = a_1 + d (n-1) \tag{2}$$
+            </div>
+
+            Where <b><i>d</i></b> is the common difference, in this case <b>2</b>.
+
+            So, for our example (sequence (1)), the equation is:
+
+            $$ a_n = 4 + 2 (n-1) \tag{3}$$
+
+            Therefore the 7th term would be:
+
+            $$ a_7 = 4 + 2 (7-1) $$
+            $$ a_7 = 4 + 2 (6) $$
+            $$ a_7 = 4 + 12 $$
+            $$ a_7 = 16 $$
+
+
+
+            <h3>Exercise 1</h3>
+            Write a program, using Equation (3), that finds the 7th value in the sequence.
+
+            <div class="toggle-next">
+              Show Solution ▼
+            </div>
+            <div hidden>
+              <p><i>seq1.py</i>
+                <pre><code class="language-python line-numbers" >
+                  a_1 = 4
+                  d = 2
+
+                  n = 7
+                  a_n = a_1 + d * (n-1)
+                  print(a_n)
+                </code></pre>
+              </p>
+              Resulting in:
+              <pre class="language-bash"><code>
+                16
+              </code></pre>
+            </div>
+
+
+
+            <h3>Exercise 2a</h3>
+
+            Now write a function that would take the initial value (<b><i>a<sub>n</sub></i> </b>), the common difference (<b><i>d</i> </b>), and a value of (<b><i>n</i> </b>), and returns the given number in the sequence.
+
+            <div class="toggle-next">
+              Show Solution ▼
+            </div>
+            <div hidden>
+              <p><i>seq2.py</i>
+                <pre><code class="language-python line-numbers" >
+                  def get_nth(a_1, d, n):
+                      nth = a_1 + d * (n-1)
+                      return nth
+
+                  a_n = get_nth(4, 2, 7)
+                  print(a_n)
+                </code></pre>
+              </p>
+              My function's name is <b>get_nth</b>, and it takes three inputs: the initial value (<b>a_1</b>), the common difference (<b>d</b>), and the number of the sequence we're looking for. The result:
+              <pre class="language-bash"><code>
+                16
+              </code></pre>
+            </div>
+
+
+
+
+            <h3>Exercise 2b</h3>
+
+            Print out the 15th number of the sequence:
+
+            $$ a_n = 5, 11, 17, 23, ... $$
+
+            <div class="toggle-next">
+              Show Answer ▼
+            </div>
+            <div hidden>
+              <p>
+                <pre><code class="language-python" >
+                  89
+                </code></pre>
+              </p>
+            </div>
+
+
+            <h3>Exercise 3a</h3>
+
+            Use your function and a loop to print out the first 10 terms in the sequence.
+
+            <div class="toggle-next">
+              Show Solution ▼
+            </div>
+            <div hidden>
+              <p><i>seq3.py</i>
+                <pre><code class="language-python line-numbers" >
+                  def get_nth(a_1, d, n):
+                      nth = a_1 + d * (n-1)
+                      return nth
+
+                  for n in range(1, 11):
+                      a_n = get_nth(4, 2, n)
+                      print(n, "-->", a_n)
+                </code></pre>
+              </p>
+              Resulting in:
+              <pre class="language-bash"><code>
+                1 --> 4
+                2 --> 6
+                3 --> 8
+                4 --> 10
+                5 --> 12
+                6 --> 14
+                7 --> 16
+                8 --> 18
+                9 --> 20
+                10 --> 22
+              </code></pre>
+            </div>
+
+
+
+            <h3>Exercise 3b</h3>
+
+            Print out the first 10 numbers of the sequence:
+
+            $$ a_n = 3, 7, 11, 15, ... $$
+
+            <div class="toggle-next">
+              Show Answer ▼
+            </div>
+            <div hidden>
+              <p>
+                <pre><code class="language-python" >
+                  1 --> 3
+                  2 --> 7
+                  3 --> 11
+                  4 --> 15
+                  5 --> 19
+                  6 --> 23
+                  7 --> 27
+                  8 --> 31
+                  9 --> 35
+                  10 --> 39
+                </code></pre>
+              </p>
+            </div>
+
+
+            <h2>The Sum of an Arithmetic Sequence</h2>
+
+            If we add the first four numbers of sequence (1), we would write it as:
+
+            <div class="importantEqn">
+              Summation Notation
+              $$ \sum^{4}_{n=1} a_n  \tag{4} $$
+            </div>
+
+            Which for Sequence (1) would give:
+
+            $$ \sum^{4}_{n=1} a_n = a_1 + a_2 + a_3 + a_4  $$
+            $$ \sum^{4}_{n=1} a_n = 4+6+8+10   = 28  $$
+
+            Similarly, the sum of the 5th through 10th number would be written as:
+
+              $$ \sum^{10}_{n=5} a_n  \tag{4} $$
+
+
+
+              <h3>Exercise 4</h3>
+
+              Write a program that sums the numbers in an arithmetic sequence given a starting number and a final number. Use it to calculate the sum in Equation 4. You may use the function you wrote for the previous exercises:
+
+              <div class="toggle-next">
+                Show Solution ▼
+              </div>
+              <div hidden>
+                <p><i>seq4.py</i>
+                  <pre><code class="language-python line-numbers" >
+                    def get_nth(a_1, d, n):
+                        nth = a_1 + d * (n-1)
+                        return nth
+
+                    total = 0
+                    for n in range(1, 5):
+                        a_n = get_nth(4, 2, n)
+                        total = total + a_n
+                        print(n, a_n, total)
+                    print("Sum = ", total)
+                  </code></pre>
+                </p>
+                Note that have the variable <b>total</b> that starts off as zero before the loop, and is added to during every iteration. The result:
+                <pre class="language-bash"><code>
+                  1 4 4
+                  2 6 10
+                  3 8 18
+                  4 10 28
+                  Sum =  28
+                </code></pre>
+
+                You'll notice
+              </div>
+
+
+
+              <h3>Exercise 5</h3>
+
+              Use your program to get the sum of the third through 50th numbers in the sequence:
+
+              $$ \sum^{50}_{n=3} a_n  \tag{4} $$
+
+              <div class="toggle-next">
+                Show Answer ▼
+              </div>
+              <div hidden>
+                <p>
+                  <pre><code class="language-python" >
+                    2640
+                  </code></pre>
+                </p>
+              </div>
+
+
+
+
+
+              <h3>Exercise 6</h3>
+
+              Make a function that sums the numbers in a sequence (if you have not already) given a starting number and an ending number. Use it to find the sum of the 3rd through 50th numbers in Sequence (4):
+
+              <div class="toggle-next">
+                Show Solution ▼
+              </div>
+              <div hidden>
+                <p><i>seq6.py</i>
+                  <pre><code class="language-python line-numbers" >
+                    def get_nth(a_1, d, n):
+                        nth = a_1 + d * (n-1)
+                        return nth
+
+                    def get_sum(a_1, d, n1, n2):
+                        total = 0
+                        for n in range(n1, n2+1):
+                            a_n = get_nth(a_1, d, n)
+                            total = total + a_n
+                        return total
+
+                    sum = get_sum(4, 2, 3, 50)
+                    print("Sum from 3 to 50 =", sum)
+
+                  </code></pre>
+                </p>
+                Resulting in:
+                <pre class="language-bash"><code>
+                  Sum from 3 to 50 = 2640
+                </code></pre>
+              </div>
+
+
+
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+    <h2>Classes</h2>
+
+    <p>
+      We now have two functions that relate to arithmetic sequences, and there is some repetetion in that we have to tell them both the same information (<b>a<sub>1</sub></b> and <b>d</b>). This is where creating a <b>class</b> becomes useful.
+    </p>
+
+    <p>
+      A class is a way to gather related information and functions into a single entity that makes them easier to work with. Here, I'm going to create an arithmetic sequence class and use it to store and organize all the information and functions related to arithmetic sequences.
+    </p>
+
+    <p><i>seqClass1.py</i>
+      <pre><code class="language-python line-numbers" >
+        class arithmeticSeq:
+            #works with arithmetic sequences
+
+            def __init__(self, a_1, d):
+                #save values internally
+                self.a_1 = a_1  # inital value in sequence
+                self.d = d      # common difference
+
+            def get_nth(self, n):
+                nth = self.a_1 + self.d * (n-1)
+                return nth
+
+            def get_sum(self, n1, n2):
+                total = 0
+                for n in range(n1, n2+1):
+                    a_n = self.get_nth(n)
+                    total = total + a_n
+                return total
+
+        # Program starts here
+
+        # Set up our specific sequence (instantiate the class)
+        seq = arithmeticSeq(4, 2)
+
+        # Get the 5th value in sequence (use a method from the class)
+        a_5 = seq.get_nth(5)
+        print("5th term:", a_5)
+
+        # Find the sum of the first four values in the sequence
+        sum = seq.get_sum(1, 4)
+        print("Sum of first 5 terms:", sum)
+
+      </code></pre>
+    </p>
+
+    Let's parse this in detail, but we'll start from near the bottom when we first use the class.
+
+    <h4>Initialize</h4>
+    <p>
+      To use the class we create an <b>instance</b> of it (on <b>line 23</b>) and give it the necessary information for the specific arithmetic sequence we want (<b>a<sub>1</sub> = 4</b> and <b>d = 2</b>):
+      <pre data-line="23"><code class="language-python " >
+        class arithmeticSeq:
+            #works with arithmetic sequences
+
+            def __init__(self, a_1, d):
+                #save values internally
+                self.a_1 = a_1  # inital value in sequence
+                self.d = d      # common difference
+
+            def get_nth(self, n):
+                nth = self.a_1 + self.d * (n-1)
+                return nth
+
+            def get_sum(self, n1, n2):
+                total = 0
+                for n in range(n1, n2+1):
+                    a_n = self.get_nth(n)
+                    total = total + a_n
+                return total
+
+        # Program starts here
+
+        # Set up our specific sequence (instantiate the class)
+        seq = arithmeticSeq(4, 2)
+
+        # Get the 5th value in sequence (use a method from the class)
+        a_5 = seq.get_nth(5)
+        print("5th term:", a_5)
+
+        # Find the sum of the first four values in the sequence
+        sum = seq.get_sum(1, 4)
+        print("Sum of first 5 terms:", sum)
+      </code></pre>
+      We give this specific sequence (instance) a variable name (<b>seq</b>).
+    </p>
+    <p>
+      In creating our instance of the class the computer looks for the class name (<b>arithmeticSeq</b>) and then for the initialization function called <b>__init__</b> (<b>Line 4</b>). This is where everything is set up for future use.
+      <pre data-line="4-7,23"><code class="language-python " >
+        class arithmeticSeq:
+            #works with arithmetic sequences
+
+            def __init__(self, a_1, d):
+                #save values internally
+                self.a_1 = a_1  # inital value in sequence
+                self.d = d      # common difference
+
+            def get_nth(self, n):
+                nth = self.a_1 + self.d * (n-1)
+                return nth
+
+            def get_sum(self, n1, n2):
+                total = 0
+                for n in range(n1, n2+1):
+                    a_n = self.get_nth(n)
+                    total = total + a_n
+                return total
+
+        # Program starts here
+
+        # Set up our specific sequence (instantiate the class)
+        seq = arithmeticSeq(4, 2)
+
+        # Get the 5th value in sequence (use a method from the class)
+        a_5 = seq.get_nth(5)
+        print("5th term:", a_5)
+
+        # Find the sum of the first four values in the sequence
+        sum = seq.get_sum(1, 4)
+        print("Sum of first 5 terms:", sum)
+      </code></pre>
+      A function within a class is called a <b>method</b>.
+      <p>
+        You will notice that the <b>__init__</b> method definition (Line 4) has 3 parameters, while the instantiation call (Line 23) only passes two varaibles. The first variable in the __init__ method is "<b>self</b>", which is the way that the methods within a class can pass all the internal information to each other.
+      </p>
+    </p>
+    <p>
+      The <b>__init__</b> method saves the initial value and common difference for future use as internal variables. These internal variables start with <b>self</b>:
+      <pre data-start="6" ><code class="language-python line-numbers" >
+                self.a_1 = a_1  # inital value in sequence
+      </code></pre>
+      These internal variables like <b>self.a_1</b> do not have to have the same names as the method inputs, but it's often convenient to have them so.
+
+    </p>
+
+    <h4>Using Method: Get the 5th value.</h4>
+    <pre data-line="9-11, 26"><code class="language-python " >
+      class arithmeticSeq:
+          #works with arithmetic sequences
+
+          def __init__(self, a_1, d):
+              #save values internally
+              self.a_1 = a_1  # inital value in sequence
+              self.d = d      # common difference
+
+          def get_nth(self, n):
+              nth = self.a_1 + self.d * (n-1)
+              return nth
+
+          def get_sum(self, n1, n2):
+              total = 0
+              for n in range(n1, n2+1):
+                  a_n = self.get_nth(n)
+                  total = total + a_n
+              return total
+
+      # Program starts here
+
+      # Set up our specific sequence (instantiate the class)
+      seq = arithmeticSeq(4, 2)
+
+      # Get the 5th value in sequence (use a method from the class)
+      a_5 = seq.get_nth(5)
+      print("5th term:", a_5)
+
+      # Find the sum of the first four values in the sequence
+      sum = seq.get_sum(1, 4)
+      print("Sum of first 5 terms:", sum)
+    </code></pre>
+
+    <p>
+      We have inserted the function <b>get_nth</b> into the class (<b>Lines 9-11</b>), so now it's called a <b>method</b> of the <b>arithmeticSeq</b> class. With our instance of the class created, and called <b>seq</b>, we can use the <b>get_nth</b> method to get the 5th term like so:
+      <pre data-start="26"><code class="language-python line-numbers" >
+        a_5 = seq.get_nth(5)
+      </code></pre>
+      You don't need to pass the initial value and the common difference because the class already knows. However, you do have to refer to these internal variables using the <b>self.</b> prefix (e.g. <b>Line 10</b>):
+      <pre data-start="9"><code class="language-python line-numbers" >
+        def get_nth(self, n):
+            nth = self.a_1 + self.d * (n-1)
+            return nth
+      </code></pre>
+    </p>
+
+    <h4>Using Method: get_sum</h4>
+    <p>
+      Similarly, we can use the <b>get_sum</b> method to find the sum of the first four numbers in the sequence:
+      <pre data-start="30"><code class="language-python line-numbers" >
+        sum = seq.get_sum(1, 4)
+      </code></pre>
+      You should notice on <b>Line 16</b> that when we call the <b>get_nth</b> method from within another method in the class we have to use the <b>self</b> prefix:
+      <pre data-start="13"><code class="language-python line-numbers" >
+        def get_sum(self, n1, n2):
+              total = 0
+              for n in range(n1, n2+1):
+                  a_n = self.get_nth(n)
+                  total = total + a_n
+              return total
+      </code></pre>
+    </p>
+
+  </body>
+  <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="prism.js"></script>
+  <script type="text/javascript" src="exercises.js"></script>
+</html>

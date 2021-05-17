@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>RPi: Lighting Lights</title>
+    <link href="prism.css" rel="stylesheet" />
+    <link href="exercises.css" rel="stylesheet" />
+
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_SVG">
+    </script>
+
+    <script type="text/javascript">
+      function getLEDs(id){
+        var leds = []
+        for (let i = 0; i < 20; i++){
+          leds.push(document.createElement("SPAN"));
+          leds[i].classList.add("led");
+          document.getElementById(id).append(leds[i]);
+        }
+        return leds;
+      }
+    </script>
+
+  </head>
+  <body>
+
+    <h1>Rates of Change</h1>
+
+    <div class="intro">
+      Intro here
+
+      <div class="answers">
+        <div class="toggle-next">
+          Hide Notes ▼
+        </div>
+        <div class="notes">
+          <p>
+            Instructions here
+
+            <pre class="language-python" data-line="3,9"><code>
+              code here
+            </code></pre>
+
+            $$\frac{\Delta t}{\Delta n} = 0.25 \text{ sec/node}$$
+
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+<h2>Exercises</h2>
+
+
+    <div id="exercises">
+      <div class="exercise">
+        <div class="question">
+          1) Make the last 5 lights red.
+
+          <!-- led Sim -->
+          <div id="ex1"></div>
+          <script type="text/javascript">
+            var leds = getLEDs("ex1");
+            for (let i=15; i<leds.length; i++){
+              leds[i].style.backgroundColor = "red";
+            }
+          </script>
+
+        </div>
+        <div class="answers">
+          <div class="toggle-next">
+            Show Notes ▼
+          </div>
+          <div class="notes" hidden>
+            There are 20 LED's in the strip, so your starting value should be <b>15</b> and the ending value should be <b>20</b>. The sequence stops at one less than the last value given.
+          </div>
+
+
+          <div class="toggle-next">
+            Show Solution ▼
+          </div>
+          <div class="solution" hidden>
+            <p>
+              <b>Solution</b>: To light up the last 5 lights (green) use:
+              <pre data-line="6"><code class="language-python" >
+                import board
+                import neopixel
+
+                pixels = neopixel.NeoPixel(board.D18, 20)
+
+                for i in range(15, 20):
+                  pixels[i] = (0, 20, 0)
+
+              </code></pre>
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      </div>
+    </div>
+
+
+  </body>
+  <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="prism.js"></script>
+  <script type="text/javascript" src="exercises.js"></script>
+</html>

@@ -38,6 +38,7 @@ code {
 }
 body {
   font-family: Georgia, sans-serif;
+  width: 90%;
 }
 
 .led {
@@ -48,4 +49,25 @@ body {
   background-color: white;
   display: inline-block;
   border-radius: 2px;
+}
+
+.importantEqn {
+  background-color: yellow;
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+  text-align: right;
+}
+
+pre {
+  width: 80%;
+}
+
+h2 {
+  text-align: center;
+}
+h3 {
+  postion: relative;
+  margin-left: 2em;
 }
