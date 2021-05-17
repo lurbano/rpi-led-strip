@@ -3,7 +3,7 @@ import numpy as np
 
 from ledPixels import *
 
-nPix = 24
+nPix = 43
 speed = 4
 
 ledPix = ledPixels(nPix, board.D18)
