@@ -283,7 +283,7 @@ class ledPixels:
             b = b_o + b * f
             b = min(max(0.0, b), 255)
             #print("r", r)
-            print(r,g,b)
+            #print(r,g,b)
 
 
             self.pixels[i] = (r, g, b)
