@@ -281,6 +281,7 @@ class ledPixels:
             g = min(max(0.0, f), 255)
             b = b_o + b * f + offset
             b = min(max(0.0, f), 255)
+            print("r", f, r_o, offset)
             print(r,g,b)
 
 
