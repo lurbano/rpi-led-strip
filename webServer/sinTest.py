@@ -9,7 +9,7 @@ speed = 4
 ledPix = ledPixels(nPix, board.D18)
 
 for i in range(nPix):
-    r = 100 * np.sin((2*np.pi*i/nPix)+np.pi)
+    r = 100 * np.sin(2*((2*np.pi*i/nPix)+np.pi))
     g = 100 * np.sin((2*np.pi*i/nPix))
     r = max(r, 0.0)
     g = max(g, 0.0)
