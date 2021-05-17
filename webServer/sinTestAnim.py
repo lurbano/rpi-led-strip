@@ -35,6 +35,7 @@ ledPix = ledPixels(nPix, board.D18)
 phase = 0.0
 #for phase in np.arange(0, 2*np.pi, 0.01):
 for i in np.arange(0, 2*np.pi, 0.1):
+    ledPix.resetPix()
     ledPix.sinFunc(args.freq, args.phase+(i*args.speed), color, args.offset)
     ledPix.pixels.show()
     time.sleep(0.01)
