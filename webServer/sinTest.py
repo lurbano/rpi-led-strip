@@ -10,7 +10,8 @@ ledPix = ledPixels(nPix, board.D18)
 
 for i in range(nPix):
     r = 255 * np.sin(2*np.pi*i/nPix)
-    r = np.max(r, 0)
+    r = np.max(r, 0.0)
+    print(r)
     ledPix.pixels[i] = (r,0,0)
     print(ledPix.pixels[i])
 ledPix.pixels.show()
