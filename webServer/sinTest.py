@@ -12,7 +12,7 @@ for i in range(nPix):
     r = 255 * np.sin(2*np.pi*i/nPix)
     r = max(r, 0.0)
     print(r)
-    ledPix.pixels[i] = (r,0,0)
+    ledPix.pixels[i] = (0,r, 0)
     print(ledPix.pixels[i])
 ledPix.pixels.show()
 
