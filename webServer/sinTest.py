@@ -12,7 +12,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-f", "--freq", default=1, type=float, help = "Frequency")
 parser.add_argument("-p", "--phase", default=0, type=float, help = "Phase")
 parser.add_argument("-c", "--color", default="(0,20,0)", type=str, help = "Color")
-parser.add_argument("-o", "--offset", default=0, type=float, help = "Offset")
+parser.add_argument("-o", "--offset", default=0, type=float, help = "Offset: Scales result somewhat. Best from 0 and 1")
 
 args = parser.parse_args()
 
