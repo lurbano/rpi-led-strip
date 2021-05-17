@@ -13,6 +13,7 @@ parser.add_argument("-f", "--freq", default=1, type=float, help = "Frequency")
 parser.add_argument("-p", "--phase", default=0, type=float, help = "Phase")
 parser.add_argument("-c", "--color", default="(0,20,0)", type=str, help = "Color: 3 values, comma separated. E.g.: 20,0,0")
 parser.add_argument("-o", "--offset", default=0, type=float, help = "Offset: Scales result somewhat. Best from 0 and 1")
+parser.add_argument("-s", "--speed", default=0, type=float, help = "Speed")
 
 args = parser.parse_args()
 
@@ -28,11 +29,12 @@ print("freq:", args.freq)
 print("phase:", args.phase)
 print("color:", color)
 print("offset:", args.offset)
-
+print("speed:", args.speed)
 
 ledPix = ledPixels(nPix, board.D18)
 phase = 0.0
 #for phase in np.arange(0, 2*np.pi, 0.01):
-ledPix.sinFunc(args.freq,args.phase,color, args.offset)
-ledPix.sinFunc(1,0,(20,0,0), 0)
-ledPix.pixels.show()
+for i in np.arange(0, 2*np.pi, 0.01):
+    ledPix.sinFunc(args.freq, args.phase*i, color, args.offset)
+    ledPix.pixels.show()
+    time.sleep(0.01)
