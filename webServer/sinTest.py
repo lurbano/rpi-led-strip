@@ -21,7 +21,14 @@ color = color.strip()
 color = color.replace("(","").replace(")","")
 color = color.replace(" ","")
 color = color.split(",")
+r = color[0]
+g = color[1]
+b = color[2]
+color = (r, g, b)
+print("freq:", args.freq)
+print("phase:", args.phase)
 print("color:", color)
+print("offset:", args.offset)
 
 
 ledPix = ledPixels(nPix, board.D18)
