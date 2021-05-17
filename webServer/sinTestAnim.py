@@ -13,7 +13,8 @@ parser.add_argument("-f", "--freq", default=1, type=float, help = "Frequency")
 parser.add_argument("-p", "--phase", default=0, type=float, help = "Phase")
 parser.add_argument("-c", "--color", default="(0,20,0)", type=str, help = "Color: 3 values, comma separated. E.g.: 20,0,0")
 parser.add_argument("-o", "--offset", default=0, type=float, help = "Offset: Scales result somewhat. Best from 0 and 1")
-parser.add_argument("-s", "--speed", default=0, type=float, help = "Speed")
+parser.add_argument("-s", "--speed", default=0, type=float, help = "Speed: 0.1 works reasonably well.")
+parser.add_argument("-n", "--ncycles", default=1, type=float, help = "Number of cycles for animation.")
 
 args = parser.parse_args()
 
@@ -30,11 +31,12 @@ print("phase:", args.phase)
 print("color:", color)
 print("offset:", args.offset)
 print("speed:", args.speed)
+print("ncycles:", args.ncycles)
 
 ledPix = ledPixels(nPix, board.D18)
 phase = 0.0
-#for phase in np.arange(0, 2*np.pi, 0.01):
-for i in np.arange(0, 2*np.pi, 0.1):
+
+for i in np.arange(0, args.ncycles* 2*np.pi, 0.1):
     ledPix.resetPix()
     ledPix.sinFunc(args.freq, args.phase+(i*args.speed), color, args.offset)
     ledPix.pixels.show()
