@@ -267,14 +267,14 @@ class ledPixels:
             self.pixels[i] = (r, g, b)
         #self.pixels.show()
 
-    def sinFunc(self, frequency, phase, col=(255,0,0)):
+    def sinFunc(self, frequency, phase, col=(255,0,0), offset=0.0):
         for i in range(self.nPix):
             r_o = self.pixels[i][0]
             g_o = self.pixels[i][1]
             b_o = self.pixels[i][2]
             (r,g,b) = col
 
-            f = r_o + np.sin(frequency *((2*np.pi*i/self.nPix) + phase*np.pi))
+            f = r_o + np.sin(frequency *((2*np.pi*i/self.nPix) + phase*np.pi)) + offset
             f = max(0.0, f)
             f = min(255, f)
 
