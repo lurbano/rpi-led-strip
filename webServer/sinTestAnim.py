@@ -4,7 +4,7 @@ import argparse
 
 from ledPixels import *
 
-nPix = 43
+nPix = 24
 speed = 4
 
 # get number of pixels from the command line
