@@ -28,11 +28,13 @@ def diffuse(T, k=0.1):
         Tnew[i] = T[i] + qin + qout
     return Tnew
 
-# class sinFunction:
-#     def __init__(self, freq, phase, offset):
-#         self.freq = freq
-#         self.phase = phase
-#         self.offset = offset
+class sinFunc:
+    def __init__(self, freq=1.0, phase=0.0, offset=0.0, color=(100,0,0), speed=0.1):
+        self.freq = freq
+        self.phase = phase
+        self.offset = offset
+        self.color = color
+        self.speed = speed
 
 
 class ledPixels:
@@ -273,14 +275,14 @@ class ledPixels:
             self.pixels[i] = (r, g, b)
         #self.pixels.show()
 
-    def sinFunc(self, frequency, phase, col=(255,0,0), offset=0.0):
+    def sin(self, frequency, phase, col=(255,0,0), offset=0.0):
         for i in range(self.nPix):
             r_o = self.pixels[i][0]
             g_o = self.pixels[i][1]
             b_o = self.pixels[i][2]
             (r,g,b) = col
 
-            f =  np.sin(frequency *((2*np.pi*i/self.nPix) + phase*np.pi)) + offset
+            f =  np.sin(frequency *((2*np.pi*i/self.nPix) - phase*np.pi)) + offset
 
             r = r_o + r * f
             r = min(max(0.0, r), 255)
