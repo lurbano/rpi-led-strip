@@ -28,6 +28,12 @@ def diffuse(T, k=0.1):
         Tnew[i] = T[i] + qin + qout
     return Tnew
 
+# class sinFunction:
+#     def __init__(self, freq, phase, offset):
+#         self.freq = freq
+#         self.phase = phase
+#         self.offset = offset
+
 
 class ledPixels:
     def __init__(self, nPix, ledPin):
