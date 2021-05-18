@@ -274,7 +274,7 @@ class ledPixels:
             b_o = self.pixels[i][2]
             (r,g,b) = col
 
-            f =  np.sin(frequency *((2*np.pi*i/self.nPix) + phase*np.pi)) + offset
+            f =  -np.sin(frequency *((2*np.pi*i/self.nPix) + phase*np.pi)) + offset
 
             r = r_o + r * f
             r = min(max(0.0, r), 255)
