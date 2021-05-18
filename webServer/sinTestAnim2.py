@@ -39,6 +39,6 @@ phase = 0.0
 for i in np.arange(0, args.ncycles* 2*np.pi, 0.1):
     ledPix.resetPix()
     ledPix.sinFunc(args.freq, args.phase+(i*args.speed), color, args.offset)
-
+    ledPix.sinFunc(args.freq, args.phase-(i*args.speed), (0,0,100), args.offset)
     ledPix.pixels.show()
     time.sleep(0.01)
