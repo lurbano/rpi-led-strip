@@ -37,13 +37,13 @@ ledPix = ledPixels(nPix, board.D18)
 phase = 0.0
 
 
-
-s1 = sinFunc(args.freq, args.phase, args.offset, color, args.speed)
-s2 = sinFunc(args.freq, args.phase, args.offset, (0,0,100), -args.speed)
+sins = []
+sins.append(sinFunc(args.freq, args.phase, args.offset, color, args.speed))
+sins.append(sinFunc(args.freq, args.phase, args.offset, (0,0,100), -args.speed))
 
 for i in np.arange(0, args.ncycles* 2*np.pi, 0.1):
     ledPix.resetPix()
-    ledPix.sin(s1.freq, s1.phase+(i*s1.speed), s1.color, s1.offset)
-    ledPix.sin(s2.freq, s2.phase+(i*s2.speed), s2.color, s2.offset)
+    for s in sins:
+        ledPix.sin(s.freq, s.phase+(i*s.speed), s.color, s.offset)
     ledPix.pixels.show()
     time.sleep(0.01)
