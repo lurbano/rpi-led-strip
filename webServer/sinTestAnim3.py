@@ -44,7 +44,7 @@ sins.append(sinFunc(args.freq, args.phase, args.offset, color, args.speed))
 sins.append(sinFunc(args.freq, args.phase, args.offset, (0,0,50), 1.25*args.speed))
 sins.append(sinFunc(args.freq, args.phase, args.offset, (50,0,0), 1.5*args.speed))
 
-for i in np.arange(0, args.ncycles* 2*np.pi, 0.01):
+for i in np.arange(0, args.ncycles* 2*np.pi, 0.1):
     ledPix.resetPix()
     for s in sins:
         ledPix.sin(s.freq, s.phase+(i*s.speed), s.color, s.offset)
