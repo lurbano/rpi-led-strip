@@ -35,7 +35,7 @@ print("offset:", args.offset)
 print("speed:", args.speed)
 print("ncycles:", args.ncycles)
 
-ledPix = ledPixels(nPix, board.D18)
+ledPix = ledPixels(args.nPix, board.D18)
 phase = 0.0
 
 
