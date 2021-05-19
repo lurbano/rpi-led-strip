@@ -11,6 +11,7 @@ ncycles = 4
 freq = 3
 phase = 0.0
 offset = 0.0
+color = (100,0,0)
 
 ledPix = ledPixels(nPix, board.D18)
 
