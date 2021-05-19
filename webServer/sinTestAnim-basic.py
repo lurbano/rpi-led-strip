@@ -4,7 +4,7 @@ import argparse
 
 from ledPixels import *
 
-nPix = 24
+nPix = 20
 speed = 0.1
 ncycles = 4
 
