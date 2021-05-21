@@ -130,6 +130,19 @@ $(document).ready(function(){
             ws.send(JSON.stringify(msg));
         });
 
+        $("#sinXPhaseLive").change(function(){
+          var f = $("#sinXFreqLive").val();
+          var p = $(this).val();
+          var c = $("#sinXColor").val();
+            let msg = {
+              "what": "sinXPhaseLive",
+              "freq": f,
+              "phase": p,
+              "color": c
+            }
+            ws.send(JSON.stringify(msg));
+        });
+
         // LED STRIP (END)
 
 

@@ -276,6 +276,8 @@ class ledPixels:
         #self.pixels.show()
 
     def sin(self, frequency, phase, col=(255,0,0), offset=0.0):
+        if col[0] == "#":
+            col = hex_to_rgb(col)
         for i in range(self.nPix):
             r_o = self.pixels[i][0]
             g_o = self.pixels[i][1]

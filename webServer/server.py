@@ -136,6 +136,17 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 				task = asyncio.create_task( ledPix.aSin(f, p, col))
 				ledPix.task = task
 
+
+			if msg["what"] == "sinXPhaseLive":
+				#print("sin(x) ")
+				if ledPix.task:
+					ledPix.cancelTask()
+				f = float(msg["freq"])
+				p = float(msg["phase"])
+				col = msg["color"]
+				ledPix.sin(f, p, c)
+				ledPix.pixels.show()
+
 			# LED STRIP (END)
 
 			# TIMER
