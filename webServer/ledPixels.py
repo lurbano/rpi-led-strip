@@ -292,3 +292,25 @@ class ledPixels:
             b = min(max(0.0, b), 255)
 
             self.pixels[i] = (r, g, b)
+
+    async def aSin(self, frequency, phase, col="#00ff00", offset=0.0, dt=0.0):
+        if col[0] == "#":
+            col = hex_to_rgb(col)
+        print(f"making sin curve with: frequency = {frequency}, phase = {phase}, color = {col}, offset = {offset}, dt = {dt}")
+        for i in range(self.nPix):
+            r_o = self.pixels[i][0]
+            g_o = self.pixels[i][1]
+            b_o = self.pixels[i][2]
+            (r,g,b) = col
+
+            f =  np.sin(frequency *((2*np.pi*i/self.nPix) - phase*np.pi)) + offset
+
+            r = r_o + r * f
+            r = min(max(0.0, r), 255)
+            g = g_o + g * f
+            g = min(max(0.0, g), 255)
+            b = b_o + b * f
+            b = min(max(0.0, b), 255)
+
+            self.pixels[i] = (r, g, b)
+            await asyncio.sleep(dt)

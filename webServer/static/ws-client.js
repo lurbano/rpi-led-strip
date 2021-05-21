@@ -117,6 +117,19 @@ $(document).ready(function(){
             ws.send(msg);
         });
 
+        $("#sinX").click(function(){
+            var f = $("#sinXFreq").val();
+            var p = $("#sinXPhase").val();
+            var c = $("#sinXColor").val();
+            let msg = {
+              "what": "sinX",
+              "freq": f,
+              "phase": p,
+              "color": c
+            }
+            ws.send(JSON.stringify(msg));
+        });
+
         // LED STRIP (END)
 
 

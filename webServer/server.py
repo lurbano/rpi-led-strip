@@ -127,6 +127,15 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 				ledPix.cancelTask()
 				ledPix.blue()
 
+			if msg["what"] == "sinX":
+				print("sin(x) ")
+				ledPix.cancelTask()
+				f = float(msg["freq"])
+				p = float(msg["phase"])
+				col = msg["color"]
+				task = asyncio.create_task( ledPix.aSin(f, p, col))
+				ledPix.task = task
+
 			# LED STRIP (END)
 
 			# TIMER
