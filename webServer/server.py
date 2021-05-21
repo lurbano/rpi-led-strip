@@ -144,7 +144,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 				f = float(msg["freq"])
 				p = float(msg["phase"])
 				col = msg["color"]
-				ledPix.sin(f, p, c)
+				ledPix.sin(f, p, col)
 				ledPix.pixels.show()
 
 			# LED STRIP (END)
