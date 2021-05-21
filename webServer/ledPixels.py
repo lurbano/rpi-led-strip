@@ -313,4 +313,5 @@ class ledPixels:
             b = min(max(0.0, b), 255)
 
             self.pixels[i] = (r, g, b)
+            self.pixels.show()
             await asyncio.sleep(dt)
