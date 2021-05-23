@@ -130,7 +130,7 @@ $(document).ready(function(){
             ws.send(JSON.stringify(msg));
         });
 
-        $("#sinXPhaseLive, #sinXFreqLive").change(function(){
+        $("#sinXPhaseLive, #sinXFreqLive").mousemove(function(){
           var f = $("#sinXFreqLive").val();
           var p = $(this).val();
           var c = $("#sinXColor").val();
