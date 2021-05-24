@@ -151,6 +151,18 @@ $(document).ready(function(){
               ws.send(JSON.stringify(msg));
             }
         });
+        $("#sinXColorLive").change(function(){
+          var f = $("#sinXFreqLive").val();
+          var p = $("#sinXPhaseLive").val();
+          var c = $(this).val();
+          let msg = {
+            "what": "sinX",
+            "freq": f,
+            "phase": p,
+            "color": c
+          }
+          ws.send(JSON.stringify(msg));
+        })
 
         // LED STRIP (END)
 
