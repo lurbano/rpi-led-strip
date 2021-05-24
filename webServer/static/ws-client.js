@@ -133,7 +133,7 @@ $(document).ready(function(){
         $("#sinXFreqLive").mousedown(function(){
           sinXFreq_down = true;
         });
-        $("#sinXFreqLive").mouse(function(){
+        $("#sinXFreqLive").mouseup(function(){
           sinXFreq_down = false;
         });
         $("#sinXPhaseLive, #sinXFreqLive").mousemove(function(){
