@@ -137,9 +137,7 @@ $(document).ready(function(){
         $("#sinXPhaseLive").mouseup(function(){
           sinXPhase_down = false;
         });
-        $("#sinXPhaseLive, #sinXFreqLive").mousemove(function(){
-          console.log("sinXPhase_down", sinXPhase_down);
-          //if ($("#goLive").prop("checked")){
+        $("#sinXPhaseLive").mousemove(function(){
           if (sinXPhase_down){
             var f = $("#sinXFreqLive").val();
             var p = $(this).val();
