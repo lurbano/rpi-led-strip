@@ -152,6 +152,9 @@ $(document).ready(function(){
             }
         });
         $("#sinXColorLive").change(function(){
+          var msg = '{"what": "clearButton"}';
+          ws.send(msg);
+
           var f = $("#sinXFreqLive").val();
           var p = $("#sinXPhaseLive").val();
           var c = $(this).val();
