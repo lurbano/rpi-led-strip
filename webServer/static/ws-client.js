@@ -141,7 +141,7 @@ $(document).ready(function(){
           if (sinXPhase_down){
             var f = $("#sinXFreqLive").val();
             var p = $(this).val();
-            var c = $("#sinXColor").val();
+            var c = $("#sinXColorLive").val();
               let msg = {
                 "what": "sinXPhaseLive",
                 "freq": f,
