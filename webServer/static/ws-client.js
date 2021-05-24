@@ -131,16 +131,16 @@ $(document).ready(function(){
         });
 
         sinXFreq_down = false;
-        $("#sinXFreqLive").mousedown(function(){
-          sinXFreq_down = true;
+        $("#sinXPhaseLive").mousedown(function(){
+          sinXPhase_down = true;
         });
-        $("#sinXFreqLive").mouseup(function(){
-          sinXFreq_down = false;
+        $("#sinXPhaseLive").mouseup(function(){
+          sinXPhase_down = false;
         });
         $("#sinXPhaseLive, #sinXFreqLive").mousemove(function(){
-          console.log("sinXFreq_down", sinXFreq_down);
+          console.log("sinXPhase_down", sinXPhase_down);
           //if ($("#goLive").prop("checked")){
-          if (sinXFreq_down){
+          if (sinXPhase_down){
             var f = $("#sinXFreqLive").val();
             var p = $(this).val();
             var c = $("#sinXColor").val();
