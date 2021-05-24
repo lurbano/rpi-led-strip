@@ -138,6 +138,7 @@ $(document).ready(function(){
           sinXFreq_down = false;
         });
         $("#sinXPhaseLive, #sinXFreqLive").mousemove(function(){
+          console.log("sinXFreq_down", sinXFreq_down);
           //if ($("#goLive").prop("checked")){
           if (sinXFreq_down){
             var f = $("#sinXFreqLive").val();
