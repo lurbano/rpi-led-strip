@@ -131,6 +131,7 @@ $(document).ready(function(){
         });
 
         $("#sinXPhaseLive, #sinXFreqLive").mousemove(function(){
+          console.log("goLive:", $("#goLive").prop("checked"));
           if ($("#goLive").prop("checked")){
             var f = $("#sinXFreqLive").val();
             var p = $(this).val();
