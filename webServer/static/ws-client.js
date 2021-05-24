@@ -130,9 +130,15 @@ $(document).ready(function(){
             ws.send(JSON.stringify(msg));
         });
 
+        $("#sinXFreqLive").mousedown(function(){
+          sinXFreq_down = true;
+        });
+        $("#sinXFreqLive").mouse(function(){
+          sinXFreq_down = false;
+        });
         $("#sinXPhaseLive, #sinXFreqLive").mousemove(function(){
-          //console.log("goLive:", $("#goLive").prop("checked"));
-          if ($("#goLive").prop("checked")){
+          //if ($("#goLive").prop("checked")){
+          if (sinXFreq_down){
             var f = $("#sinXFreqLive").val();
             var p = $(this).val();
             var c = $("#sinXColor").val();
