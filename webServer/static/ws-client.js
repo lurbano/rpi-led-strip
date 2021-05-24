@@ -131,16 +131,18 @@ $(document).ready(function(){
         });
 
         $("#sinXPhaseLive, #sinXFreqLive").mousemove(function(){
-          var f = $("#sinXFreqLive").val();
-          var p = $(this).val();
-          var c = $("#sinXColor").val();
-            let msg = {
-              "what": "sinXPhaseLive",
-              "freq": f,
-              "phase": p,
-              "color": c
+          if ($("#goLive").prop("checked")){
+            var f = $("#sinXFreqLive").val();
+            var p = $(this).val();
+            var c = $("#sinXColor").val();
+              let msg = {
+                "what": "sinXPhaseLive",
+                "freq": f,
+                "phase": p,
+                "color": c
+              }
+              ws.send(JSON.stringify(msg));
             }
-            ws.send(JSON.stringify(msg));
         });
 
         // LED STRIP (END)
