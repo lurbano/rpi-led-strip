@@ -152,8 +152,8 @@ $(document).ready(function(){
             }
         });
         $("#sinXColorLive").change(function(){
-          var msg = '{"what": "clearButton"}';
-          ws.send(msg);
+
+          ws.send('{"what": "clearButton"}');
 
           var f = $("#sinXFreqLive").val();
           var p = $("#sinXPhaseLive").val();
