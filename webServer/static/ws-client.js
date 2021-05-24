@@ -130,7 +130,7 @@ $(document).ready(function(){
             ws.send(JSON.stringify(msg));
         });
 
-        sinXFreq_down = false;
+        sinXPhase_down = false;
         $("#sinXPhaseLive").mousedown(function(){
           sinXPhase_down = true;
         });
