@@ -38,6 +38,7 @@ print("offset:", args.offset)
 print("speed:", args.speed)
 print("ncycles:", args.ncycles)
 print("timestep:", args.timestep)
+print('brightness:', args.brightness)
 
 try:
     ncycles = args.ncycles
