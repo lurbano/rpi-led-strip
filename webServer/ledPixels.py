@@ -329,10 +329,10 @@ class ledPixels:
         print(f'nsteps: {2*np.pi/abs(speed)}')
 
         while True:
-            for i in np.arange(0, 2*np.pi/abs(speed), speed):
+            for i in np.arange(0, 2*np.pi, speed):
                 self.resetPix()
                 for s in sins:
-                    s.currentPhase += s.speed * direction
+                    s.currentPhase += s.speed * direction * dt
                     self.sin(s.freq, s.currentPhase, s.color, s.offset)
                 self.pixels.show()
                 time.sleep(dt)
