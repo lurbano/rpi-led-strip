@@ -59,7 +59,7 @@ sins.append(sinFunc(args.freq, args.phase, args.offset, (50,0,0), 1.5*args.speed
 if args.rainbow:
     ledPix.rainbow()
 
-ledPix.setBrightness(args.brightness)
+ledPix.brightness = args.brightness
 direction = 1.0
 
 while True:
