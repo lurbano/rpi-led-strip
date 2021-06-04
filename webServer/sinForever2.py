@@ -55,4 +55,4 @@ phase = 0.0
 ledPix.brightness = args.brightness
 direction = 1.0
 
-ledPix.threeSins(freq=args.freq, speed=args.speed)
+ledPix.threeSins(freq=args.freq, speed=args.speed, dt=self.timestep)
