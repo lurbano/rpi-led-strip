@@ -323,7 +323,7 @@ class ledPixels:
         sins = []
         sins.append(sinFunc(freq, 0, 0, (255,0,0), speed))
         sins.append(sinFunc(freq, 0, 0, (0,255,0), 1.25*speed))
-        sins.append(sinFunc(freq, 0, 0, (0,0,255), 1.50*speed))
+        sins.append(sinFunc(freq, 0, 0, (0,0,255), 2.0*speed))
         direction = 1.0
 
         while True:
