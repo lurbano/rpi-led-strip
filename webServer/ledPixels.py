@@ -35,6 +35,7 @@ class sinFunc:
         self.offset = offset
         self.color = color
         self.speed = speed
+        self.currentPhase = phase
 
 
 class ledPixels:

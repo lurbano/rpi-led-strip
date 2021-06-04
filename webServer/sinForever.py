@@ -64,7 +64,8 @@ while True:
     for i in np.arange(0, 2*np.pi/abs(speed), speed):
         ledPix.resetPix()
         for s in sins:
-            ledPix.sin(s.freq, s.phase+(i*s.speed*direction), s.color, s.offset)
+            s.currentPhase += s.speed * direction
+            ledPix.sin(s.freq, s.currentPhase, s.color, s.offset)
         ledPix.pixels.show()
         time.sleep(0.01)
 
