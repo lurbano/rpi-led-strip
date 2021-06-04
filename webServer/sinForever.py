@@ -16,6 +16,7 @@ parser.add_argument("-o", "--offset", default=0, type=float, help = "Offset: Sca
 parser.add_argument("-s", "--speed", default=0.1, type=float, help = "Speed: 0.1 works reasonably well.")
 parser.add_argument("-n", "--ncycles", default=1, type=float, help = "Number of cycles for animation.")
 parser.add_argument("-x", "--nPix", default=20, type=int, help = "Number of LED Pixels.")
+parser.add_argument("-t", "--timestep", default=0.01, type=float, help = "Number of LED Pixels.")
 
 
 args = parser.parse_args()
@@ -34,6 +35,7 @@ print("color:", color)
 print("offset:", args.offset)
 print("speed:", args.speed)
 print("ncycles:", args.ncycles)
+print("timestep:", args.timestep)
 
 try:
     ncycles = args.ncycles
