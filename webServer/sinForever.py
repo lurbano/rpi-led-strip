@@ -17,7 +17,7 @@ parser.add_argument("-s", "--speed", default=0.1, type=float, help = "Speed: 0.1
 parser.add_argument("-n", "--ncycles", default=1, type=float, help = "Number of cycles for animation.")
 parser.add_argument("-x", "--nPix", default=20, type=int, help = "Number of LED Pixels.")
 parser.add_argument("-t", "--timestep", default=0.01, type=float, help = "dt: delay between LED updates.")
-parser.add_argument("-r", "--rainbow", default=True, type=bool, help = "Rainbow overlay.")
+parser.add_argument("-r", "--rainbow", default=False, type=bool, help = "Rainbow overlay.")
 
 
 args = parser.parse_args()
@@ -58,12 +58,14 @@ sins.append(sinFunc(args.freq, args.phase, args.offset, (50,0,0), 1.5*args.speed
 if args.rainbow:
     ledPix.rainbow()
 
+direction = 1.0
+
 while True:
     for i in np.arange(0, 2*np.pi/abs(speed), speed):
         ledPix.resetPix()
         for s in sins:
-            ledPix.sin(s.freq, s.phase+(i*s.speed), s.color, s.offset)
+            ledPix.sin(s.freq, s.phase+(i*s.speed*direction), s.color, s.offset)
         ledPix.pixels.show()
         time.sleep(0.01)
 
-    speed *= -1.0
+    direction *= -1.0
