@@ -326,7 +326,7 @@ class ledPixels:
         sins.append(sinFunc(freq, 0, 0, (255,0,0), 1.50*speed))
         direction = 1.0
 
-        print(f'nsteps: {2*np.pi/abs(speed)}')
+        print(f'nsteps: {2*np.pi/dt}')
 
         while True:
             for i in np.arange(0, 2*np.pi, dt):
