@@ -321,9 +321,9 @@ class ledPixels:
 
     def threeSins(self, freq=1, speed = 0.005, dt=0.01):
         sins = []
-        sins.append(sinFunc(freq, 0, 0, (255,0,0), speed))
+        sins.append(sinFunc(freq, 0, 0, (0,0,255), speed))
         sins.append(sinFunc(freq, 0, 0, (0,255,0), 1.25*speed))
-        sins.append(sinFunc(freq, 0, 0, (0,0,255), 2.0*speed))
+        sins.append(sinFunc(freq, 0, 0, (255,0,0), 1.50*speed))
         direction = 1.0
 
         while True:
