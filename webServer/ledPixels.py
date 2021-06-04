@@ -338,7 +338,7 @@ class ledPixels:
                     self.sin(s.freq, s.currentPhase, s.color, s.offset)
                 self.pixels.show()
                 time.sleep(dt)
-                if (ct%10 == 0):
+                if (ct%100 == 0):
                     print(i)
 
             direction *= -1.0
