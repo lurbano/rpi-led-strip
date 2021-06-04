@@ -327,16 +327,18 @@ class ledPixels:
         direction = 1.0
 
         print(f'nsteps: {2*np.pi/dt}')
+        ct = 0
 
         while True:
             for i in np.arange(0, 2*np.pi, dt):
+                ct += 1
                 self.resetPix()
                 for s in sins:
                     s.currentPhase += s.speed * direction
                     self.sin(s.freq, s.currentPhase, s.color, s.offset)
                 self.pixels.show()
                 time.sleep(dt)
-                if (i%10 == 0):
+                if (ct%10 == 0):
                     print(i)
 
             direction *= -1.0
