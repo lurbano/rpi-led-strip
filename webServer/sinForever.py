@@ -47,14 +47,13 @@ except:
 ledPix = ledPixels(args.nPix, board.D18)
 phase = 0.0
 
-
 sins = []
 sins.append(sinFunc(args.freq, args.phase, args.offset, color, args.speed))
 sins.append(sinFunc(args.freq, args.phase, args.offset, (0,0,50), 1.25*args.speed))
 sins.append(sinFunc(args.freq, args.phase, args.offset, (50,0,0), 1.5*args.speed))
 
 while True:
-    for i in np.arange(0, args.ncycles* 2*np.pi, speed):
+    for i in np.arange(0, 2*np.pi/abs(speed), speed):
         ledPix.resetPix()
         for s in sins:
             ledPix.sin(s.freq, s.phase+(i*s.speed), s.color, s.offset)
