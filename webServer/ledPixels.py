@@ -319,18 +319,18 @@ class ledPixels:
             self.pixels.show()
             await asyncio.sleep(dt)
 
-    def threeSins(self, freq=1, speed = 0.002, dt=0.001):
+    def threeSins(self, freq=1, speed = 0.002, dt=0.001, ncycles=5):
         sins = []
         sins.append(sinFunc(freq, 0, 0, (0,0,255), speed))
-        sins.append(sinFunc(freq, 0, 0, (0,255,0), 1.25*speed))
-        sins.append(sinFunc(freq, 0, 0, (255,0,0), 1.50*speed))
+        sins.append(sinFunc(freq, 0, 0, (0,255,0), 1.2*speed))
+        sins.append(sinFunc(freq, 0, 0, (255,0,0), 1.4*speed))
         direction = 1.0
 
         print(f'nsteps: {2*np.pi/dt}')
         ct = 0
 
         while True:
-            for i in np.arange(0, 2*np.pi, dt):
+            for i in np.arange(0, ncycles*2*np.pi, dt):
                 ct += 1
                 self.resetPix()
                 for s in sins:
