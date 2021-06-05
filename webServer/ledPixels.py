@@ -319,7 +319,7 @@ class ledPixels:
             self.pixels.show()
             await asyncio.sleep(dt)
 
-    def threeSins(self, freq=1, speed = 0.002, dt=0.001, ncycles=5):
+    def threeSins(self, freq=1, speed = 0.002, dt=0.001, ncycles=100):
         sins = []
         sins.append(sinFunc(freq, 0, 0, (0,0,255), speed))
         sins.append(sinFunc(freq, 0, 0, (0,255,0), 1.2*speed))
