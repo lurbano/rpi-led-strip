@@ -72,7 +72,7 @@ class ledPixels:
 
     def superimpose(self, i, col):
         (r,g,b) = self.pixels[i]
-        self.pixels[i] = (col[0]+r, col[1]+g, col[2].b)
+        self.pixels[i] = (col[0]+r, col[1]+g, col[2]+b)
 
 
     def setOldColors(self, col=None):
