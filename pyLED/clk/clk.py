@@ -52,7 +52,7 @@ while True:
     sLights = int((t.tm_sec / 60) * nPix)
 
 
-    print(f'hLights:{hLights}; mLights:{mLights}; sLights:{sLights}')
+    #print(f'hLights:{hLights}; mLights:{mLights}; sLights:{sLights}')
 
     ledPix.reset()
 
@@ -60,6 +60,7 @@ while True:
         ledPix.pixels[i] = mCol
 
     ledPix.superimpose(hLights, hCol)
+    ledPix.superimpose(sLights, sCol)
 
     ledPix.pixels.show()
     time.sleep(0.5)
