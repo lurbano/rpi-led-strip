@@ -15,6 +15,9 @@ parser = argparse.ArgumentParser()
 # parser.add_argument("-o", "--offset", default=0, type=float, help = "Offset: Scales result somewhat. Best from 0 and 1")
 # parser.add_argument("-s", "--speed", default=0.005, type=float, help = "Speed: 0.01 works reasonably well.")
 # parser.add_argument("-n", "--ncycles", default=10, type=float, help = "Number of cycles for animation.")
+parser.add_argument("-h", "--hour", default=True, type=bool, help = "Show Hour")
+parser.add_argument("-m", "--min", default=True, type=bool, help = "Show Minutes")
+parser.add_argument("-s", "--sec", default=True, type=bool, help = "Show Seconds")
 parser.add_argument("-n", "--nPix", default=20, type=int, help = "Number of LED Pixels.")
 parser.add_argument("-b", "--brightness", default=0.75, type=float, help = "Brightness.")
 
@@ -31,8 +34,9 @@ nPix = args.nPix
 # b = float(color[2])
 # color = (r, g, b)
 
-print("nPix:", args.nPix)
-print('brightness:', args.brightness)
+# print("nPix:", args.nPix)
+# print('brightness:', args.brightness)
+print(args)
 
 mCol = (100, 0, 0)
 sCol = (0, 100, 0)
@@ -56,11 +60,13 @@ while True:
 
     ledPix.reset()
 
-    for i in range(mLights):
-        ledPix.pixels[i] = mCol
-
-    ledPix.superimpose(hLights, hCol)
-    ledPix.superimpose(sLights, sCol)
+    if (args.min):
+        for i in range(mLights):
+            ledPix.pixels[i] = mCol
+    if (args.hour):
+        ledPix.superimpose(hLights, hCol)
+    if (args.sec):
+        ledPix.superimpose(sLights, sCol)
 
     ledPix.pixels.show()
     time.sleep(0.5)
