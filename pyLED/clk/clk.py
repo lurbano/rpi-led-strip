@@ -51,22 +51,23 @@ print(time.localtime())
 
 while True:
     t = time.localtime()
-    hLights = int((t.tm_hour / 24.) * nPix)
-    mLights = int((t.tm_min / 60.) * nPix)
-    sLights = int((t.tm_sec / 60.) * nPix)
+    hPix = int((t.tm_hour / 24.) * nPix)
+    mPix = int((t.tm_min / 60.) * nPix)
+    sPix = int((t.tm_sec / 60.) * nPix)
 
+    #print(f"hour:{t.tm_hour}; hPix")
 
     #print(f'hLights:{hLights}; mLights:{mLights}; sLights:{sLights}')
 
     ledPix.reset()
 
     if (args.hour):
-        for i in range(hLights):
+        for i in range(hPix):
             ledPix.pixels[i] = hCol
     if (args.min):
-        ledPix.superimpose(hLights, mCol)
+        ledPix.superimpose(mPix, mCol)
     if (args.sec):
-        ledPix.superimpose(sLights, sCol)
+        ledPix.superimpose(sPix, sCol)
 
     ledPix.pixels.show()
     time.sleep(0.1)
