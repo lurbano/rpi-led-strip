@@ -69,7 +69,7 @@ while True:
         ledPix.superimpose(sLights, sCol)
 
     ledPix.pixels.show()
-    time.sleep(0.5)
+    time.sleep(0.1)
 
 
 # ledPix.threeSins(freq=args.freq, speed=args.speed, dt=args.timestep, ncycles=args.ncycles)
