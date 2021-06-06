@@ -31,7 +31,7 @@ nPix = args.nPix
 # b = float(color[2])
 # color = (r, g, b)
 
-print("timestep:", args.timestep)
+print("nPix:", args.nPix)
 print('brightness:', args.brightness)
 
 
