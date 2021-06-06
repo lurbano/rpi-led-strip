@@ -34,6 +34,10 @@ nPix = args.nPix
 print("nPix:", args.nPix)
 print('brightness:', args.brightness)
 
+hCol = (100, 0, 0)
+mCol = (0, 100, 0)
+sCol = (0, 0, 100)
+
 
 ledPix = ledPixels(args.nPix, board.D18)
 
@@ -45,7 +49,14 @@ while True:
     mLights = int((t.tm_min / 60) * nPix)
     sLights = int((t.tm_sec / 60) * nPix)
 
+
     print(f'hLights:{hLights}; mLights:{mLights}; sLights:{sLights}')
+
+    ledPix.reset()
+    for i in range(hLights):
+        ledPix.pixels[i] = hCol
+
+    ledPix.pixels.show()
     time.sleep(0.5)
 
 
