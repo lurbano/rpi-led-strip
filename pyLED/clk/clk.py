@@ -43,6 +43,8 @@ ledPix = ledPixels(args.nPix, board.D18)
 
 ledPix.brightness = args.brightness
 
+print(time.localtime())
+
 while True:
     t = time.localtime()
     hLights = int((t.tm_hour / 24) * nPix)
