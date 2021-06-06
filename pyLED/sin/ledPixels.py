@@ -70,6 +70,11 @@ class ledPixels:
     def show(self):
         self.pixels.show()
 
+    def superimpose(self, i, col):
+        (r,g,b) = self.pixels[i]
+        self.pixels[i] = (col[0]+r, col[1]+g, col[2].b)
+
+
     def setOldColors(self, col=None):
         if col == None:
             for i in range(self.nPix):

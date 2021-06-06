@@ -55,8 +55,11 @@ while True:
     print(f'hLights:{hLights}; mLights:{mLights}; sLights:{sLights}')
 
     ledPix.reset()
-    for i in range(hLights):
-        ledPix.pixels[i] = hCol
+
+    for i in range(mLights):
+        ledPix.pixels[i] = mCol
+
+    ledPix.superimpose(hLights, hCol)
 
     ledPix.pixels.show()
     time.sleep(0.5)
