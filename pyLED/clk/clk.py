@@ -41,12 +41,12 @@ ledPix.brightness = args.brightness
 
 while True:
     t = time.localtime()
-    hLights = floor((t.tm_hour / 24) * nPix)
-    mLights = floor((t.tm_min / 60) * nPix)
-    sLights = floor((t.tm_sec / 60) * nPix)
+    hLights = int((t.tm_hour / 24) * nPix)
+    mLights = int((t.tm_min / 60) * nPix)
+    sLights = int((t.tm_sec / 60) * nPix)
 
     print(f'hLights:{hLights}; mLights:{mLights}; sLights:{sLights}')
-    time.sleep(0.1)
+    time.sleep(0.5)
 
 
 # ledPix.threeSins(freq=args.freq, speed=args.speed, dt=args.timestep, ncycles=args.ncycles)
