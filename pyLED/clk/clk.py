@@ -34,9 +34,9 @@ nPix = args.nPix
 print("nPix:", args.nPix)
 print('brightness:', args.brightness)
 
-hCol = (100, 0, 0)
-mCol = (0, 100, 0)
-sCol = (0, 0, 100)
+mCol = (100, 0, 0)
+sCol = (0, 100, 0)
+hCol = (0, 0, 100)
 
 
 ledPix = ledPixels(args.nPix, board.D18)
