@@ -38,9 +38,9 @@ nPix = args.nPix
 # print('brightness:', args.brightness)
 print(args)
 
-mCol = (100, 0, 0)
-sCol = (0, 100, 0)
-hCol = (0, 0, 100)
+mCol = (0, 50, 0)
+sCol = (0, 0, 50)
+hCol = (50, 0, 0)
 
 
 ledPix = ledPixels(args.nPix, board.D18)
@@ -60,11 +60,11 @@ while True:
 
     ledPix.reset()
 
-    if (args.min):
-        for i in range(mLights):
-            ledPix.pixels[i] = mCol
     if (args.hour):
-        ledPix.superimpose(hLights, hCol)
+        for i in range(hLights):
+            ledPix.pixels[i] = hCol
+    if (args.min):
+        ledPix.superimpose(hLights, mCol)
     if (args.sec):
         ledPix.superimpose(sLights, sCol)
 
