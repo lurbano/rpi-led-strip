@@ -20,6 +20,7 @@ parser.add_argument("-m", "--min", default=True, action='store_false', help = "D
 parser.add_argument("-s", "--sec", default=True, action='store_false', help = "Do NOT Show Seconds")
 parser.add_argument("-n", "--nPix", default=20, type=int, help = "Number of LED Pixels.")
 parser.add_argument("-b", "--brightness", default=0.75, type=float, help = "Brightness.")
+parser.add_argument("-d", "--stdev", default=1.0, type=float, help = "Standard Deviation.")
 
 
 args = parser.parse_args()
@@ -67,7 +68,9 @@ while True:
     if (args.min):
         ledPix.superimpose(mPix, mCol)
     if (args.sec):
-        ledPix.superimpose(sPix, sCol)
+        # ledPix.superimpose(sPix, sCol)
+        sPix = t.tm_sec * nPix / 60.0
+        ledPix.normalDistribution(n=sPix, col=sCol, sig=args.stdev)
 
     ledPix.pixels.show()
     time.sleep(0.1)
