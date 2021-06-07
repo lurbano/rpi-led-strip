@@ -63,7 +63,7 @@ while True:
 
     if (args.hour):
         hPix = t.tm_hour * nPix / 24.0
-        ledPix.normalDistribution(n=sPix, col=sCol, sig=args.stdev)
+        ledPix.normalDistribution(n=hPix, col=hCol, sig=args.stdevHour)
     if (args.min):
         mPix = t.tm_min * nPix / 60.0
         ledPix.normalDistribution(n=mPix, col=mCol, sig=args.stdevMin)
