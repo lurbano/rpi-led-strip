@@ -28,6 +28,16 @@ def diffuse(T, k=0.1):
         Tnew[i] = T[i] + qin + qout
     return Tnew
 
+def strToCol(str): #formatted like '255,0,255'
+    color = str.strip()
+    color = color.replace(" ","")
+    color = color.split(",")
+    r = float(color[0])
+    g = float(color[1])
+    b = float(color[2])
+    color = (r, g, b)
+    return color
+
 class sinFunc:
     def __init__(self, freq=1.0, phase=0.0, offset=0.0, color=(100,0,0), speed=0.1):
         self.freq = freq
