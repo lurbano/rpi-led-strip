@@ -15,6 +15,7 @@ parser.add_argument("-c", "--color", default="0,100,0", type=str, help = "Color:
 parser.add_argument("-n", "--nPix", default=20, type=int, help = "Number of LED Pixels.")
 parser.add_argument("-b", "--brightness", default=0.75, type=float, help = "Brightness.")
 parser.add_argument("-s", "--std", default=1.0, type=float, help = "Standard Deviation.")
+parser.add_argument("-p", "--pixelMean", default=10, type=float, help = "mean pixel")
 
 
 args = parser.parse_args()
@@ -32,5 +33,5 @@ ledPix = ledPixels(args.nPix, board.D18)
 ledPix.brightness = args.brightness
 
 ledPix.clear()
-ledPix.normalDistribution(20, col=color, sig=args.std)
+ledPix.normalDistribution(n=args.pixelMean, col=color, sig=args.std)
 ledPix.show()
