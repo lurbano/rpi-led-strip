@@ -30,4 +30,6 @@ ledPix = ledPixels(args.nPix, board.D18)
 
 ledPix.brightness = args.brightness
 
+ledPix.clear()
 ledPix.normalDistribution(20)
+ledPix.show()
