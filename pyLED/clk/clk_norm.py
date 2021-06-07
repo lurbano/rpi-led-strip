@@ -51,6 +51,7 @@ ledPix = ledPixels(args.nPix, board.D18)
 ledPix.brightness = args.brightness
 
 print(time.localtime())
+oldSec = time.localtime().tm_sec
 
 while True:
     t = time.localtime()
@@ -58,21 +59,22 @@ while True:
     #print(f"hour:{t.tm_hour}; hPix")
 
     #print(f'hLights:{hLights}; mLights:{mLights}; sLights:{sLights}')
+    if t.tm_sec != oldSec:
+        oldSec = t.tm_sec
+        ledPix.reset()
 
-    ledPix.reset()
+        if (args.hour):
+            hPix = t.tm_hour * nPix / 24.0
+            ledPix.normalDistribution(n=hPix, col=hCol, sig=args.stdevHour)
+        if (args.min):
+            mPix = t.tm_min * nPix / 60.0
+            ledPix.normalDistribution(n=mPix, col=mCol, sig=args.stdevMin)
+        if (args.sec):
+            sPix = t.tm_sec * nPix / 60.0
+            ledPix.normalDistribution(n=sPix, col=sCol, sig=args.stdevSec)
 
-    if (args.hour):
-        hPix = t.tm_hour * nPix / 24.0
-        ledPix.normalDistribution(n=hPix, col=hCol, sig=args.stdevHour)
-    if (args.min):
-        mPix = t.tm_min * nPix / 60.0
-        ledPix.normalDistribution(n=mPix, col=mCol, sig=args.stdevMin)
-    if (args.sec):
-        sPix = t.tm_sec * nPix / 60.0
-        ledPix.normalDistribution(n=sPix, col=sCol, sig=args.stdevSec)
-
-    ledPix.pixels.show()
-    time.sleep(0.1)
+        ledPix.pixels.show()
+    time.sleep(.1)
 
 
 # ledPix.threeSins(freq=args.freq, speed=args.speed, dt=args.timestep, ncycles=args.ncycles)
