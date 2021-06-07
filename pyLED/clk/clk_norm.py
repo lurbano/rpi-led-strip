@@ -20,7 +20,9 @@ parser.add_argument("-m", "--min", default=True, action='store_false', help = "D
 parser.add_argument("-s", "--sec", default=True, action='store_false', help = "Do NOT Show Seconds")
 parser.add_argument("-n", "--nPix", default=20, type=int, help = "Number of LED Pixels.")
 parser.add_argument("-b", "--brightness", default=0.75, type=float, help = "Brightness.")
-parser.add_argument("-d", "--stdev", default=1.0, type=float, help = "Standard Deviation.")
+parser.add_argument("-S", "--stdevSec", default=1.0, type=float, help = "Standard Deviation.")
+parser.add_argument("-M", "--stdevMin", default=1.0, type=float, help = "Standard Deviation.")
+parser.add_argument("-H", "--stdevHour", default=1.0, type=float, help = "Standard Deviation.")
 
 
 args = parser.parse_args()
@@ -39,8 +41,8 @@ nPix = args.nPix
 # print('brightness:', args.brightness)
 print(args)
 
-mCol = (0, 50, 0)
-sCol = (0, 0, 50)
+mCol = (0, 0, 50)
+sCol = (0, 50, 0)
 hCol = (50, 0, 0)
 
 
@@ -52,9 +54,6 @@ print(time.localtime())
 
 while True:
     t = time.localtime()
-    hPix = int((t.tm_hour / 24.) * nPix)
-    mPix = int((t.tm_min / 60.) * nPix)
-    sPix = int((t.tm_sec / 60.) * nPix)
 
     #print(f"hour:{t.tm_hour}; hPix")
 
@@ -63,14 +62,14 @@ while True:
     ledPix.reset()
 
     if (args.hour):
-        for i in range(hPix):
-            ledPix.pixels[i] = hCol
+        hPix = t.tm_hour * nPix / 24.0
+        ledPix.normalDistribution(n=sPix, col=sCol, sig=args.stdev)
     if (args.min):
-        ledPix.superimpose(mPix, mCol)
+        mPix = t.tm_min * nPix / 60.0
+        ledPix.normalDistribution(n=mPix, col=mCol, sig=args.stdevMin)
     if (args.sec):
-        ledPix.superimpose(sPix, sCol)
-        # sPix = t.tm_sec * nPix / 60.0
-        # ledPix.normalDistribution(n=sPix, col=sCol, sig=args.stdev)
+        sPix = t.tm_sec * nPix / 60.0
+        ledPix.normalDistribution(n=sPix, col=sCol, sig=args.stdevSec)
 
     ledPix.pixels.show()
     time.sleep(0.1)
