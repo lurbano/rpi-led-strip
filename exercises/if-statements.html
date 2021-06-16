@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>RPi: Lighting Lights</title>
+    <link href="prism.css" rel="stylesheet" />
+    <link href="exercises.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+      function getLEDs(id){
+        var leds = []
+        for (let i = 0; i < 20; i++){
+          leds.push(document.createElement("SPAN"));
+          leds[i].classList.add("led");
+          document.getElementById(id).append(leds[i]);
+        }
+        return leds;
+      }
+    </script>
+
+  </head>
+  <body>
+
+    <h1>If, then, and else</h1>
+
+    <div class="intro">
+
+      We use <b>if</b> statements as a logical (<b>true</b> or <b>false</b>) check. It works something like this:
+      <pre class="line-numbers"><code class="language-python" >
+        if ({logical statement}):
+          {do something}
+        else:
+          {do something different}
+      </code></pre>
+
+      for example:
+      <pre class="line-numbers"><code class="language-python" >
+        a = 5
+        if (a == 5):
+          print("a is equal to 5")
+        else:
+          print("a is not equal to 5")
+      </code></pre>
+      which should print:
+      <pre class="command-line language-bash" data-output="1"><code>
+        a is equal to 5
+      </code></pre>
+      Now change the value of <b>a</b> and check that it prints out the correct output.
+
+
+
+      <div class="answers">
+        <div class="toggle-next">
+          Hide Notes ▼
+        </div>
+        <div class="notes">
+          <h2>The Logical Operators</h2>
+          <p>
+          You will have noticed the double equal signs in the statement:
+          <pre class="line-numbers"><code class="language-python" >
+            if (a == 5):
+          </code></pre>
+          This is because the single equal ("<b>=</b>") is an <b>assignment statement</b>; it assigns the value of whatever is on the right of the <b>=</b> to the variable named on the left.
+
+          The double equal signs ("<b>==</b>") on the other hand, is a <b>logical test</b>. It checks to see if what is on the left is equal to what is on the right, and returns either <b>True</b> or <b>False</b>. We can see the difference between the two in the code:
+
+          <pre class="line-numbers"><code class="language-python" >
+            a = 5
+            print(a)
+            print(a == 5)
+            print(a == 6)
+          </code></pre>
+
+          which results in:
+          <pre class="command-line language-bash" data-output="1-3"><code>
+            5
+            True
+            False
+          </code></pre>
+
+
+          <h3>Logical/Comparison Operators</h3>
+          <table>
+            <tr>
+              <th>Operator</th>
+              <th>Test</th>
+            </tr>
+            <tr>
+              <td>==</td><td>Equal To</td>
+            </tr>
+            <tr>
+              <td>!=</td><td>Not Equal To</td>
+            </tr>
+            <tr>
+              <td> < </td><td>Less Than</td>
+            </tr>
+            <tr>
+              <td> > </td><td>Greater Than</td>
+            </tr>
+            <tr>
+              <td> <= </td><td>Less Than Or Equal To</td>
+            </tr>
+            <tr>
+              <td> >= </td><td>Greater Than Or Equal To</td>
+            </tr>
+
+          </table>
+
+
+          <h3>Example</h3>
+
+          Light the first 10 lights (red) except for the 5th light, which should be green.
+          <pre class="line-numbers"><code class="language-python" >
+            import board
+            import neopixel
+
+            nPix = 20
+
+            pixels = neopixel.NeoPixel(board.D18, nPix)
+
+            for i in range(10):
+
+              if (i == 4):
+                pixels[i] = (0, 255, 0)
+              else:
+                pixels[i] = (255, 0, 0)
+          </code></pre>
+
+<h2>Exercises</h2>
+
+  <div id="exercises">
+    <div class="exercise">
+      <div class="question">
+        1) Make all of the lights red, except for the 3rd one which should be blue.
+
+        <!-- led Sim -->
+        <div id="ex1"></div>
+        <script type="text/javascript">
+          var leds = getLEDs("ex1");
+          for (let i=0; i<leds.length; i+=1){
+            if (i == 2) {
+              leds[i].style.backgroundColor = "blue";
+            }
+            else {
+              leds[i].style.backgroundColor = "red";
+            }
+          }
+        </script>
+
+      </div>
+      <div class="answers">
+        <div class="toggle-next">
+          Show Notes ▼
+        </div>
+        <div class="notes" hidden>
+          This can be done using either the <b>equal to</b> if statement (like in the example) or a <b>not equal to</b> statement.
+        </div>
+
+
+        <div class="toggle-next">
+          Show Solution ▼
+        </div>
+        <div class="solution" hidden>
+          <p>
+            <b>Solution</b>: To light up the last 5 lights (green) use:
+            <pre data-line="10"><code class="language-python" >
+                import board
+                import neopixel
+
+                nPix = 20
+
+                pixels = neopixel.NeoPixel(board.D18, nPix)
+
+                for i in range(10):
+
+                  if (i == 2):
+                    pixels[i] = (0, 0, 255)
+                  else:
+                    pixels[i] = (255, 0, 0)
+              </code></pre>
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="exercise">
+      <div class="question">
+        2) Make all of the lights red, except for the 8th one which should be blue. HOWEVER, <b>use a Not Equal To</b> statement.
+
+        <!-- led Sim -->
+        <div id="ex2"></div>
+        <script type="text/javascript">
+          var leds = getLEDs("ex2");
+          for (let i=0; i<leds.length; i+=1){
+            if (i != 7) {
+              leds[i].style.backgroundColor = "red";
+            }
+            else {
+              leds[i].style.backgroundColor = "blue";
+            }
+          }
+        </script>
+
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+
+
+  </body>
+  <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="prism.js"></script>
+  <script type="text/javascript" src="exercises.js"></script>
+</html>
