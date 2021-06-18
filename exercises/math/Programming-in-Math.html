@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>RPi: Lighting Lights</title>
+    <link href="prism.css" rel="stylesheet" />
+    <link href="exercises.css" rel="stylesheet" />
+
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_SVG">
+    </script>
+
+    <script type="text/javascript">
+      function getLEDs(id){
+        var leds = []
+        for (let i = 0; i < 20; i++){
+          leds.push(document.createElement("SPAN"));
+          leds[i].classList.add("led");
+          document.getElementById(id).append(leds[i]);
+        }
+        return leds;
+      }
+    </script>
+
+  </head>
+  <body>
+
+    <h1>Programming in Mathematics</h1>
+
+    <div class="intro">
+      These programming assignments are designed to supplement and complement the mathematics curriculum.
+
+      <h2>Topics</h2>
+      <ul>
+        <li>Points
+          <ol>
+            <li><a href="Points_Basic-Concepts.html">Basic Programming Concepts</a> </li>
+            <li><a href="Points_Functions.html"> Functions</a> </li>
+            <li><a href="Points_Classes.html">Classes</a> </li>
+          </ol>
+        </li>
+      </ul>
+    </div>
+
+
+
+
+  </body>
+  <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="prism.js"></script>
+  <script type="text/javascript" src="exercises.js"></script>
+</html>

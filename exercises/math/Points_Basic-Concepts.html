@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>RPi: Lighting Lights</title>
+    <link href="../prism.css" rel="stylesheet" />
+    <link href="../exercises.css" rel="stylesheet" />
+
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_SVG">
+    </script>
+
+    <script type="text/javascript">
+      function getLEDs(id){
+        var leds = []
+        for (let i = 0; i < 20; i++){
+          leds.push(document.createElement("SPAN"));
+          leds[i].classList.add("led");
+          document.getElementById(id).append(leds[i]);
+        }
+        return leds;
+      }
+    </script>
+
+  </head>
+  <body>
+
+    <h1>Points: Basic Programming Concepts</h1>
+    Here we'll write programs to work with two points, starting by finding the slope of the line between the two points.
+
+    <div class="intro">
+      <h2>Slope</h2>
+
+      <h3>The Math</h3>
+
+      <figure>
+        <img src="pts_bare-labeled.png" style="width:400px;">
+        <figcaption>Fig 1. Two points. Point 1: (2,4) and Point2: (6,7).</figcaption>
+      </figure>
+
+      The slope (m) of a line between two points is a measure of how fast the line goes up, so you take the vertical change (the change in y (Δy)), divided by the horizantal change (the change in x (Δx).
+
+      $$m = \frac{\Delta y}{\Delta x} $$
+
+      <figure>
+        <img src="pts_slope.png" style="width:400px;">
+        <figcaption>Fig 2. Finding the slope. </figcaption>
+      </figure>
+
+      For this specific problem we can easily calculate the change in y and change in x, however, for a program we'll want to generalize as much as possible, so we'll label the two points as Point 1 and Point 2 and the coordinates as (x<sub>1</sub>, y<sub>1</sub>) and (x<sub>2</sub>, y<sub>2</sub>):
+
+      <figure>
+        <img src="pts_slope-x1y1.png" style="width:400px;">
+        <figcaption>Fig 3. Finding the change in y and the change in x. </figcaption>
+      </figure>
+
+      So, ultimately, we'll go with the three equations:
+      $$ \Delta x = x_2 - x_1 $$
+      $$ \Delta y = y_2 - y_1 $$
+      $$ m = \frac{\Delta y}{\Delta x} $$
+
+      <h3>The Program</h3>
+      
+
+      <h2>Distance</h2>
+
+      To find the shortest distance between two points we can find the horizontal distance (Δx) and the vertical distance (Δy), then use Pythagoras' theorem to find the shortest distance (d).
+
+      <div class="answers">
+        <div class="toggle-next">
+          Hide Notes ▼
+        </div>
+        <div class="notes">
+          <p>
+            Instructions here
+
+            <pre class="language-python" data-line="3,9"><code>
+              code here
+            </code></pre>
+
+            $$\frac{\Delta t}{\Delta n} = 0.25 \text{ sec/node}$$
+
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+<h2>Exercises</h2>
+
+
+    <div id="exercises">
+      <div class="exercise">
+        <div class="question">
+          1) Make the last 5 lights red.
+
+          <!-- led Sim -->
+          <div id="ex1"></div>
+          <script type="text/javascript">
+            var leds = getLEDs("ex1");
+            for (let i=15; i<leds.length; i++){
+              leds[i].style.backgroundColor = "red";
+            }
+          </script>
+
+        </div>
+        <div class="answers">
+          <div class="toggle-next">
+            Show Notes ▼
+          </div>
+          <div class="notes" hidden>
+            There are 20 LED's in the strip, so your starting value should be <b>15</b> and the ending value should be <b>20</b>. The sequence stops at one less than the last value given.
+          </div>
+
+
+          <div class="toggle-next">
+            Show Solution ▼
+          </div>
+          <div class="solution" hidden>
+            <p>
+              <b>Solution</b>: To light up the last 5 lights (green) use:
+              <pre data-line="6"><code class="language-python" >
+                import board
+                import neopixel
+
+                pixels = neopixel.NeoPixel(board.D18, 20)
+
+                for i in range(15, 20):
+                  pixels[i] = (0, 20, 0)
+
+              </code></pre>
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      </div>
+    </div>
+
+
+  </body>
+  <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="prism.js"></script>
+  <script type="text/javascript" src="exercises.js"></script>
+</html>

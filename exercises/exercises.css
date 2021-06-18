@@ -77,3 +77,9 @@ td {
   padding: 0.5em;
   text-align: center;
 }
+
+figure {
+  border: 3px inset green;
+  text-align: center;
+  font-style: italic;
+}
