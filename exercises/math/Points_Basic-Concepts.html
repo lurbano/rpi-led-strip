@@ -34,9 +34,9 @@
       <div class="answers">
         <h3>The Math: Calculating Slope from Two Points</h3>
         <div class="toggle-next">
-          Hide Notes ▼
+          Show Notes ▼
         </div>
-        <div class="notes">
+        <div class="notes" hidden>
           <p>
 
             <figure>
@@ -74,11 +74,14 @@
 
 
       <div class="answers">
-        <h3>Program: Slope Using Simple Variables</h3>
+        <h3>Program: Finding the Slope Between two Points Using Simple Variables</h3>
+        <p>
+          A simple program to find the slope.
+        </p>
         <div class="toggle-next">
-          Hide Notes ▼
+          Show Notes ▼
         </div>
-        <div class="notes">
+        <div class="notes" hidden>
           <p>
 
             <pre class="line-numbers"><code class="language-python" >
@@ -88,7 +91,7 @@
 
               # Second Point
               x2 = 6
-              y2 = 7
+              y2 = 7Another, much more powerful, way of grouping things is a class. A point on the coordinate plane, with its <i>x</i> and <i>y</i> values would make a good class.
 
               # Vertical and Horizontal differences
               Dx = x2 - x1
@@ -120,11 +123,13 @@
 
       <div class="answers">
         <h3>Program: Tuples </h3>
-        Tuples are a simple way of grouping variables. Since each point has both <i>x</i> and <i>y</i> coordinates it makes sense to group them together. So, we can rewrite the program like so:
+        <p>
+          Tuples are a simple way of grouping variables. Since each point has both <i>x</i> and <i>y</i> coordinates it makes sense to group them together. So, we can rewrite the program like so:
+        </p>
         <div class="toggle-next">
-          Hide Notes ▼
+          Show Notes ▼
         </div>
-        <div class="notes">
+        <div class="notes" hidden>
           <p>
 
             <pre class="line-numbers"><code class="language-python" >
@@ -158,11 +163,14 @@
 
       <div class="answers">
         <h3>Program: Classes </h3>
-        Another, much more powerful, way of grouping things is a class. A point on the coordinate plane, with its <i>x</i> and <i>y</i> values would make a good class.
+        <p>
+          Another, much more powerful, way of grouping things is a class. A point on the coordinate plane, with its <i>x</i> and <i>y</i> values would make a good class.
+        </p>
+
         <div class="toggle-next">
-          Hide Notes ▼
+          Show Notes ▼
         </div>
-        <div class="notes">
+        <div class="notes" hidden>
           <p>
 
             <pre class="line-numbers"><code class="language-python" >
@@ -193,7 +201,7 @@
               <b>Defining the Class</b>: <code>Line 1</code> creates a class named <code>point</code>.
             </p>
             <p>
-              <b>Initialization function</b>: <code>Line 2</code>'s <code>__init__</code> defines the class' initialization function. Your class will almost always need one of these. It takes three variables, and the first one <code>self</code> is required for the class to be able to save things for later; the other two variables are just the <code>x</code> and <code>y</code> coordinates of the point.
+              <b>Initialization function</b>: <code>Line 2</code>'s "<code>__init__</code>" is the class' initialization function. Your class will almost always need one of these. This one takes three variables, and the first one <code>self</code> is required for the class to be able to save things for later; the other two variables are just the <code>x</code> and <code>y</code> coordinates of the point.
             </p>
             <p>
               <b>Saving Properties</b>: <code>Lines 3 and 4</code> save the x and y values internally so we can use them later. These internal variables are specific to each time we use the class, and are called <i>properties</i>.
@@ -202,7 +210,7 @@
               <b>Creating Instances of the class</b>: On <code>Lines 7 and 10</code> we create our points (<code>p1</code> and <code>p2</code>) as <i>instances</i> of the <code>point</code> class. Notice that we give each point its <code>x</code> and <code>y</code> values.
             </p>
             <p>
-              <b>Using the Instances of the class</b>: On <code>Line 13</code> we get the horizontal difference by subtracting point 2's <i>x</i> value (<code>p2.x</code>) from point 1's (<code>p1.x</code>). 
+              <b>Using the Instances of the class</b>: On <code>Line 13</code> we get the horizontal difference by subtracting point 2's <i>x</i> value (<code>p2.x</code>) from point 1's (<code>p1.x</code>).
             </p>
 
           </p>
@@ -220,16 +228,9 @@
     <div id="exercises">
       <div class="exercise">
         <div class="question">
-          1) Make the last 5 lights red.
+          1) Write a program to find the distance between two points. The distance (<i>d</i>) formula is:
 
-          <!-- led Sim -->
-          <div id="ex1"></div>
-          <script type="text/javascript">
-            var leds = getLEDs("ex1");
-            for (let i=15; i<leds.length; i++){
-              leds[i].style.backgroundColor = "red";
-            }
-          </script>
+          $$ d = \sqrt{\Delta x^2 + \Delta y^2} $$
 
         </div>
         <div class="answers">
@@ -237,7 +238,12 @@
             Show Notes ▼
           </div>
           <div class="notes" hidden>
-            There are 20 LED's in the strip, so your starting value should be <b>15</b> and the ending value should be <b>20</b>. The sequence stops at one less than the last value given.
+            <p>
+              To raise a number to a power, you can use the "<code>**</code>" operator. So, five squared would be: <code>5**2</code>
+            </p>
+            <p>
+              Getting the square root is the same as raising the number to the 0.5 power:  <code>25**0.5</code> equals <code>5.0</code>.
+            </p>
           </div>
 
 
@@ -246,19 +252,43 @@
           </div>
           <div class="solution" hidden>
             <p>
-              <b>Solution</b>: To light up the last 5 lights (green) use:
+              <b>Solution</b>: <b>5.0</b>
               <pre data-line="6"><code class="language-python" >
-                import board
-                import neopixel
+                # First Point
+                x1 = 2
+                y1 = 4
 
-                pixels = neopixel.NeoPixel(board.D18, 20)
+                # Second Point
+                x2 = 6
+                y2 = 7
 
-                for i in range(15, 20):
-                  pixels[i] = (0, 20, 0)
+                # Vertical and Horizontal differences
+                Dx = x2 - x1
+                Dy = y2 - y1
+
+                # Calculate Distance
+                d = (Dx**2 + Dy**2)**0.5
+
+                # Print result
+                print(f'The distance is {d}')
 
               </code></pre>
             </p>
           </div>
+        </div>
+      </div>
+
+      <div class="exercise">
+        <div class="question">
+          2) Write a program using tuples to find the distance between the two points.
+
+        </div>
+      </div>
+
+      <div class="exercise">
+        <div class="question">
+          3) Write a program using the points class to find the distance between two points.
+
         </div>
       </div>
 
