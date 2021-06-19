@@ -31,58 +31,186 @@
     <div class="intro">
       <h2>Slope</h2>
 
-      <h3>The Math</h3>
-
-      <figure>
-        <img src="pts_bare-labeled.png" style="width:400px;">
-        <figcaption>Fig 1. Two points. Point 1: (2,4) and Point2: (6,7).</figcaption>
-      </figure>
-
-      The slope (m) of a line between two points is a measure of how fast the line goes up, so you take the vertical change (the change in y (Δy)), divided by the horizantal change (the change in x (Δx).
-
-      $$m = \frac{\Delta y}{\Delta x} $$
-
-      <figure>
-        <img src="pts_slope.png" style="width:400px;">
-        <figcaption>Fig 2. Finding the slope. </figcaption>
-      </figure>
-
-      For this specific problem we can easily calculate the change in y and change in x, however, for a program we'll want to generalize as much as possible, so we'll label the two points as Point 1 and Point 2 and the coordinates as (x<sub>1</sub>, y<sub>1</sub>) and (x<sub>2</sub>, y<sub>2</sub>):
-
-      <figure>
-        <img src="pts_slope-x1y1.png" style="width:400px;">
-        <figcaption>Fig 3. Finding the change in y and the change in x. </figcaption>
-      </figure>
-
-      So, ultimately, we'll go with the three equations:
-      $$ \Delta x = x_2 - x_1 $$
-      $$ \Delta y = y_2 - y_1 $$
-      $$ m = \frac{\Delta y}{\Delta x} $$
-
-      <h3>The Program</h3>
-      
-
-      <h2>Distance</h2>
-
-      To find the shortest distance between two points we can find the horizontal distance (Δx) and the vertical distance (Δy), then use Pythagoras' theorem to find the shortest distance (d).
-
       <div class="answers">
+        <h3>The Math: Calculating Slope from Two Points</h3>
         <div class="toggle-next">
           Hide Notes ▼
         </div>
         <div class="notes">
           <p>
-            Instructions here
 
-            <pre class="language-python" data-line="3,9"><code>
-              code here
-            </code></pre>
+            <figure>
+              <img src="pts_bare-labeled.png" style="width:400px;">
+              <figcaption>Fig 1. Two points. Point 1: (2,4) and Point2: (6,7).</figcaption>
+            </figure>
 
-            $$\frac{\Delta t}{\Delta n} = 0.25 \text{ sec/node}$$
+            The slope (m) of a line between two points is a measure of how fast the line goes up, so you take the vertical change (the change in y (Δy)), divided by the horizantal change (the change in x (Δx).
+
+            $$m = \frac{\Delta y}{\Delta x} $$
+
+            <figure>
+              <img src="pts_slope.png" style="width:400px;">
+              <figcaption>Fig 2. Finding the slope. </figcaption>
+            </figure>
+
+            For this specific problem we can easily calculate the change in y and change in x, however, for a program we'll want to generalize as much as possible, so we'll label the two points as Point 1 and Point 2 and the coordinates as (x<sub>1</sub>, y<sub>1</sub>) and (x<sub>2</sub>, y<sub>2</sub>):
+
+            <figure>
+              <img src="pts_slope-x1y1.png" style="width:400px;">
+              <figcaption>Fig 3. Finding the change in y and the change in x. </figcaption>
+            </figure>
+
+            So, ultimately, we'll go with the three equations:
+            $$ \Delta x = x_2 - x_1 $$
+            $$ \Delta y = y_2 - y_1 $$
+            $$ m = \frac{\Delta y}{\Delta x} $$
+
 
           </p>
         </div>
       </div>
+
+
+
+
+      <div class="answers">
+        <h3>Program: Slope Using Simple Variables</h3>
+        <div class="toggle-next">
+          Hide Notes ▼
+        </div>
+        <div class="notes">
+          <p>
+
+            <pre class="line-numbers"><code class="language-python" >
+              # First Point
+              x1 = 2
+              y1 = 4
+
+              # Second Point
+              x2 = 6
+              y2 = 7
+
+              # Vertical and Horizontal differences
+              Dx = x2 - x1
+              Dy = y2 - y1
+
+              # Calculate Slope
+              m = Dy / Dx
+
+              # Print result
+              print(f'The slope is {m}')
+
+            </code></pre>
+
+            <p>
+              <b>Comments</b>: Anything after a "#" is  commented out, which means it is ignored when the program is run. This is a good way to make notes to explain what the program is doing.
+            </p>
+            <p>
+              <b>Declaring Variables</b>: On <code>Line 2</code> we create a variable named <code>x1</code> and give it a value of 2. Variable names have to start with a letter, but can be upper or lower case.
+            </p>
+            <p>
+              <b>Using Variables</b>: On <code>Line 10</code> we calculate the horizontal distance between the two points (Δx). I name the variable <code>Dx</code> instead of <code>Δx</code> simply because the upper case "D" is easier to type on my keyboard: <code>Δx</code> would work as a variable name in python.
+            </p>
+
+
+          </p>
+        </div>
+      </div>
+
+
+      <div class="answers">
+        <h3>Program: Tuples </h3>
+        Tuples are a simple way of grouping variables. Since each point has both <i>x</i> and <i>y</i> coordinates it makes sense to group them together. So, we can rewrite the program like so:
+        <div class="toggle-next">
+          Hide Notes ▼
+        </div>
+        <div class="notes">
+          <p>
+
+            <pre class="line-numbers"><code class="language-python" >
+              # First Point
+              (x1, y1) =  (2, 4)
+
+              # Second Point
+              (x2, y2) = (6, 7)
+
+              # Vertical and Horizontal differences
+              Dx = x2 - x1
+              Dy = y2 - y1
+
+              # Calculate Slope
+              m = Dy / Dx
+
+              # Print result
+              print(f'The slope is {m}')
+
+            </code></pre>
+
+            <p>
+              <b>Tuple</b>: <code>Line 2</code> makes a tuple of <code>(2, 4)</code> and assigns it to another tuple <code>(x1, y1)</code>. Since there's a pair of values in each tuple, the values are assigned to their respective variables.
+            </p>
+
+
+          </p>
+        </div>
+      </div>
+
+
+      <div class="answers">
+        <h3>Program: Classes </h3>
+        Another, much more powerful, way of grouping things is a class. A point on the coordinate plane, with its <i>x</i> and <i>y</i> values would make a good class.
+        <div class="toggle-next">
+          Hide Notes ▼
+        </div>
+        <div class="notes">
+          <p>
+
+            <pre class="line-numbers"><code class="language-python" >
+              class point:
+                  def __init__(self, x, y):
+                      self.x = x
+                      self.y = y
+
+              # First Point
+              p1 =  point(2, 4)
+
+              # Second Point
+              p2 = point(6, 7)
+
+              # Vertical and Horizontal differences
+              Dx = p2.x - p1.x
+              Dy = p2.y - p1.y
+
+              # Calculate Slope
+              m = Dy / Dx
+
+              # Print result
+              print(f'The slope is {m}')
+
+            </code></pre>
+
+            <p>
+              <b>Defining the Class</b>: <code>Line 1</code> creates a class named <code>point</code>.
+            </p>
+            <p>
+              <b>Initialization function</b>: <code>Line 2</code>'s <code>__init__</code> defines the class' initialization function. Your class will almost always need one of these. It takes three variables, and the first one <code>self</code> is required for the class to be able to save things for later; the other two variables are just the <code>x</code> and <code>y</code> coordinates of the point.
+            </p>
+            <p>
+              <b>Saving Properties</b>: <code>Lines 3 and 4</code> save the x and y values internally so we can use them later. These internal variables are specific to each time we use the class, and are called <i>properties</i>.
+            </p>
+            <p>
+              <b>Creating Instances of the class</b>: On <code>Lines 7 and 10</code> we create our points (<code>p1</code> and <code>p2</code>) as <i>instances</i> of the <code>point</code> class. Notice that we give each point its <code>x</code> and <code>y</code> values.
+            </p>
+            <p>
+              <b>Using the Instances of the class</b>: On <code>Line 13</code> we get the horizontal difference by subtracting point 2's <i>x</i> value (<code>p2.x</code>) from point 1's (<code>p1.x</code>). 
+            </p>
+
+          </p>
+        </div>
+      </div>
+
+
+
     </div>
 
 
@@ -140,7 +268,7 @@
 
 
   </body>
-  <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src="prism.js"></script>
-  <script type="text/javascript" src="exercises.js"></script>
+  <script type="text/javascript" src="../jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="../prism.js"></script>
+  <script type="text/javascript" src="../exercises.js"></script>
 </html>

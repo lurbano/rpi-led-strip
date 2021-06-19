@@ -35,6 +35,8 @@
 }
 code {
   user-select: none;
+  font-weight: bold;
+  font-size: 1.5em;
 }
 body {
   font-family: Georgia, sans-serif;
