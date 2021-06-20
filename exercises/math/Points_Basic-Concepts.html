@@ -32,7 +32,12 @@
       <h2>Slope</h2>
 
       <div class="answers">
-        <h3>The Math: Calculating Slope from Two Points</h3>
+
+        <h3>The Math: Calculating Slope Between Two Points</h3>
+        <p>
+          Finding the slope of a line between two points.
+        </p>
+
         <div class="toggle-next">
           Show Notes ▼
         </div>
@@ -218,6 +223,83 @@
       </div>
 
 
+      <div class="answers">
+        <h3>Program: Writing a Function</h3>
+        <p>
+          Functions are used to separate out pieces of code that do specific calculations. They are expecially useful for operations that you have to do repeatedly.
+        </p>
+        <div class="toggle-next">
+          Show Notes ▼
+        </div>
+        <div class="notes" hidden>
+          <p>
+
+            <pre class="line-numbers"><code class="language-python" >
+              # Function to find the slope
+              def slope(x_1, y_1, x_2, y_2):
+                  # Get vertical and Horizontal differences
+                  Dx = x_2 - x_1
+                  Dy = y_2 - y_1
+                  # Calculate Slope
+                  s = Dy / Dx
+                  # Return result to main program
+                  return s
+
+
+              # MAIN PROGRAM STARTS HERE
+
+              # First Point
+              x1 = 2
+              y1 = 4
+
+              # Second Point
+              x2 = 6
+              y2 = 7
+
+              # Use function to get the slope
+              m = slope(x1, y1, x2, y2)
+
+              # Print result
+              print(f'The slope is {m}')
+
+            </code></pre>
+
+            <p>
+              <b>Creating the function</b>:
+              <pre  class="line-numbers" data-start="2"><code class="language-python" >
+                def slope(x_1, y_1, x_2, y_2):
+              </code></pre>
+              Functions are created with the <code>def</code> keyword. In this case, the function is named <code>slope</code> and takes four values as inputs, which are given variable names: <code>x_1, y_1, x_2, y_2</code>. The function is the first thing in the code because when the program is run, it is saved so we can use it later. If a function is called before it is defined you'll get an error.
+            </p>
+            <p>
+              <b>Local variables</b>: The variable names from the function definition only exist within the function, this way multiple functions, or even the main program, can use the same variable names without conflicting with one another. Therefore, we could have used <code>x1, y1, x2, y2</code> even though these names are used in the main code.
+            </p>
+            <p>
+              <b>Returning the Result</b>:
+              <pre ><code class="language-python" no-whitespace-normalization>
+                    return s
+              </code></pre>
+              On <code>Line 9</code> we use the <code>return</code> keyword to return the result of the function to the place where it was called.
+            </p>
+
+            <p>
+              <b>Calling the function</b>
+              <pre ><code class="language-python" no-whitespace-normalization>
+              m = slope(x1, y1, x2, y2)
+              </code></pre>
+              We call the function by using its name (<code>slope</code>) and <i>passing</i> it the four values the function expects. We could have just put in the numbers directly, and left out <code>Lines 14-20</code> like so:
+              <pre ><code class="language-python" no-whitespace-normalization>
+              m = slope(2, 4, 6, 7)
+              </code></pre>
+            </p>
+
+
+
+          </p>
+        </div>
+      </div>
+
+
 
     </div>
 
@@ -252,8 +334,9 @@
           </div>
           <div class="solution" hidden>
             <p>
-              <b>Solution</b>: <b>5.0</b>
-              <pre data-line="6"><code class="language-python" >
+              <b>Result</b>: <b>5.0</b>
+              <i>Sample Code</i>
+              <pre><code class="language-python" >
                 # First Point
                 x1 = 2
                 y1 = 4
@@ -288,6 +371,20 @@
       <div class="exercise">
         <div class="question">
           3) Write a program using the points class to find the distance between two points.
+
+        </div>
+      </div>
+
+
+      <div class="exercise">
+        <div class="question">
+          4) Write a function that calculates the distance between two points.
+        </div>
+      </div>
+
+      <div class="exercise">
+        <div class="question">
+          5) Write a function that calculates the distance between two points using the points class to pass the coordinates of the points.
 
         </div>
       </div>
