@@ -17,7 +17,7 @@
    id="svg895"
    sodipodi:docname="pts_slope-x1y1.svg"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
-   inkscape:export-filename="/home/lurbano/GitHub/rpi-led-strip/exercises/math/pts_slope.png"
+   inkscape:export-filename="/home/lurbano/GitHub/rpi-led-strip/exercises/math/pts_slope-x1y1.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96">
   <sodipodi:namedview
@@ -34,8 +34,8 @@
      id="namedview897"
      showgrid="false"
      inkscape:zoom="0.98333333"
-     inkscape:cx="334.56293"
-     inkscape:cy="240"
+     inkscape:cx="90.495128"
+     inkscape:cy="236.94915"
      inkscape:window-x="0"
      inkscape:window-y="27"
      inkscape:window-maximized="1"
@@ -2358,17 +2358,6 @@
          id="tspan1883-5-8"
          sodipodi:role="line">1</tspan></text>
   </g>
-  <text
-     xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.99999905px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:round"
-     x="-108.00265"
-     y="187.91653"
-     id="text1706-1-0-2-4"><tspan
-       sodipodi:role="line"
-       id="tspan1704-0-4-9-4"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.99999905px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:round"
-       x="-108.00265"
-       y="187.91653">(x  , y  )</tspan></text>
   <text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:round;"

@@ -6,7 +6,7 @@ $(".toggle-next").click(function(){
     $(this).html(txt);
   }
   else {
-    $(this).parent().css("border", "none");
+    $(this).parent().css("border", "1px solid black");
     let txt = $(this).html().replace("Hide", "Show").replace("▲", "▼");
     $(this).html(txt);
   }

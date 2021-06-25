@@ -3,9 +3,9 @@
   left: 2em;
 }
 .notes {
-
   position: relative;
   left: 2em;
+  width: 90%;
 }
 .solution {
   background-color: lightGreen;
@@ -25,6 +25,8 @@
 .answers {
   position: relative;
   left: 2em;
+  margin-bottom: 1em;
+  border: 1px solid blue;
 }
 .intro {
   position: relative;
