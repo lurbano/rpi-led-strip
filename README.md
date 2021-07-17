@@ -3,6 +3,9 @@ Instructions for setting up a headless Raspberry Pi Zero to control a NeoPixel (
 * Lensyl Urbano
 * https://montessorimuddle.org
 
+* Exercises for learning to control the LED strip with programming can be found at
+** https://soriki.com/rpi-led-strip/exercises/
+
 
 # Set up Raspberry Pi
 
