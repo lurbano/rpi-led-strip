@@ -18,14 +18,6 @@ parser.add_argument("-c", "--nCycles", default=0, type=int, help = "number of cy
 
 args = parser.parse_args()
 
-color = args.color
-color = color.strip()
-color = color.replace(" ","")
-color = color.split(",")
-r = float(color[0])
-g = float(color[1])
-b = float(color[2])
-color = (r, g, b)
 print("speed:", args.speed)
 print("nPix:", args.nPix)
 print("timestep:", args.timestep)
