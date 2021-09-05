@@ -207,12 +207,15 @@ print(s.days[0]["periods"][0].start.hr, s.days[0]["periods"][0].start.min)
 now = time.localtime()
 uNow = uTimeNow()
 cp = s.getPeriod2()
-print(cp.start.hr, cp.start.min)
-frac = (uNow.totMins - cp.start.totMins) / (cp.end.totMins-cp.start.totMins)
-print("frac:", frac)
+if cp != None:
+    print(cp.start.hr, cp.start.min)
+    frac = (uNow.totMins - cp.start.totMins) / (cp.end.totMins-cp.start.totMins)
+    print("frac:", frac)
 
-nLights = int(frac*args.nPix)
-try:
-    ledPix.twoColors(nLights, (0,255,0), (100,0,0))
-except:
-    print("pixels not lit")
+    nLights = int(frac*args.nPix)
+    try:
+        ledPix.twoColors(nLights, (0,255,0), (100,0,0))
+    except:
+        print("pixels not lit")
+else:
+    ledPix.setColor((0,0,100))
