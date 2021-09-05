@@ -102,6 +102,7 @@ weeklySchedule = """
 ]
 """
 
+
 class uTime:
     def __init__(self, t_str):
         # t_str is a string that has the time as "9:30"
