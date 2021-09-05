@@ -127,8 +127,7 @@ class schedule:
         for i in range(len(self.days)):
             print(i, self.days[i]["day"])
             for t in range(len(self.days[i]["periods"])):
-                print(t, self.days[i]["periodclass uTime:
-s"][t])
+                print(t, self.days[i]["periods"][t])
                 strt = self.days[i]["periods"][t][0]
                 end = self.days[i]["periods"][t][1]
                 self.days[i]["periods"][t] = period(strt, end)
