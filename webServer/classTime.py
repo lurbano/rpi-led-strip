@@ -4,6 +4,10 @@ import argparse
 
 import json
 
+# get number of pixels from the command line
+parser = argparse.ArgumentParser()
+parser.add_argument("-n", "--nPix", default=20, type=int, help = "Number of LED Pixels.")
+args = parser.parse_args()
 
 try:
     from ledPixels import *
@@ -11,10 +15,6 @@ try:
 except:
     print("ledPix not active")
 
-# get number of pixels from the command line
-parser = argparse.ArgumentParser()
-parser.add_argument("-n", "--nPix", default=20, type=int, help = "Number of LED Pixels.")
-args = parser.parse_args()
 
 
 weeklySchedule = """
@@ -127,7 +127,8 @@ class schedule:
         for i in range(len(self.days)):
             print(i, self.days[i]["day"])
             for t in range(len(self.days[i]["periods"])):
-                print(t, self.days[i]["periods"][t])
+                print(t, self.days[i]["periodclass uTime:
+s"][t])
                 strt = self.days[i]["periods"][t][0]
                 end = self.days[i]["periods"][t][1]
                 self.days[i]["periods"][t] = period(strt, end)
