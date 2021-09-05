@@ -182,7 +182,7 @@ class schedule:
         # t is an instance of uTime
         #tm = uTime(str(h)+":"+str(m))
         period = -1
-        print("d:", d, len(self.days))
+        #print("d:", d, len(self.days))
         p = self.days[d]["periods"]
         #print("day", d, h, m, self.days[d]["day"], len(p))
         for i in range(len(p)):
