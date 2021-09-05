@@ -155,28 +155,28 @@ class schedule:
     #     else:
     #         return self.days[d]["periods"][p]
 
-    def findPeriod(self, t=time.localtime()):
-        # t is an instance of time.time: eg. time.localtime()
-        period = -1
-        d = t.tm_wday
-        h = t.tm_hour
-        m = t.tm_min
-        tm = uTime(str(h)+":"+str(m))
-        p = self.days[d]["periods"]
-        #print("day", d, h, m, self.days[d]["day"], len(p))
-        for i in range(len(p)):
-            #print(h, p[i].start.hr, m, p[i].start.min, p[i].start.totMins)
-            if (tm.totMins >= p[i].start.totMins and tm.totMins <= p[i].end.totMins):
-                #print(i, "bingo")
-                period = i
-        return (d, period)
-
-    def getPeriod(self):
-        (d, p) = self.findPeriod(time.localtime())
-        if p == -1:
-            return None
-        else:
-            return self.days[d]["periods"][p]
+    # def findPeriod(self, t=time.localtime()):
+    #     # t is an instance of time.time: eg. time.localtime()
+    #     period = -1
+    #     d = t.tm_wday
+    #     h = t.tm_hour
+    #     m = t.tm_min
+    #     tm = uTime(str(h)+":"+str(m))
+    #     p = self.days[d]["periods"]
+    #     #print("day", d, h, m, self.days[d]["day"], len(p))
+    #     for i in range(len(p)):
+    #         #print(h, p[i].start.hr, m, p[i].start.min, p[i].start.totMins)
+    #         if (tm.totMins >= p[i].start.totMins and tm.totMins <= p[i].end.totMins):
+    #             #print(i, "bingo")
+    #             period = i
+    #     return (d, period)
+    #
+    # def getPeriod(self):
+    #     (d, p) = self.findPeriod(time.localtime())
+    #     if p == -1:
+    #         return None
+    #     else:
+    #         return self.days[d]["periods"][p]
 
     def findPeriod2(self, tm = uTimeNow(), d=time.localtime().tm_wday):
         # t is an instance of uTime
@@ -204,18 +204,20 @@ class schedule:
 s = schedule()
 print(s.days[0]["periods"][0].start.hr, s.days[0]["periods"][0].start.min)
 
-now = time.localtime()
-uNow = uTimeNow()
-cp = s.getPeriod2()
-if cp != None:
-    print(cp.start.hr, cp.start.min)
-    frac = (uNow.totMins - cp.start.totMins) / (cp.end.totMins-cp.start.totMins)
-    print("frac:", frac)
+while True:
+    now = time.localtime()
+    uNow = uTimeNow()
+    cp = s.getPeriod2()
+    if cp != None:
+        print(cp.start.hr, cp.start.min)
+        frac = (uNow.totMins - cp.start.totMins) / (cp.end.totMins-cp.start.totMins)
+        print("frac:", frac)
 
-    nLights = int(frac*args.nPix)
-    try:
-        ledPix.twoColors(nLights, (0,255,0), (100,0,0))
-    except:
-        print("pixels not lit")
-else:
-    ledPix.setColor((0,0,100))
+        nLights = int(frac*args.nPix)
+        try:
+            ledPix.twoColors(nLights, (0,255,0), (100,0,0))
+        except:
+            print("pixels not lit")
+    else:
+        ledPix.setColor((0,0,100))
+    time.sleep(1)
