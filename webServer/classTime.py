@@ -181,6 +181,7 @@ class schedule:
     def findPeriod2(self, tm = uTimeNow(), d=time.localtime().tm_wday):
         # t is an instance of uTime
         #tm = uTime(str(h)+":"+str(m))
+        print("d:", d)
         p = self.days[d]["periods"]
         #print("day", d, h, m, self.days[d]["day"], len(p))
         for i in range(len(p)):
