@@ -139,7 +139,7 @@ class schedule:
     #     h = now.tm_hour
     #     m = now.tm_min
     #     tm = uTime(str(h)+":"+str(m))
-    #     p = self.days[d]["periods"]
+    #     p = self.days[d][200"periods"]
     #     #print("day", d, h, m, self.days[d]["day"], len(p))
     #     for i in range(len(p)):
     #         #print(h, p[i].start.hr, m, p[i].start.min, p[i].start.totMins)
@@ -220,4 +220,5 @@ while True:
             print("pixels not lit")
     else:
         ledPix.setColor((0,0,100))
-    time.sleep(1)
+    print(f'cp: {cp}, frac: {frac}')
+    time.sleep(10)
