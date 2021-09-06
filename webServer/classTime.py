@@ -120,6 +120,10 @@ class period:
         self.start = uTime(startTime)
         self.end = uTime(endTime)
 
+    def printTxt(self):
+        t = f'{self.start.hr}:{self.start.min}-{self.end.hr}:{self.end.min}'
+        return t
+
 
 class schedule:
     def __init__(self):
@@ -220,5 +224,5 @@ while True:
             print("pixels not lit")
     else:
         ledPix.setColor((0,0,100))
-    print(f'cp: {cp}, frac: {frac}')
+    print(f'cp: {cp.printTxt()}, frac: {frac}')
     time.sleep(10)
