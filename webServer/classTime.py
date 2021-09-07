@@ -184,5 +184,5 @@ while True:
 
     else:
         ledPix.setColor((0,0,100))
-        print("In between classes.")
+        print("In between classes.", uNow.printTxt())
     time.sleep(10)
