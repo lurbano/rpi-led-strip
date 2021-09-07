@@ -213,7 +213,7 @@ while True:
     uNow = uTimeNow()
     cp = s.getPeriod2()
     if cp != None:
-        #print(cp.start.hr, cp.start.min)
+        print(cp.start.hr, cp.start.min)
         frac = (uNow.totMins - cp.start.totMins) / (cp.end.totMins-cp.start.totMins)
         #print("frac:", frac)
 
@@ -225,5 +225,5 @@ while True:
         ledPix.twoColors(nLights, (150,0,0), (0,150,0))
     else:
         ledPix.setColor((0,0,100))
-    print(f'cp: {cp.printTxt()}, frac: {frac}')
+    print(f'cp: {cp.printTxt()}, {nLights}, frac: {frac}')
     time.sleep(10)
