@@ -110,6 +110,8 @@ class uTime:
         self.hr = int(t[0])
         self.min = int(t[1])
         self.totMins = self.hr * 60 + self.min
+    def printTime(self):
+        return f'{self.hr}:{self.min} ({self.totMins})'
 
 def uTimeNow():
     now = time.localtime()
@@ -184,5 +186,5 @@ while True:
 
     else:
         ledPix.setColor((0,0,100))
-        print("In between classes.", uNow.printTxt())
+        print("In between classes.", uNow.printTime())
     time.sleep(10)
