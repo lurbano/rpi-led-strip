@@ -217,7 +217,7 @@ while True:
         frac = (uNow.totMins - cp.start.totMins) / (cp.end.totMins-cp.start.totMins)
         #print("frac:", frac)
 
-        nLights = int(frac*args.nPix)
+        nLights = min(int(frac*args.nPix), nPix)
         # try:
         #     ledPix.twoColors(nLights, (150,0,0), (0,150,0))
         # except:
