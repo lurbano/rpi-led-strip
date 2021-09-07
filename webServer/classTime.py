@@ -135,7 +135,7 @@ class schedule:
                 strt = self.days[i]["periods"][t][0]
                 end = self.days[i]["periods"][t][1]
                 self.days[i]["periods"][t] = period(strt, end)
-                print("p:", self.days[i]["periods"][t].start.totMins)
+                print("p:", self.days[i]["periods"][t].start.totMins, self.days[i]["periods"][t].end.totMins)
 
 
     def findPeriod2(self, tm = uTimeNow(), d=time.localtime().tm_wday):
