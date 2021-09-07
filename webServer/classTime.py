@@ -147,6 +147,7 @@ class schedule:
         #print("day", d, h, m, self.days[d]["day"], len(p))
         for i in range(len(p)):
             #print(h, p[i].start.hr, m, p[i].start.min, p[i].start.totMins)
+            print("findPeriod2 (start, tm, end):",  p[i].start.totMins, tm.totMins, p[i].end.totMins)
             if (tm.totMins >= p[i].start.totMins and tm.totMins <= p[i].end.totMins):
                 #print(i, "bingo")
                 period = i
