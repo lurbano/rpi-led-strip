@@ -218,10 +218,11 @@ while True:
         #print("frac:", frac)
 
         nLights = int(frac*args.nPix)
-        try:
-            ledPix.twoColors(nLights, (150,0,0), (0,150,0))
-        except:
-            print("pixels not lit")
+        # try:
+        #     ledPix.twoColors(nLights, (150,0,0), (0,150,0))
+        # except:
+        #     print("pixels not lit")
+        ledPix.twoColors(nLights, (150,0,0), (0,150,0))
     else:
         ledPix.setColor((0,0,100))
     print(f'cp: {cp.printTxt()}, frac: {frac}')
