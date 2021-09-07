@@ -13,7 +13,7 @@ try:
     from ledPixels import *
     ledPix = ledPixels(args.nPix, board.D18)
 except:
-    print("ledPix not active")
+    print("ledPix not active") 
 
 
 
