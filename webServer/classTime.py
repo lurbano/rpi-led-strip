@@ -13,7 +13,7 @@ try:
     from ledPixels import *
     ledPix = ledPixels(args.nPix, board.D18)
 except:
-    print("ledPix not active") 
+    print("ledPix not active")
 
 
 
@@ -135,52 +135,8 @@ class schedule:
                 strt = self.days[i]["periods"][t][0]
                 end = self.days[i]["periods"][t][1]
                 self.days[i]["periods"][t] = period(strt, end)
+                print("p:", self.days[i]["periods"][t].start.totMins)
 
-    # def findCurrentPeriod(self):
-    #     period = -1
-    #     now = time.localtime()
-    #     d = now.tm_wday
-    #     h = now.tm_hour
-    #     m = now.tm_min
-    #     tm = uTime(str(h)+":"+str(m))
-    #     p = self.days[d][200"periods"]
-    #     #print("day", d, h, m, self.days[d]["day"], len(p))
-    #     for i in range(len(p)):
-    #         #print(h, p[i].start.hr, m, p[i].start.min, p[i].start.totMins)
-    #         if (tm.totMins >= p[i].start.totMins and tm.totMins <= p[i].end.totMins):
-    #             #print(i, "bingo")
-    #             period = i
-    #     retime.localtime()turn (d, period)
-    #
-    # def getCurrentPeriod(self):
-    #     (d, p) = self.findCurrentPeriod()
-    #     if p == -1:
-    #         return NuTimeNow()one
-    #     else:
-    #         return self.days[d]["periods"][p]
-
-    # def findPeriod(self, t=time.localtime()):
-    #     # t is an instance of time.time: eg. time.localtime()
-    #     period = -1
-    #     d = t.tm_wday
-    #     h = t.tm_hour
-    #     m = t.tm_min
-    #     tm = uTime(str(h)+":"+str(m))
-    #     p = self.days[d]["periods"]
-    #     #print("day", d, h, m, self.days[d]["day"], len(p))
-    #     for i in range(len(p)):
-    #         #print(h, p[i].start.hr, m, p[i].start.min, p[i].start.totMins)
-    #         if (tm.totMins >= p[i].start.totMins and tm.totMins <= p[i].end.totMins):
-    #             #print(i, "bingo")
-    #             period = i
-    #     return (d, period)
-    #
-    # def getPeriod(self):
-    #     (d, p) = self.findPeriod(time.localtime())
-    #     if p == -1:
-    #         return None
-    #     else:
-    #         return self.days[d]["periods"][p]
 
     def findPeriod2(self, tm = uTimeNow(), d=time.localtime().tm_wday):
         # t is an instance of uTime
