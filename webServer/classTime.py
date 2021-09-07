@@ -168,7 +168,7 @@ print(s.days[0]["periods"][0].start.hr, s.days[0]["periods"][0].start.min)
 while True:
     now = time.localtime()
     uNow = uTimeNow()
-    cp = s.getPeriod2()
+    cp = s.getPeriod2(uNow)
     if cp != None:
         print(cp.start.hr, cp.start.min)
         frac = (uNow.totMins - cp.start.totMins) / (cp.end.totMins-cp.start.totMins)
