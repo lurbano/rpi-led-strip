@@ -180,7 +180,9 @@ while True:
         # except:
         #     print("pixels not lit")
         ledPix.twoColors(nLights, (150,0,0), (0,150,0))
+        print(f'cp: {cp.printTxt()}, {nLights}, frac: {frac}')
+
     else:
         ledPix.setColor((0,0,100))
-    print(f'cp: {cp.printTxt()}, {nLights}, frac: {frac}')
+        print("In between classes.")
     time.sleep(10)
