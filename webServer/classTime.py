@@ -182,7 +182,7 @@ while True:
         # except:
         #     print("pixels not lit")
         ledPix.twoColors(nLights, (150,0,0), (0,150,0))
-        print(f'P: {uNow.printTime()} - {cp.printTxt()}, {nLights}, frac: {round(frac*100)}%')
+        print(f'P: {uNow.printTime()} - {cp.printTxt()}, n={nLights}/{args.nPix}, frac: {round(frac*100)}%')
 
     else:
         ledPix.setColor((0,0,100))
