@@ -167,6 +167,8 @@ class schedule:
 s = schedule()
 print(s.days[0]["periods"][0].start.hr, s.days[0]["periods"][0].start.min)
 
+print("--------------------------------------------")
+
 while True:
     now = time.localtime()
     uNow = uTimeNow()
