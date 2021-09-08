@@ -151,7 +151,7 @@ class schedule:
             #print(h, p[i].start.hr, m, p[i].start.min, p[i].start.totMins)
 
             if (tm.totMins >= p[i].start.totMins and tm.totMins <= p[i].end.totMins):
-                print("findPeriod2 (start, tm, end):",  p[i].start.totMins, tm.totMins, p[i].end.totMins)
+                #print("findPeriod2 (start, tm, end):",  p[i].start.totMins, tm.totMins, p[i].end.totMins)
                 period = i
         return (d, period)
 
@@ -172,7 +172,7 @@ while True:
     uNow = uTimeNow()
     cp = s.getPeriod2(uNow)
     if cp != None:
-        print(cp.start.hr, cp.start.min)
+        #print(cp.start.hr, cp.start.min)
         frac = (uNow.totMins - cp.start.totMins) / (cp.end.totMins-cp.start.totMins)
         #print("frac:", frac)
 
@@ -182,7 +182,7 @@ while True:
         # except:
         #     print("pixels not lit")
         ledPix.twoColors(nLights, (150,0,0), (0,150,0))
-        print(f'cp: {cp.printTxt()}, {nLights}, frac: {frac}')
+        print(f'P: {uNow.printTime()} - {cp.printTxt()}, {nLights}, frac: {frac}')
 
     else:
         ledPix.setColor((0,0,100))
