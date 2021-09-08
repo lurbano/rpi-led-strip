@@ -111,7 +111,7 @@ class uTime:
         self.min = int(t[1])
         self.totMins = self.hr * 60 + self.min
     def printTime(self):
-        return f'{self.hr}:{self.min} ({self.totMins})'
+        return f'{self.hr}:{str(self.min).zfill(2)}'
 
 def uTimeNow():
     now = time.localtime()
