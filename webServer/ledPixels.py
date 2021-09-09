@@ -159,7 +159,7 @@ class ledPixels:
             else:
                 self.pixels[i] = self.brighten(col2)
             time.sleep(0.1)
-        self.pixels.show()
+            self.pixels.show()
 
     def setColor(self, col):
         if col[0] == "#":
