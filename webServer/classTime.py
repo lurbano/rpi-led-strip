@@ -161,12 +161,17 @@ class schedule:
         else:
             return self.days[d]["periods"][p]
 
-
+def startupSequence():
+    for i in range(args.nPix):
+        ledPix.light(i, (0, 200,200))
+        time.sleep(0.1)
 
 s = schedule()
 print(s.days[0]["periods"][0].start.hr, s.days[0]["periods"][0].start.min)
 
 print("--------------------------------------------")
+
+startupSequence()
 
 while True:
     now = time.localtime()
