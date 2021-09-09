@@ -166,12 +166,17 @@ def startupSequence():
         ledPix.light(i, (0, 200,200))
         time.sleep(0.1)
 
+doneColor = (150, 0, 0)
+togoColor = (0, 150, 0)
+
 s = schedule()
 print(s.days[0]["periods"][0].start.hr, s.days[0]["periods"][0].start.min)
 
 print("--------------------------------------------")
 
 startupSequence()
+
+l_start = True
 
 while True:
     now = time.localtime()
@@ -187,7 +192,11 @@ while True:
         #     ledPix.twoColors(nLights, (150,0,0), (0,150,0))
         # except:
         #     print("pixels not lit")
-        ledPix.twoColors(nLights, (150,0,0), (0,150,0))
+        if l_start:
+            ledPix.twoColorsTimestep(nLights, doneColor, togoColor, 0.1)
+            l_start = False
+        else:
+            ledPix.twoColors(nLights, doneColor, togoColor)
         print(f'P: {uNow.printTime()} - {cp.printTxt()}, n={nLights}/{args.nPix}, frac: {round(frac*100)}%', end="\r", flush=True)
 
     else:

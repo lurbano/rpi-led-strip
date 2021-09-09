@@ -152,6 +152,15 @@ class ledPixels:
                 self.pixels[i] = self.brighten(col2)
         self.pixels.show()
 
+    def twoColorsTimestep(self, n, col1=(0,0,255), col2=(0,0,0), dt=0.1):
+        for i in range(self.nPix):
+            if i < n:
+                self.pixels[i] = self.brighten(col1)
+            else:
+                self.pixels[i] = self.brighten(col2)
+            time.sleep(0.1)
+        self.pixels.show()
+
     def setColor(self, col):
         if col[0] == "#":
             col = hex_to_rgb(col)
