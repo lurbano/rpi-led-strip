@@ -174,7 +174,7 @@ print(s.days[0]["periods"][0].start.hr, s.days[0]["periods"][0].start.min)
 
 print("--------------------------------------------")
 
-startupSequence()
+#startupSequence()
 
 l_start = True
 
