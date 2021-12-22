@@ -117,6 +117,15 @@ $(document).ready(function(){
             ws.send(msg);
         });
 
+
+
+        $("#sin3Phase").click(function(){
+            let msg = {
+              "what": "sin3Phase"
+            }
+            ws.send(JSON.stringify(msg));
+        });
+
         $("#sinX").click(function(){
             var f = $("#sinXFreq").val();
             var p = $("#sinXPhase").val();

@@ -127,6 +127,12 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 				ledPix.cancelTask()
 				ledPix.blue()
 
+			if msg["what"] == "sin3Phase":
+				print("sin 3 phase (sinForever2.py -x 72 -f 5 -b 0.5 -s 0.0005) ")
+				ledPix.cancelTask()
+				ledPix.brightness = 0.5
+				ledPix.threeSins(freq=5, speed=0.0005)
+
 			if msg["what"] == "sinX":
 				print("sin(x) ")
 				ledPix.cancelTask()
