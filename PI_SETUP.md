@@ -102,14 +102,14 @@ ssh pi@192.168.4.76
 ```
 
 
-## update Pi
+# update Pi
 Once you're logged into the Pi update using the following commands:
  ```console
 sudo apt-get update
 sudo apt-get upgrade
 ```
 
-### REBOOT pi
+## REBOOT pi
  ```console
 sudo reboot
 ```
