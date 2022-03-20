@@ -1,5 +1,7 @@
 # RPi-led-strip
-Instructions for setting up a headless Raspberry Pi Zero to control a NeoPixel (WS281x) LED strip. This procedure has only been tested on the Pi Zero. It does not work on the B+, and I don't know about other Pi versions.
+Instructions for setting up a headless Raspberry Pi Zero to control a NeoPixel (WS281x) LED strip. The LED strip can be controlled through a tornado webserver.
+
+This procedure has only been tested on the Pi Zero. It does not work on the B+, and I don't know about other Pi versions.
 * Lensyl Urbano
 * https://montessorimuddle.org
 

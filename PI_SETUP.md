@@ -14,6 +14,7 @@ Instructions for setting up a headless Raspberry Pi Zero. Projects for controlli
 [copy] or create empty file ***ssh*** on SD Card's boot directory
 * Filename: *ssh*
 
+
 ### 2) File: wpa_supplicant.conf
 [edit] or create file for wifi connection and copy to boot directory of Pi:
 * File name: *wpa_supplicant.conf*
@@ -32,7 +33,18 @@ network={
 }
 ```
 
-### 3) USB connection
+### 3) [Semi-Optional] Changing the hostname
+This is makes it easier to connect, because you don't have to remember the ip address (see below). You have to edit two files `/etc/hostname` and `/etc/hosts`. Replace the default hostname `raspberrypi` in both files.
+
+Detailed instructions: https://thepihut.com/blogs/raspberry-pi-tutorials/19668676-renaming-your-raspberry-pi-the-hostname
+
+If I change the name of my pi to "***makerspace***" I can access it by logging in to ***pi@makerspace.local***
+'''ssh pi@makerspace.local'''
+
+Using the local hostname does not seem to work on phones for some reason right now (3/20/22), however, I usually find it easier to set up the local name, log in using a laptop, and find the ip address using the ***ifconfig*** command
+
+
+### 4) [Optional] USB connection (Buggy right now (3/20/22) I usually skip.)
 [copy] over or update files on the SD Card for usb connection (https://learn.adafruit.com/turning-your-raspberry-pi-zero-into-a-usb-gadget/ethernet-gadget)
 
 File: ***config.txt***:
@@ -89,12 +101,6 @@ In this case the IP address is 192.168.4.76 and you can log in using:
 ssh pi@192.168.4.76
 ```
 
-## [Optional] Changing the hostname
-This is makes it easier to connect, because you don't have to remember the ip address. You have to edit two files `/etc/hostname` and `/etc/hosts`.
-
-Follow instructions: https://thepihut.com/blogs/raspberry-pi-tutorials/19668676-renaming-your-raspberry-pi-the-hostname
-
-If I change the name of my pi to "***makerspace***" I can access it by logging in to ***pi@makerspace.local***
 
 ## update Pi
 Once you're logged into the Pi update using the following commands:
